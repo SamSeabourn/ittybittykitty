@@ -1,0 +1,10 @@
+.kitty {
+	transform: scale(4);
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	bottom: 48px;
+	left: 24px;
+	background-image: url('sprites.png');
+	image-rendering: pixelated;
+}

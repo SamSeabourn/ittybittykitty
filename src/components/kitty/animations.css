@@ -1,0 +1,108 @@
+.kitty-test-idle {
+	animation: idle 5s steps(4) infinite;
+}
+
+@keyframes idle {
+	to {
+		background-position-x: -128px;
+	}
+}
+
+.kitty-test-wag {
+	background-position-y: -32px;
+	animation: wag 1.5s steps(4) infinite;
+}
+
+@keyframes wag {
+	to {
+		background-position-x: -128px;
+	}
+}
+
+.kitty-test-lick {
+	background-position-y: -64px;
+	animation: lick 1s steps(4) infinite;
+}
+
+@keyframes lick {
+	to {
+		background-position-x: -128px;
+	}
+}
+
+.kitty-test-wipe {
+	background-position-y: -96px;
+	animation: wipe 1s steps(4) infinite;
+}
+
+@keyframes wipe {
+	to {
+		background-position-x: -128px;
+	}
+}
+
+.kitty-test-stroll {
+	background-position-y: -128px;
+	animation: stroll 1.5s steps(8) infinite;
+}
+
+@keyframes stroll {
+	to {
+		background-position-x: -256px;
+	}
+}
+
+.kitty-test-run {
+	background-position-y: -160px;
+	animation: run 0.5s steps(8) infinite;
+}
+
+@keyframes run {
+	to {
+		background-position-x: -256px;
+	}
+}
+
+.kitty-test-sleep {
+	background-position-y: -192px;
+	animation: sleep 4s steps(4) infinite;
+}
+
+@keyframes sleep {
+	to {
+		background-position-x: -128px;
+	}
+}
+
+.kitty-test-swipe {
+	background-position-y: -224px;
+	animation: sleep 1s steps(4) infinite;
+}
+
+@keyframes swipe {
+	to {
+		background-position-x: -128px;
+	}
+}
+
+.kitty-test-jump {
+	background-position-y: -256px;
+	animation: jump 0.5s steps(7) infinite;
+}
+
+@keyframes jump {
+	to {
+		background-position-x: -224px;
+	}
+}
+
+.kitty-test-hiss {
+	background-position-y: -288px;
+	animation: hiss 4s steps(4) infinite;
+}
+
+@keyframes hiss {
+	to {
+		background-position-x: -256px;
+	}
+}
