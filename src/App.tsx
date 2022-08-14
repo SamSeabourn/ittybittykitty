@@ -8,6 +8,9 @@ function App() {
 			{
 				<Playground>
 					<Kitty />
+					<Kitty />
+					<Kitty />
+					<Kitty />
 				</Playground>
 			}
 		</div>

@@ -1,14 +1,14 @@
 export const actions = [
-	'idle',
-	'wag',
-	'lick',
+	// 'idle',
+	// 'wag',
+	// 'lick',
 	'wipe',
 	'stroll',
 	'run',
 	'sleep',
-	'swipe',
-	'jump',
-	'hiss',
+	// 'swipe',
+	// 'jump',
+	// 'hiss',
 ]
 
 export type Action =
@@ -40,20 +40,12 @@ export const generateDuration = (action: Action) => {
 			max = 30
 			break
 		case 'wipe':
-			min = 5
-			max = 10
-			break
-		case 'stroll':
-			min = 5
-			max = 40
-			break
-		case 'run':
-			min = 5
-			max = 40
+			min = 20
+			max = 60
 			break
 		case 'sleep':
-			min = 8
-			max = 10
+			min = 60
+			max = 120
 			break
 		case 'swipe':
 			min = 1
@@ -72,8 +64,4 @@ export const generateDuration = (action: Action) => {
 			max = 1
 	}
 	return Math.floor(Math.random() * (max - min + 1) + min) * 1000
-}
-
-export const buildCSSTransition = () => {
-	return `transition: left ease-in-out 10s`
 }
