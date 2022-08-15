@@ -1,11 +1,12 @@
 export const actions = [
+	'run',
+	'stroll',
+	'sleep',
+	'zoomies',
 	'idle',
 	'wag',
 	'lick',
 	'wipe',
-	'stroll',
-	'run',
-	'sleep',
 	// 'swipe',
 	// 'jump',
 	// 'hiss',
@@ -22,6 +23,7 @@ export type Action =
 	| 'swipe'
 	| 'jump'
 	| 'hiss'
+	| 'zoomies'
 
 export const generateDuration = (action: Action) => {
 	let min = 10

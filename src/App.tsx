@@ -7,15 +7,11 @@ function App() {
 		<div className='App'>
 			{
 				<Playground>
-					<Kitty />
-					<Kitty />
-					<Kitty />
-					<Kitty />
-					<Kitty />
-					<Kitty />
-					<Kitty />
-					<Kitty />
-					<Kitty />
+					<Kitty key={'23'} />
+					<Kitty key={'24'} />
+					<Kitty key={'25'} />
+					<Kitty key={'26'} />
+					<Kitty key={'27'} />
 				</Playground>
 			}
 		</div>

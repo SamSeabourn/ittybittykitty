@@ -3,21 +3,19 @@ import { actions, generateDuration, Action } from './movement'
 import './animations.css'
 import './style.css'
 import { generateRandomFromRange } from './helpers'
+import Nametag from '../nametag/Nametag'
 
 const Kitty = () => {
-	const startingLocation = useRef(
-		generateRandomFromRange(0, window.innerWidth)
-	)
+	const startingLocation = useRef(40)
 	const kittyColorShift = generateRandomFromRange(0, 360)
 	const [action, setAction] = useState<Action>('idle')
 	const [style, setStyle] = useState({
 		left: `${startingLocation}px`,
 		transition: 'none',
-		transform: 'scale(4)',
 		filter: `hue-rotate(${kittyColorShift}deg)`,
 	})
+	const [direction, setDirection] = useState<'left' | 'right'>('right')
 	const position = startingLocation
-	const direction = useRef<'left' | 'right'>('right')
 	const actionsStarted = useRef(false)
 
 	const doStationaryAction = (actionName: Action) => {
@@ -26,9 +24,6 @@ const Kitty = () => {
 		setStyle({
 			left: `${position.current}px`,
 			transition: `left ease-in-out 0s`,
-			transform: `scale(4) ${
-				direction.current === 'left' ? 'scaleX(-1)' : ''
-			}`,
 			filter: `hue-rotate(${kittyColorShift})`,
 		})
 		const timeout = setTimeout(() => {
@@ -42,39 +37,73 @@ const Kitty = () => {
 		const newLocation = generateRandomFromRange(0, window.innerWidth - 40)
 		const travelDistance = Math.abs(position.current - newLocation)
 		const travelTime = Math.round(travelDistance / movementSpeed) * 1000
-		direction.current = newLocation < position.current ? 'left' : 'right'
+		setDirection(newLocation < position.current ? 'left' : 'right')
 		position.current = newLocation
 		setAction('run')
 		setStyle({
 			left: `${newLocation}px`,
 			transition: `left ease-in-out ${travelTime}ms`,
-			transform: `scale(4) ${
-				direction.current === 'left' ? 'scaleX(-1)' : ''
-			}`,
 			filter: `hue-rotate(${kittyColorShift})`,
 		})
-
 		const timeout = setTimeout(() => {
 			doNextAction()
 			clearTimeout(timeout)
 		}, travelTime)
 	}
 
-	const doZoomies = () => {}
+	const doZoomies = () => {
+		let locationsCount = generateRandomFromRange(6, 15)
+		const zoomie = () => {
+			if (locationsCount !== 0) {
+				const movementSpeed = 400
+				const newLocation = generateRandomFromRange(
+					0,
+					window.innerWidth - 40
+				)
+				const travelDistance = Math.abs(position.current - newLocation)
+				const travelTime =
+					Math.round(travelDistance / movementSpeed) * 1000
+				setDirection(newLocation < position.current ? 'left' : 'right')
+				position.current = newLocation
+				setAction('run')
+				setStyle({
+					left: `${newLocation}px`,
+					transition: `left ease-in-out ${travelTime}ms`,
+					filter: `hue-rotate(${kittyColorShift})`,
+				})
+				const timeout = setTimeout(() => {
+					zoomie()
+					locationsCount--
+					clearTimeout(timeout)
+				}, travelTime)
+			} else {
+				doNextAction()
+			}
+		}
+		zoomie()
+	}
 
 	const doNextAction = () => {
-		const action = actions[Math.floor(Math.random() * actions.length)]
-		switch (action) {
+		const previousAction = action
+		const newAction = actions[Math.floor(Math.random() * actions.length)]
+		switch (newAction) {
 			case 'idle':
 			case 'wag':
 			case 'lick':
 			case 'wipe':
+				doStationaryAction(newAction)
+				break
 			case 'sleep':
-				doStationaryAction(action)
+				//Kitties dont sleep straight after run or jog :)
+				if (!['run', 'stroll'].includes(previousAction)) {
+					doStationaryAction('sleep')
+				} else {
+					doStationaryAction('idle')
+				}
 				break
 			case 'run':
 			case 'stroll':
-				doMovementAction(action)
+				doMovementAction(newAction)
 				break
 			case 'zoomies':
 				doZoomies()
@@ -91,9 +120,16 @@ const Kitty = () => {
 	}, [])
 
 	return (
-		<div style={style} className={`kitty-test-${action} kitty`}>
-			<div className='kitty__boundingbox'>
-				{/* <div className='kitty__name' /> */}
+		<div style={style} className='kitty__wrapper'>
+			<Nametag name={'big steve'} />
+			<div
+				style={{
+					transform:
+						direction === 'left' ? 'scaleX(-1) scale(4)' : '',
+				}}
+				className={`kitty-test-${action} kitty`}
+			>
+				<div className='kitty__boundingbox' />
 			</div>
 		</div>
 	)
