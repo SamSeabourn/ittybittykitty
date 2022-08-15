@@ -1,7 +1,7 @@
 export const actions = [
-	// 'idle',
-	// 'wag',
-	// 'lick',
+	'idle',
+	'wag',
+	'lick',
 	'wipe',
 	'stroll',
 	'run',

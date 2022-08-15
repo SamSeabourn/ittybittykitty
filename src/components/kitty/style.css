@@ -7,4 +7,24 @@
 	left: 24px;
 	background-image: url('sprites.png');
 	image-rendering: pixelated;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	background-color: rgba(255, 0, 217, 0.71);
+	pointer-events: none;
+}
+
+.kitty__boundingbox {
+	width: 9px;
+	height: 10px;
+	border: 1px solid red;
+	cursor: pointer;
+	pointer-events: all;
+	z-index: 10;
+}
+
+.kitty__name {
+	width: 30px;
+	height: 6px;
+	background-color: black;
 }

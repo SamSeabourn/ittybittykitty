@@ -11,6 +11,11 @@ function App() {
 					<Kitty />
 					<Kitty />
 					<Kitty />
+					<Kitty />
+					<Kitty />
+					<Kitty />
+					<Kitty />
+					<Kitty />
 				</Playground>
 			}
 		</div>
