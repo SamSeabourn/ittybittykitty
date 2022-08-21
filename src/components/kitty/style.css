@@ -2,7 +2,6 @@
 	width: 32px;
 	height: 32px;
 	position: absolute;
-	background-image: url('sprites.png');
 	image-rendering: pixelated;
 	display: flex;
 	justify-content: center;

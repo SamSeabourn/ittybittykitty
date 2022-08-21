@@ -2,12 +2,17 @@ import { useEffect, useState, useRef } from 'react'
 import { actions, generateDuration, Action } from './movement'
 import './animations.css'
 import './style.css'
-import { generateRandomFromRange } from './helpers'
+import { generateRandomFromRange, getColorShift } from './helpers'
 import Nametag from '../nametag/Nametag'
+import { KittenColor, KittenCSS } from './module'
 
-const Kitty = () => {
+interface props {
+	color: KittenColor
+}
+
+const Kitty = ({ color }: props) => {
 	const startingLocation = useRef(40)
-	const kittyColorShift = generateRandomFromRange(0, 360)
+	const kittyColorShift = getColorShift(color)
 	const [action, setAction] = useState<Action>('idle')
 	const [style, setStyle] = useState({
 		left: `${startingLocation}px`,
@@ -17,6 +22,15 @@ const Kitty = () => {
 	const [direction, setDirection] = useState<'left' | 'right'>('right')
 	const position = startingLocation
 	const actionsStarted = useRef(false)
+
+	const cssBuilder = (css: KittenCSS) => {
+		return {
+			left: `${startingLocation}px`,
+			transition: 'none',
+			filter: `hue-rotate(${kittyColorShift}deg)`,
+			...css,
+		}
+	}
 
 	const doStationaryAction = (actionName: Action) => {
 		const duration = generateDuration(actionName)
@@ -34,7 +48,7 @@ const Kitty = () => {
 
 	const doMovementAction = (actionName: Action) => {
 		const movementSpeed = actionName === 'run' ? 250 : 125
-		const newLocation = generateRandomFromRange(0, window.innerWidth - 40)
+		const newLocation = generateRandomFromRange(40, window.innerWidth - 40)
 		const travelDistance = Math.abs(position.current - newLocation)
 		const travelTime = Math.round(travelDistance / movementSpeed) * 1000
 		setDirection(newLocation < position.current ? 'left' : 'right')
@@ -51,13 +65,14 @@ const Kitty = () => {
 		}, travelTime)
 	}
 
+	//TODO: broken zoomies
 	const doZoomies = () => {
 		let locationsCount = generateRandomFromRange(6, 15)
 		const zoomie = () => {
 			if (locationsCount !== 0) {
 				const movementSpeed = 400
 				const newLocation = generateRandomFromRange(
-					0,
+					40,
 					window.innerWidth - 40
 				)
 				const travelDistance = Math.abs(position.current - newLocation)
@@ -124,6 +139,7 @@ const Kitty = () => {
 			<Nametag name={'big steve'} />
 			<div
 				style={{
+					backgroundImage: `url('./sprites_${color}.png')`,
 					transform:
 						direction === 'left' ? 'scaleX(-1) scale(4)' : '',
 				}}

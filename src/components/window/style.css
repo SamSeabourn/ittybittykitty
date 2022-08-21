@@ -1,0 +1,15 @@
+.window-container {
+	box-sizing: border-box;
+	border: 4px solid black;
+	background-color: #ede5d9;
+	width: 400px;
+	height: 400px;
+	box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.25);
+}
+
+.topbar {
+	box-sizing: border-box;
+	background-color: #d19e5d;
+	width: 100%;
+	height: 26px;
+}
