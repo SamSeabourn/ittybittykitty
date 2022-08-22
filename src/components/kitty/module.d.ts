@@ -4,6 +4,19 @@ export interface KittenCSS {
 	filter?: string
 }
 
+export type Action =
+	| 'run'
+	| 'stroll'
+	| 'sleep'
+	| 'zoomies'
+	| 'idle'
+	| 'wag'
+	| 'lick'
+	| 'wipe'
+	| 'swipe'
+	| 'jump'
+	| 'hiss'
+
 export type KittenColor =
 	| 'black'
 	| 'clear'

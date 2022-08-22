@@ -1,3 +1,5 @@
+import { Action } from './module'
+
 export const actions = [
 	'run',
 	'stroll',
@@ -11,19 +13,6 @@ export const actions = [
 	// 'jump',
 	// 'hiss',
 ]
-
-export type Action =
-	| 'idle'
-	| 'wag'
-	| 'lick'
-	| 'wipe'
-	| 'stroll'
-	| 'run'
-	| 'sleep'
-	| 'swipe'
-	| 'jump'
-	| 'hiss'
-	| 'zoomies'
 
 export const generateDuration = (action: Action) => {
 	let min = 10

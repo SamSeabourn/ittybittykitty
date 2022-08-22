@@ -14,18 +14,14 @@ const Playground = () => {
 				</div>
 			</Window>
 			<CatCarrier />
-			<Kitty key={'23'} color='white' />
-			<Kitty key={'24'} color='white' />
-			<Kitty key={'25'} color='white' />
-			<Kitty key={'26'} color='white' />
-			<Kitty key={'27'} color='white' />
-			<Kitty key={'28'} color='white' />
-			<Kitty key={'28'} color='black' />
-			<Kitty key={'28'} color='white' />
-			<Kitty key={'27'} color='white' />
-			<Kitty key={'28'} color='white' />
-			<Kitty key={'28'} color='white' />
-			<Kitty key={'28'} color='white' />
+			<Kitty key={'23'} name='murray' color='white' />
+			<Kitty key={'24'} name='steve' color='white' />
+			<Kitty key={'23'} name='murray' color='white' />
+			<Kitty key={'24'} name='steve' color='white' />
+			<Kitty key={'23'} name='murray' color='white' />
+			<Kitty key={'24'} name='steve' color='white' />
+			<Kitty key={'23'} name='murray' color='white' />
+			<Kitty key={'24'} name='steve' color='white' />
 		</div>
 	)
 }
