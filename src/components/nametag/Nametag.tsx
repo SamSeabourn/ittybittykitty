@@ -1,11 +1,12 @@
-import './style.css'
+import React from "react";
+import "./style.css";
 
 interface Props {
-	name: string
+  name: string;
 }
 
 const Nametag = ({ name }: Props) => {
-	return <div className='nametag'>{name}</div>
-}
+  return <div className="nametag">{name}</div>;
+};
 
-export default Nametag
+export default Nametag;
