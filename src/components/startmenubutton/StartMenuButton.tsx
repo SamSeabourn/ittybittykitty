@@ -1,14 +1,14 @@
-import React from "react";
-import "./style.css";
+import React from 'react'
+import './style.css'
 
-type Props = {};
+type Props = {}
 
 const StartMenuButton = () => {
-  return (
-    <div className="start-menu-button">
-      <span className="start-menu-button--text">START</span>
-    </div>
-  );
-};
+	return (
+		<div className='start-menu-button'>
+			<span className='start-menu-button--text'>START</span>
+		</div>
+	)
+}
 
-export default StartMenuButton;
+export default StartMenuButton

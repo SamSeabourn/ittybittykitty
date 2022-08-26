@@ -1,10 +1,20 @@
-import React from "react";
-import "./style.css";
+import React from 'react'
+import StartMenuOption from '../startmenuoption/StartMenuOption'
+//@ts-ignore
+import CatalogIcon from './catalog.png'
+import './style.css'
 
-type Props = {};
+const StartMenu = () => {
+	return (
+		<div className='start--container'>
+			<div className='start--logobar' />
+			<hr className='divider' />
+			<StartMenuOption icon={CatalogIcon}>
+				<div>Catalog</div>
+			</StartMenuOption>
+			<hr className='divider' />
+		</div>
+	)
+}
 
-const StartMenu = (props: Props) => {
-  return <div className="start--container">StartMenu</div>;
-};
-
-export default StartMenu;
+export default StartMenu

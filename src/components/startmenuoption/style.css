@@ -1,0 +1,11 @@
+.start-menu-option {
+	height: 40px;
+	display: flex;
+	align-items: center;
+	padding-left: 20px;
+}
+
+.icon {
+	height: 30px;
+	width: 30px;
+}
