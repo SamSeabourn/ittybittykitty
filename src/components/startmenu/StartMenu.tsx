@@ -1,13 +1,14 @@
-import React from 'react'
 import StartMenuOption from '../startmenuoption/StartMenuOption'
-//@ts-ignore
 import CatalogIcon from './catalog.png'
+import CatOSLogo from './cat_os97.png'
 import './style.css'
 
 const StartMenu = () => {
 	return (
 		<div className='start--container'>
-			<div className='start--logobar' />
+			<div className='start--logobar'>
+				<img src={CatOSLogo} />
+			</div>
 			<hr className='divider' />
 			<StartMenuOption icon={CatalogIcon}>
 				<div>Catalog</div>
