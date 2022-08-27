@@ -24,9 +24,12 @@ const StartMenu = ({
 		toggleShowKittens()
 	}
 
-	if (!startOpen) return null
 	return (
-		<div className='start-container' onMouseLeave={toggleStart}>
+		<div
+			style={{ display: startOpen ? 'unset' : 'none' }}
+			className='start-container'
+			onMouseLeave={toggleStart}
+		>
 			<div className='start-logobar'>
 				<img src={CatOSLogo} />
 			</div>
