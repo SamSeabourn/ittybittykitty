@@ -2,19 +2,20 @@ import React, { useEffect, useState, useRef } from 'react'
 import { actions, generateDuration } from './movement'
 import './animations.css'
 import './style.css'
-import { generateRandomFromRange, getColorShift } from './helpers'
+import { generateRandomFromRange, getColorShift } from '../../helpers'
 import Nametag from '../nametag'
 import { KittenColor, KittenCSS, Action } from './module'
 
 interface props {
 	color: KittenColor
 	name: string
+	colorShift: number
 }
 
-const Kitty = ({ color, name }: props) => {
+const Kitty = ({ color, name, colorShift }: props) => {
 	const minLeftPosition = 120
 	const position = useRef(minLeftPosition)
-	const kittyColorShift = getColorShift(color)
+	const kittyColorShift = colorShift
 	const [action, setAction] = useState<Action>('idle')
 	const [style, setStyle] = useState({
 		left: `${position}px`,

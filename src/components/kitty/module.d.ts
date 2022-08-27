@@ -29,4 +29,5 @@ export interface Kitten {
 	id: string
 	name?: string
 	color: KittenColor
+	colorShift: number
 }

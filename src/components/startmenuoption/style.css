@@ -2,9 +2,15 @@
 	height: 40px;
 	display: flex;
 	align-items: center;
+	cursor: pointer;
+	margin-left: 3px;
 }
 
-.icon {
-	height: 30px;
-	width: 30px;
+.start-menu-option:hover {
+	background-color: rgb(168, 99, 152);
+}
+
+.start-menu-icon {
+	margin-right: 5px;
+	image-rendering: pixelated;
 }

@@ -1,11 +1,19 @@
-import React from 'react'
 import './style.css'
 
-type Props = {}
+interface Props {
+	startOpen: boolean
+	toggleStart: () => void
+}
 
-const StartMenuButton = () => {
+const StartMenuButton = ({ startOpen, toggleStart }: Props) => {
+	const buttonClass = `start-menu-button${startOpen ? '__open' : ''}`
+
+	const handleClick = () => {
+		toggleStart()
+	}
+
 	return (
-		<div className='start-menu-button'>
+		<div className={buttonClass} onClick={() => handleClick()}>
 			<span className='start-menu-button--text'>START</span>
 		</div>
 	)

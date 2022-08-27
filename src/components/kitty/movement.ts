@@ -9,9 +9,6 @@ export const actions = [
 	'wag',
 	'lick',
 	'wipe',
-	// 'swipe',
-	// 'jump',
-	// 'hiss',
 ]
 
 export const generateDuration = (action: Action) => {
