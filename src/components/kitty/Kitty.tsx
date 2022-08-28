@@ -4,15 +4,9 @@ import './animations.css'
 import './style.css'
 import { generateRandomFromRange, getColorShift } from '../../helpers'
 import Nametag from '../nametag'
-import { KittenColor, KittenCSS, Action } from './module'
+import { KittenColor, KittenCSS, Action, Kitten } from './module'
 
-interface props {
-	color: KittenColor
-	name: string
-	colorShift: number
-}
-
-const Kitty = ({ color, name, colorShift }: props) => {
+const Kitty = ({ id, name, color, colorShift, isClean }: Kitten) => {
 	const minLeftPosition = 120
 	const position = useRef(minLeftPosition)
 	const kittyColorShift = colorShift
@@ -109,7 +103,7 @@ const Kitty = ({ color, name, colorShift }: props) => {
 	}
 
 	const doJump = (e: any) => {
-		if (!['idle', 'wag', 'wipe'].includes(action)) return
+		if (!['idle', 'wag', 'wipe'].includes(action) || !isClean) return
 		clearTimeout(timeoutRef.current)
 		const rect = e.target.getBoundingClientRect()
 		const leftEdgeDist = Math.abs(rect.left - e.clientX)
@@ -172,7 +166,11 @@ const Kitty = ({ color, name, colorShift }: props) => {
 				doMovementAction(newAction)
 				break
 			case 'zoomies':
-				doZoomies()
+				if (!isClean) {
+					doNextAction()
+				} else {
+					doZoomies()
+				}
 				break
 			default:
 		}
@@ -185,20 +183,21 @@ const Kitty = ({ color, name, colorShift }: props) => {
 		}
 	}, [])
 
+	const kittenSprite = `url('./sprites_${isClean ? color : 'dirty'}.png')`
+
 	return (
-		<div
-			style={style}
-			className='kitty__wrapper'
-			onMouseEnter={e => doJump(e)}
-		>
-			<Nametag name={name} />
+		<div style={style} className='kitty__wrapper'>
+			{/* <Nametag name={name} /> */}
 			<div
 				style={{
-					backgroundImage: `url('./sprites_${color}.png')`,
+					backgroundImage: kittenSprite,
 					transform:
 						direction === 'left' ? 'scaleX(-1) scale(4)' : '',
 				}}
-				className={`kitty-test-${action} kitty`}
+				className={`kitty-test-${action} kitty ${
+					color === 'gold' && isClean ? 'gold' : ''
+				}`}
+				onMouseEnter={e => doJump(e)}
 			>
 				<div className='kitty__boundingbox' />
 			</div>

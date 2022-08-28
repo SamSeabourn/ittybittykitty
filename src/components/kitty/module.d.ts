@@ -24,10 +24,12 @@ export type KittenColor =
 	| 'neon'
 	| 'white'
 	| 'normal'
+	| 'dirty'
 
 export interface Kitten {
 	id: string
 	name?: string
 	color: KittenColor
 	colorShift: number
+	isClean: boolean
 }

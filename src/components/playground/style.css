@@ -1,5 +1,5 @@
 .playground {
-	/* background-image: url(./background.PNG); */
+	background-image: url(./background.PNG);
 	background-size: contain;
 	height: 100vh;
 	width: 100vw;

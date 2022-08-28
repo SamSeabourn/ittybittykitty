@@ -10,6 +10,10 @@
 	transform: scale(4);
 }
 
+.gold {
+	filter: drop-shadow(2px 4px 6px gold);
+}
+
 .kitty__wrapper {
 	width: 128px;
 	height: 128px;

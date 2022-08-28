@@ -11,6 +11,7 @@ import StartMenuButton from '../startmenubutton'
 import StartMenu from '../startmenu'
 import Kitty from '../kitty'
 import Window from '../window'
+import Background from './background.png'
 import './style.css'
 
 const Playground = () => {
@@ -25,6 +26,7 @@ const Playground = () => {
 			color: kittenColor,
 			colorShift: getColorShift(kittenColor),
 			name: '',
+			isClean: false,
 		}
 		setKittens(kittens => [...kittens, newKitten])
 	}
@@ -52,10 +54,12 @@ const Playground = () => {
 				{kittens.map(k => {
 					return (
 						<Kitty
+							id={k.id}
 							key={k.id}
 							name=''
 							color={k.color}
 							colorShift={k.colorShift}
+							isClean={k.isClean}
 						/>
 					)
 				})}

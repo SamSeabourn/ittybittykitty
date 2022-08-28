@@ -27,6 +27,10 @@ module.exports = {
 				test: /\.(png|jpe?g|gif)$/i,
 				use: 'file-loader',
 			},
+			{
+				test: /\.psd$/,
+				loader: 'ignore-loader',
+			},
 		],
 	},
 	devtool: prod ? undefined : 'source-map',
