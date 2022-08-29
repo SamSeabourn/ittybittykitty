@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
 import { getColorShift, createUUID, getKittenColor } from '../../helpers'
 import StartMenuButton from '../startmenubutton'
 import StartMenu from '../startmenu'
 import Kitty from '../kitty'
+import SpongeIcon from '../startmenu/sponge_solo.png'
 // import Window from '../window'
 import './style.css'
 
@@ -30,8 +31,24 @@ const Playground = () => {
 		setStartOpen(!startOpen)
 	}
 
+	const cleanKitty = (id: string) => {
+		if (!cleanSelected) return
+		let allKittens = kittens
+		for (let i = 0; i < allKittens.length; i++) {
+			if (allKittens[i].id === id) {
+				const updatedKitten = allKittens[i]
+				updatedKitten.isClean = true
+				allKittens[i] = updatedKitten
+				setKittens([...allKittens])
+			}
+		}
+	}
+
 	const selectCleanKitten = () => {
 		setCleanSelected(true)
+		document.getElementsByTagName(
+			'body'
+		)[0].style.cursor = `url('${SpongeIcon}'), auto`
 	}
 
 	const toggleShowKittens = () => {
@@ -60,6 +77,7 @@ const Playground = () => {
 							name=''
 							color={k.color}
 							colorShift={k.colorShift}
+							cleanKitty={cleanKitty}
 							isClean={k.isClean}
 						/>
 					)
