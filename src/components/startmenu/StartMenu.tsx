@@ -3,6 +3,9 @@ import CatalogIcon from './catalog.png'
 import CatOSLogo from './cat_os97.png'
 import ShowHideIcon from './togglecat.png'
 import GetKittyIcon from './getkitty.png'
+import SpongeWaterIcon from './sponge.png'
+import WaterIcon from './sponge_water.png'
+import SpongeIcon from './sponge_solo.png'
 import './style.css'
 
 interface Props {
@@ -11,6 +14,8 @@ interface Props {
 	showKittens: boolean
 	toggleShowKittens: () => void
 	spawnKitten: () => void
+	cleanSelected: boolean
+	selectCleanKitten: () => void
 }
 
 const StartMenu = ({
@@ -19,11 +24,17 @@ const StartMenu = ({
 	toggleShowKittens,
 	toggleStart,
 	spawnKitten,
+	cleanSelected,
+	selectCleanKitten,
 }: Props) => {
 	const handleHideKittens = () => {
 		toggleShowKittens()
 	}
 
+	const handleSelectClean = () => {
+		document.body.style.cursor = `wait`
+		selectCleanKitten()
+	}
 	return (
 		<div
 			style={{ display: startOpen ? 'unset' : 'none' }}
@@ -35,18 +46,23 @@ const StartMenu = ({
 			</div>
 			<hr className='divider' />
 			<StartMenuOption icon={GetKittyIcon} optionFunction={spawnKitten}>
-				<div>Get Itty Bitty Kitty</div>
+				Get Itty Bitty Kitty
 			</StartMenuOption>
 			<hr className='divider' />
-			<StartMenuOption icon={CatalogIcon}>
-				<div>Catalog</div>
+			<StartMenuOption
+				icon={cleanSelected ? WaterIcon : SpongeWaterIcon}
+				optionFunction={handleSelectClean}
+			>
+				Clean Kitten
 			</StartMenuOption>
+			<hr className='divider' />
+			<StartMenuOption icon={CatalogIcon}>Catalog</StartMenuOption>
 			<hr className='divider' />
 			<StartMenuOption
 				icon={ShowHideIcon}
 				optionFunction={handleHideKittens}
 			>
-				<div>{showKittens ? 'Hide Kittens' : 'Show Kittens'}</div>
+				{showKittens ? 'Hide Kittens' : 'Show Kittens'}
 			</StartMenuOption>
 			<hr className='divider' />
 		</div>

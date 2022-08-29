@@ -10,7 +10,7 @@ type Props = {
 const StartMenuOption = ({ children, icon, optionFunction }: Props) => {
 	return (
 		<div className='start-menu-option' onClick={optionFunction}>
-			<img className='start-menu-icon' src={icon} /> {children}
+			<img className='start-menu-icon' src={icon} /> <div>{children}</div>
 		</div>
 	)
 }
