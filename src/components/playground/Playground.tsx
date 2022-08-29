@@ -18,6 +18,7 @@ const Playground = () => {
 	const [startOpen, setStartOpen] = useState<boolean>(false)
 	const [showKittens, setShowKittens] = useState<boolean>(true)
 	const [kittens, setKittens] = useState<Array<Kitten>>([])
+	const [cleanSelected, setCleanSelected] = useState<boolean>(false)
 
 	const spawnKitten = () => {
 		const kittenColor = getKittenColor()
@@ -35,6 +36,10 @@ const Playground = () => {
 		setStartOpen(!startOpen)
 	}
 
+	const selectCleanKitten = () => {
+		setCleanSelected(true)
+	}
+
 	const toggleShowKittens = () => {
 		setShowKittens(!showKittens)
 	}
@@ -48,6 +53,8 @@ const Playground = () => {
 				showKittens={showKittens}
 				toggleShowKittens={toggleShowKittens}
 				spawnKitten={spawnKitten}
+				cleanSelected={cleanSelected}
+				selectCleanKitten={selectCleanKitten}
 			/>
 			<div style={{ opacity: showKittens ? 1 : 0 }}>
 				<CatCarrier />
