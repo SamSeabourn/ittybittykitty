@@ -1,17 +1,11 @@
 import { useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
-import {
-	getColorShift,
-	createUUID,
-	getKittenColor,
-	generateRandomFromRange,
-} from '../../helpers'
+import { getColorShift, createUUID, getKittenColor } from '../../helpers'
 import StartMenuButton from '../startmenubutton'
 import StartMenu from '../startmenu'
 import Kitty from '../kitty'
-import Window from '../window'
-import Background from './background.png'
+// import Window from '../window'
 import './style.css'
 
 const Playground = () => {

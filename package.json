@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack serve --port 3000",
-		"build": "webpack"
+		"build": "set NODE_ENV=production && webpack "
 	},
 	"author": "Sam Seabourn",
 	"license": "ISC",
@@ -13,6 +13,7 @@
 		"@types/react": "^18.0.17",
 		"@types/react-dom": "^18.0.6",
 		"css-loader": "^6.7.1",
+		"css-minimizer-webpack-plugin": "^4.0.0",
 		"file-loader": "^6.2.0",
 		"html-webpack-plugin": "^5.5.0",
 		"ignore-loader": "^0.1.2",

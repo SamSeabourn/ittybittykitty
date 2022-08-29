@@ -1,7 +1,10 @@
 const prod = process.env.NODE_ENV === 'production'
 
+console.log('Building for ' + process.env.NODE_ENV)
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports = {
 	mode: prod ? 'production' : 'development',
