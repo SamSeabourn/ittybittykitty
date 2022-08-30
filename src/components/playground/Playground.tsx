@@ -6,6 +6,7 @@ import StartMenuButton from '../startmenubutton'
 import StartMenu from '../startmenu'
 import Kitty from '../kitty'
 import SpongeIcon from '../startmenu/sponge_solo.png'
+import Poop from '../poop'
 // import Window from '../window'
 import './style.css'
 
@@ -105,6 +106,7 @@ const Playground = () => {
 
 	return (
 		<div className='playground'>
+			<Poop />
 			<StartMenuButton startOpen={startOpen} toggleStart={toggleStart} />
 			<StartMenu
 				startOpen={startOpen}

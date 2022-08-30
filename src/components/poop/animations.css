@@ -1,0 +1,9 @@
+.poop {
+	animation: poop 2s steps(4) infinite;
+}
+
+@keyframes poop {
+	to {
+		background-position-x: -128px;
+	}
+}

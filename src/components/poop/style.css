@@ -1,0 +1,7 @@
+.poop {
+	width: 32px;
+	height: 32px;
+	background-size: cover;
+	transform: scale(2);
+	image-rendering: pixelated;
+}
