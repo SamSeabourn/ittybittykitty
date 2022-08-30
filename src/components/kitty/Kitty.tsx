@@ -6,7 +6,16 @@ import { generateRandomFromRange, getColorShift } from '../../helpers'
 import Nametag from '../nametag'
 import { KittenColor, KittenCSS, Action, Kitten } from './module'
 
-const Kitty = ({ id, name, color, colorShift, isClean }: Kitten) => {
+interface Props {
+	id: string
+	name?: string
+	color: KittenColor
+	colorShift: number
+	isClean: boolean
+	cleanKitty: (id: string) => void
+}
+
+const Kitty = ({ id, name, color, colorShift, isClean, cleanKitty }: Props) => {
 	const minLeftPosition = 120
 	const position = useRef(minLeftPosition)
 	const kittyColorShift = colorShift
@@ -36,7 +45,6 @@ const Kitty = ({ id, name, color, colorShift, isClean }: Kitten) => {
 	}
 
 	const doStationaryAction = (actionName: Action) => {
-		console.log('stationary action', timeoutRef.current)
 		const duration = generateDuration(actionName)
 		setAction(actionName)
 		setStyle(
@@ -48,8 +56,11 @@ const Kitty = ({ id, name, color, colorShift, isClean }: Kitten) => {
 		durationHandler(duration)
 	}
 
+	const handleCleanKitty = () => {
+		cleanKitty(id)
+	}
+
 	const doMovementAction = (actionName: Action) => {
-		console.log('movement action', timeoutRef.current)
 		const movementSpeed = actionName === 'run' ? 250 : 125
 		const newLocation = generateRandomFromRange(
 			minLeftPosition,
@@ -181,7 +192,7 @@ const Kitty = ({ id, name, color, colorShift, isClean }: Kitten) => {
 			actionsStarted.current = true
 			doNextAction()
 		}
-	}, [])
+	}, [isClean])
 
 	const kittenSprite = `url('./sprites_${isClean ? color : 'dirty'}.png')`
 
@@ -199,7 +210,10 @@ const Kitty = ({ id, name, color, colorShift, isClean }: Kitten) => {
 				}`}
 				onMouseEnter={e => doJump(e)}
 			>
-				<div className='kitty__boundingbox' />
+				<div
+					className='kitty__boundingbox'
+					onClick={handleCleanKitty}
+				/>
 			</div>
 		</div>
 	)

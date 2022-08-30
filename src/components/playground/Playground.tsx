@@ -25,10 +25,50 @@ const Playground = () => {
 			isClean: false,
 		}
 		setKittens(kittens => [...kittens, newKitten])
+		addKittenToLocalStorage(newKitten)
 	}
 
 	const toggleStart = () => {
 		setStartOpen(!startOpen)
+	}
+
+	const addKittenToLocalStorage = (newKitten: Kitten) => {
+		const storageString = localStorage.getItem('kittenStorage')
+		const existingKittens = JSON.parse(storageString as string)
+		localStorage.setItem(
+			'kittenStorage',
+			JSON.stringify([...existingKittens, newKitten])
+		)
+	}
+
+	const getKittensFromLocalStorage = () => {
+		const storageString = localStorage.getItem('kittenStorage')
+		const existingKittens = JSON.parse(storageString as string)
+		return existingKittens
+	}
+
+	const updateKittenInLocalStorage = (
+		id: string,
+		key: string,
+		value: any
+	) => {
+		const storageString = localStorage.getItem('kittenStorage')
+		let existingKittens = JSON.parse(storageString as string)
+		for (let i = 0; i < existingKittens.length; i++) {
+			if (existingKittens[i].id === id) {
+				existingKittens[i][key] = value
+				localStorage.setItem(
+					'kittenStorage',
+					JSON.stringify([...existingKittens])
+				)
+			}
+		}
+	}
+
+	const initLocalStorage = () => {
+		if (localStorage.getItem('kittenStorage') === null) {
+			localStorage.setItem('kittenStorage', JSON.stringify([]))
+		}
 	}
 
 	const cleanKitty = (id: string) => {
@@ -39,9 +79,12 @@ const Playground = () => {
 				const updatedKitten = allKittens[i]
 				updatedKitten.isClean = true
 				allKittens[i] = updatedKitten
+				updateKittenInLocalStorage(id, 'isClean', true)
 				setKittens([...allKittens])
 			}
 		}
+		setCleanSelected(false)
+		document.getElementsByTagName('body')[0].style.cursor = ''
 	}
 
 	const selectCleanKitten = () => {
@@ -54,6 +97,11 @@ const Playground = () => {
 	const toggleShowKittens = () => {
 		setShowKittens(!showKittens)
 	}
+
+	useEffect(() => {
+		initLocalStorage()
+		setKittens(getKittensFromLocalStorage)
+	}, [])
 
 	return (
 		<div className='playground'>

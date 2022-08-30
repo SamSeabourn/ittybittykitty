@@ -28,9 +28,8 @@
 }
 
 .kitty__boundingbox {
-	width: 9px;
-	height: 10px;
-	cursor: pointer;
+	width: 13px;
+	height: 12px;
 	pointer-events: all;
 	z-index: 10;
 }
