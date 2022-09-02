@@ -5,337 +5,41 @@
 /*!*******************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/App.css (1) ***!
   \*******************************************************************/
-* {
-	box-sizing: border-box;
-	font-family: 'DotGothic16', sans-serif !important;
-	user-select: none;
-}
-
-body {
-	height: 100%;
-	width: 100%;
-}
-
-.App {
-	width: 100%;
-	height: 100%;
-}
-
-#root {
-	overflow-x: hidden;
-	overflow-y: hidden;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-body,
-html {
-	margin: 0;
-}
-
+*{font-family:'DotGothic16',sans-serif!important;user-select:none;box-sizing:border-box}.App,body{width:100%;height:100%}#root{overflow-x:hidden;overflow-y:hidden}body,html{margin:0}
 /*!***************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/catcarrier/style.css ***!
   \***************************************************************************************/
-.carrier-bottom {
-	width: 32px;
-	height: 32px;
-	left: 160px;
-	height: 32px;
-	bottom: 43px;
-	position: absolute;
-	transform: scale(4);
-	image-rendering: pixelated;
-	z-index: 0;
-	background-image: url(b45aafe41a49c4d0d5b2.png);
-}
-
-.carrier-top {
-	width: 32px;
-	height: 32px;
-	left: 160px;
-	height: 32px;
-	bottom: 43px;
-	position: absolute;
-	transform: scale(4);
-	image-rendering: pixelated;
-	z-index: 10;
-	background-image: url(44f4e984080abbf253b8.png);
-}
-
+.carrier-bottom,.carrier-top{width:32px;left:160px;height:32px;bottom:43px;position:absolute;transform:scale(4);image-rendering:pixelated;z-index:0;background-image:url(b45aafe41a49c4d0d5b2.png)}.carrier-top{z-index:10;background-image:url(44f4e984080abbf253b8.png)}
 /*!********************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/startmenubutton/style.css ***!
   \********************************************************************************************/
-.start-menu-button {
-	position: absolute;
-	bottom: 0px;
-	width: 100px;
-	background-color: rgb(234, 135, 211);
-	display: flex;
-	height: 40px;
-	border: 4px solid black;
-	align-items: center;
-	box-sizing: border-box;
-	justify-content: center;
-	font-weight: bolder;
-	cursor: pointer;
-}
-
-.start-menu-button:hover {
-	background-color: rgb(168, 99, 152);
-}
-
-.start-menu-button__open {
-	position: absolute;
-	bottom: 0px;
-	width: 100px;
-	display: flex;
-	height: 40px;
-	border: 4px solid black;
-	align-items: center;
-	box-sizing: border-box;
-	justify-content: center;
-	font-weight: bolder;
-	cursor: pointer;
-	background-color: rgb(160, 92, 144);
-}
-
+.start-menu-button,.start-menu-button__open{position:absolute;bottom:0;width:100px;background-color:#ea87d3;display:flex;height:40px;border:4px solid #000;align-items:center;box-sizing:border-box;justify-content:center;font-weight:bolder;cursor:pointer}.start-menu-button:hover{background-color:#a86398}.start-menu-button__open{background-color:#a05c90}
 /*!********************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/startmenuoption/style.css ***!
   \********************************************************************************************/
-.start-menu-option {
-	height: 40px;
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	margin-left: 3px;
-}
-
-.start-menu-option:hover {
-	background-color: rgb(168, 99, 152);
-}
-
-.start-menu-icon {
-	margin-right: 5px;
-	image-rendering: pixelated;
-}
-
+.start-menu-option{height:40px;display:flex;align-items:center;cursor:pointer;margin-left:3px}.start-menu-option:hover{background-color:#a86398}.start-menu-icon{margin-right:5px;image-rendering:pixelated}
 /*!**************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/startmenu/style.css ***!
   \**************************************************************************************/
-.start-container {
-	box-sizing: border-box;
-	width: 305px;
-	border: 4px solid black;
-	position: absolute;
-	bottom: 36px;
-	padding: 0px 0px 75px;
-	background-color: rgb(234, 135, 211);
-}
-
-.start-logobar {
-	height: 56px;
-	padding: 5px 0 0 8px;
-	width: 100%;
-	image-rendering: pixelated;
-}
-
-.divider {
-	margin: 0px;
-}
-
+.start-container{box-sizing:border-box;width:305px;border:4px solid #000;position:absolute;bottom:36px;padding:0 0 75px;background-color:#ea87d3}.start-logobar{height:56px;padding:5px 0 0 8px;width:100%;image-rendering:pixelated}.divider{margin:0}
 /*!***************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/kitty/animations.css ***!
   \***************************************************************************************/
-.kitty-test-idle {
-	animation: idle 5s steps(4) infinite;
-}
-
-@keyframes idle {
-	to {
-		background-position-x: -128px;
-	}
-}
-
-.kitty-test-wag {
-	background-position-y: -32px;
-	animation: wag 1.5s steps(4) infinite;
-}
-
-@keyframes wag {
-	to {
-		background-position-x: -128px;
-	}
-}
-
-.kitty-test-lick {
-	background-position-y: -64px;
-	animation: lick 1s steps(4) infinite;
-}
-
-@keyframes lick {
-	to {
-		background-position-x: -128px;
-	}
-}
-
-.kitty-test-wipe {
-	background-position-y: -96px;
-	animation: wipe 1s steps(4) infinite;
-}
-
-@keyframes wipe {
-	to {
-		background-position-x: -128px;
-	}
-}
-
-.kitty-test-stroll {
-	background-position-y: -128px;
-	animation: stroll 1.5s steps(8) infinite;
-}
-
-@keyframes stroll {
-	to {
-		background-position-x: -256px;
-	}
-}
-
-.kitty-test-run {
-	background-position-y: -160px;
-	animation: run 0.5s steps(8) infinite;
-}
-
-@keyframes run {
-	to {
-		background-position-x: -256px;
-	}
-}
-
-.kitty-test-sleep {
-	background-position-y: -192px;
-	animation: sleep 4s steps(4) infinite;
-}
-
-@keyframes sleep {
-	to {
-		background-position-x: -128px;
-	}
-}
-
-.kitty-test-swipe {
-	background-position-y: -224px;
-	animation: sleep 1s steps(4) infinite;
-}
-
-@keyframes swipe {
-	to {
-		background-position-x: -128px;
-	}
-}
-
-.kitty-test-jump {
-	background-position-y: -256px;
-	animation: jump 0.5s steps(7) infinite;
-}
-
-@keyframes jump {
-	to {
-		background-position-x: -224px;
-	}
-}
-
-.kitty-test-hiss {
-	background-position-y: -288px;
-	animation: hiss 4s steps(4) infinite;
-}
-
-@keyframes hiss {
-	to {
-		background-position-x: -256px;
-	}
-}
-
+@keyframes idle{to{background-position-x:-128px}}@keyframes wag{to{background-position-x:-128px}}@keyframes lick{to{background-position-x:-128px}}@keyframes wipe{to{background-position-x:-128px}}@keyframes stroll{to{background-position-x:-256px}}@keyframes run{to{background-position-x:-256px}}@keyframes sleep{to{background-position-x:-128px}}@keyframes swipe{to{background-position-x:-128px}}@keyframes jump{to{background-position-x:-224px}}@keyframes hiss{to{background-position-x:-256px}}.kitty-test-idle{animation:idle 5s steps(4) infinite}.kitty-test-wag{background-position-y:-32px;animation:wag 1.5s steps(4) infinite}.kitty-test-lick{background-position-y:-64px;animation:lick 1s steps(4) infinite}.kitty-test-wipe{background-position-y:-96px;animation:wipe 1s steps(4) infinite}.kitty-test-stroll{background-position-y:-128px;animation:stroll 1.5s steps(8) infinite}.kitty-test-run{background-position-y:-160px;animation:run .5s steps(8) infinite}.kitty-test-sleep{background-position-y:-192px;animation:sleep 4s steps(4) infinite}.kitty-test-swipe{background-position-y:-224px;animation:sleep 1s steps(4) infinite}.kitty-test-jump{background-position-y:-256px;animation:jump .5s steps(7) infinite}.kitty-test-hiss{background-position-y:-288px;animation:hiss 4s steps(4) infinite}
 /*!**********************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/kitty/style.css ***!
   \**********************************************************************************/
-.kitty {
-	width: 32px;
-	height: 32px;
-	position: absolute;
-	image-rendering: pixelated;
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	pointer-events: none;
-	transform: scale(4);
-}
-
-.gold {
-	filter: drop-shadow(2px 4px 6px gold);
-}
-
-.kitty__wrapper {
-	width: 128px;
-	height: 128px;
-	position: absolute;
-	bottom: 47px;
-	left: 100px;
-	image-rendering: pixelated;
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	pointer-events: none;
-	z-index: 5;
-}
-
-.kitty__boundingbox {
-	width: 13px;
-	height: 12px;
-	pointer-events: all;
-	z-index: 10;
-}
-
+.kitty{width:32px;height:32px;position:absolute;image-rendering:pixelated;display:flex;justify-content:center;align-items:flex-end;pointer-events:none;transform:scale(4)}.gold{filter:drop-shadow(2px 4px 6px gold)}.kitty__wrapper{width:128px;height:128px;position:absolute;bottom:47px;left:100px;image-rendering:pixelated;display:flex;justify-content:center;align-items:flex-end;pointer-events:none;z-index:5}.kitty__boundingbox{width:13px;height:12px;pointer-events:all;z-index:10}
 /*!**************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/poop/animations.css ***!
   \**************************************************************************************/
-.poop {
-	animation: poop 2s steps(4) infinite;
-}
-
-@keyframes poop {
-	to {
-		background-position-x: -128px;
-	}
-}
-
+@keyframes poop{to{background-position-x:-128px}}.poop{animation:poop 2s steps(4) infinite}
 /*!*********************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/poop/style.css ***!
   \*********************************************************************************/
-.poop {
-	width: 32px;
-	height: 32px;
-	background-size: cover;
-	transform: scale(2);
-	image-rendering: pixelated;
-	bottom: 15px;
-	position: absolute;
-	z-index: 0;
-}
-
+.poop{width:32px;height:32px;background-size:cover;transform:scale(2);image-rendering:pixelated;bottom:15px;position:absolute;z-index:0}
 /*!***************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/playground/style.css ***!
   \***************************************************************************************/
-.playground {
-	background-size: contain;
-	height: 100vh;
-	width: 100vw;
-	background-color: rgb(252, 197, 252);
-	overflow-x: hidden;
-	position: absolute;
-	overflow-y: hidden;
-}
-
-
+.playground{background-size:contain;height:100vh;width:100vw;background-color:#fcc5fc;overflow-x:hidden;position:absolute;overflow-y:hidden}
 /*# sourceMappingURL=main.css.map*/
