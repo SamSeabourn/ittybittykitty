@@ -69,7 +69,7 @@ const Playground = () => {
 	}
 
 	const spawnPoop = (location: number) => {
-		if (poop.length >= 20) return //max poop is 20
+		if (poop.length >= 2) return //max poop is 20
 		const newPoop: PoopType = {
 			id: createUUID(),
 			location: location + 40,
@@ -85,10 +85,7 @@ const Playground = () => {
 	}
 
 	const cleanKitty = (id: string) => {
-		if (!cleanSelected) {
-			console.log('too many poops')
-			return
-		}
+		if (!cleanSelected) return
 		let allKittens = kittens
 		for (let i = 0; i < allKittens.length; i++) {
 			if (allKittens[i].id === id) {
