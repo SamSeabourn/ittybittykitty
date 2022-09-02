@@ -39,3 +39,16 @@ export const getKittenColor = (): KittenColor => {
 		return 'normal'
 	}
 }
+
+export const preloadImage = (src: string) => {
+	return new Promise((resolve, reject) => {
+		let img = new Image()
+		img.onload = () => {
+			img.style.display = 'none'
+			document.body.append(img)
+			return resolve(true)
+		}
+		img.onerror = reject
+		img.src = src
+	})
+}

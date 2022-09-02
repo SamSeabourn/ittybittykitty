@@ -1,5 +1,7 @@
 const prod = process.env.NODE_ENV === 'production'
 
+console.log(process.env.NODE_ENV)
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
@@ -39,14 +41,16 @@ module.exports = {
 	optimization: {
 		minimize: true,
 		minimizer: [
-			new UglifyJsPlugin({
-				include: /\.js$/,
-				sourceMap: false,
-				uglifyOptions: {
-					comments: false,
-					mangle: true,
-				},
-			}),
+			prod
+				? new UglifyJsPlugin({
+						include: /\.js$/,
+						sourceMap: false,
+						uglifyOptions: {
+							comments: false,
+							mangle: true,
+						},
+				  })
+				: undefined,
 			new CssMinimizerPlugin({
 				minify: CssMinimizerPlugin.cssoMinify,
 			}),

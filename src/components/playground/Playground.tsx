@@ -1,18 +1,23 @@
 import { useEffect, useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
-import { getColorShift, createUUID, getKittenColor } from '../../helpers'
+import {
+	getColorShift,
+	createUUID,
+	getKittenColor,
+	preloadImage,
+} from '../../helpers'
 import StartMenuButton from '../startmenubutton'
 import StartMenu from '../startmenu'
 import Kitty from '../kitty'
 import SpongeIcon from '../startmenu/sponge_solo.png'
 import Poop from '../poop'
-// import Window from '../window'
 import './style.css'
 import { PoopType } from '../poop/module'
 
 const Playground = () => {
 	const [startOpen, setStartOpen] = useState<boolean>(false)
+	const [loading, setLoading] = useState<boolean>(true)
 	const [showKittens, setShowKittens] = useState<boolean>(true)
 	const [kittens, setKittens] = useState<Array<Kitten>>([])
 	const [poop, setPoop] = useState<Array<PoopType>>([])
@@ -112,40 +117,76 @@ const Playground = () => {
 	}
 
 	useEffect(() => {
-		initLocalStorage()
-		setKittens(getKittensFromLocalStorage())
+		//TODO: Webpack this bit
+		const imageSrcs = [
+			'poop_fresh.png',
+			'sponge.png',
+			'sprites_black.png',
+			'sprites_clear.png',
+			'sprites_dirty.png',
+			'sprites_gold.png',
+			'sprites_neon.png',
+			'sprites_normal.png',
+			'sprites_white.png',
+			'sponge_solo.png',
+			'sponge_water.png',
+			'sponge.png',
+			'CarrierBottom.png',
+			'CarrierTop.png',
+			'cat_os97.png',
+			'getkitty.png',
+			'catalog.png',
+		]
+
+		Promise.allSettled([...imageSrcs.map(src => preloadImage(src))]).then(
+			() => {
+				console.log('images fetched')
+				initLocalStorage()
+				setKittens(getKittensFromLocalStorage())
+				setLoading(false)
+			}
+		)
 	}, [])
 
 	return (
 		<div className='playground'>
-			<StartMenuButton startOpen={startOpen} toggleStart={toggleStart} />
-			<StartMenu
-				startOpen={startOpen}
-				toggleStart={toggleStart}
-				showKittens={showKittens}
-				toggleShowKittens={toggleShowKittens}
-				spawnKitten={spawnKitten}
-				cleanSelected={cleanSelected}
-				selectCleanKitten={selectCleanKitten}
-			/>
-			<div style={{ opacity: showKittens ? 1 : 0 }}>
-				<CatCarrier />
-				{kittens.map(k => (
-					<Kitty
-						id={k.id}
-						key={k.id}
-						name=''
-						color={k.color}
-						colorShift={k.colorShift}
-						cleanKitty={cleanKitty}
-						isClean={k.isClean}
-						spawnPoop={spawnPoop}
+			{loading ? (
+				<p>loading</p>
+			) : (
+				<>
+					<StartMenuButton
+						startOpen={startOpen}
+						toggleStart={toggleStart}
 					/>
-				))}
-				{poop.map(p => (
-					<Poop key={p.id} location={p.location} />
-				))}
-			</div>
+					<StartMenu
+						startOpen={startOpen}
+						toggleStart={toggleStart}
+						showKittens={showKittens}
+						toggleShowKittens={toggleShowKittens}
+						spawnKitten={spawnKitten}
+						cleanSelected={cleanSelected}
+						selectCleanKitten={selectCleanKitten}
+					/>
+					<div style={{ opacity: showKittens ? 1 : 0 }}>
+						<CatCarrier />
+						{kittens.map(k => (
+							<Kitty
+								id={k.id}
+								key={k.id}
+								name=''
+								color={k.color}
+								colorShift={k.colorShift}
+								cleanKitty={cleanKitty}
+								isClean={k.isClean}
+								spawnPoop={spawnPoop}
+							/>
+						))}
+						{poop.map(p => (
+							<Poop key={p.id} location={p.location} />
+						))}
+					</div>
+				</>
+			)}
 		</div>
 	)
 }
