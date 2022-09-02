@@ -9,11 +9,13 @@ import SpongeIcon from '../startmenu/sponge_solo.png'
 import Poop from '../poop'
 // import Window from '../window'
 import './style.css'
+import { PoopType } from '../poop/module'
 
 const Playground = () => {
 	const [startOpen, setStartOpen] = useState<boolean>(false)
 	const [showKittens, setShowKittens] = useState<boolean>(true)
 	const [kittens, setKittens] = useState<Array<Kitten>>([])
+	const [poop, setPoop] = useState<Array<PoopType>>([])
 	const [cleanSelected, setCleanSelected] = useState<boolean>(false)
 
 	const spawnKitten = () => {
@@ -66,6 +68,16 @@ const Playground = () => {
 		}
 	}
 
+	const spawnPoop = (location: number) => {
+		if (poop.length >= 20) return //max poop is 20
+		const newPoop: PoopType = {
+			id: createUUID(),
+			location: location + 40,
+			stage: 'fresh',
+		}
+		setPoop(poop => [...poop, newPoop])
+	}
+
 	const initLocalStorage = () => {
 		if (localStorage.getItem('kittenStorage') === null) {
 			localStorage.setItem('kittenStorage', JSON.stringify([]))
@@ -73,7 +85,10 @@ const Playground = () => {
 	}
 
 	const cleanKitty = (id: string) => {
-		if (!cleanSelected) return
+		if (!cleanSelected) {
+			console.log('too many poops')
+			return
+		}
 		let allKittens = kittens
 		for (let i = 0; i < allKittens.length; i++) {
 			if (allKittens[i].id === id) {
@@ -101,12 +116,11 @@ const Playground = () => {
 
 	useEffect(() => {
 		initLocalStorage()
-		setKittens(getKittensFromLocalStorage)
+		setKittens(getKittensFromLocalStorage())
 	}, [])
 
 	return (
 		<div className='playground'>
-			<Poop />
 			<StartMenuButton startOpen={startOpen} toggleStart={toggleStart} />
 			<StartMenu
 				startOpen={startOpen}
@@ -119,19 +133,21 @@ const Playground = () => {
 			/>
 			<div style={{ opacity: showKittens ? 1 : 0 }}>
 				<CatCarrier />
-				{kittens.map(k => {
-					return (
-						<Kitty
-							id={k.id}
-							key={k.id}
-							name=''
-							color={k.color}
-							colorShift={k.colorShift}
-							cleanKitty={cleanKitty}
-							isClean={k.isClean}
-						/>
-					)
-				})}
+				{kittens.map(k => (
+					<Kitty
+						id={k.id}
+						key={k.id}
+						name=''
+						color={k.color}
+						colorShift={k.colorShift}
+						cleanKitty={cleanKitty}
+						isClean={k.isClean}
+						spawnPoop={spawnPoop}
+					/>
+				))}
+				{poop.map(p => (
+					<Poop key={p.id} location={p.location} />
+				))}
 			</div>
 		</div>
 	)

@@ -13,9 +13,18 @@ interface Props {
 	colorShift: number
 	isClean: boolean
 	cleanKitty: (id: string) => void
+	spawnPoop: (location: number) => void
 }
 
-const Kitty = ({ id, name, color, colorShift, isClean, cleanKitty }: Props) => {
+const Kitty = ({
+	id,
+	name,
+	color,
+	colorShift,
+	isClean,
+	cleanKitty,
+	spawnPoop,
+}: Props) => {
 	const minLeftPosition = 120
 	const position = useRef(minLeftPosition)
 	const kittyColorShift = colorShift
@@ -107,6 +116,7 @@ const Kitty = ({ id, name, color, colorShift, isClean, cleanKitty }: Props) => {
 					locationsCount--
 				}, travelTime)
 			} else {
+				setAction('run')
 				doNextAction()
 			}
 		}
@@ -153,6 +163,13 @@ const Kitty = ({ id, name, color, colorShift, isClean, cleanKitty }: Props) => {
 	const doNextAction = () => {
 		const previousAction = action
 		const newAction = actions[Math.floor(Math.random() * actions.length)]
+		if (
+			['idle', 'wag', 'lick'].includes(previousAction) &&
+			['run', 'stroll', 'zoomies'].includes(newAction) &&
+			Math.random() < 0.5
+		) {
+			spawnPoop(position.current)
+		}
 		switch (newAction) {
 			case 'idle':
 			case 'wag':
