@@ -5,7 +5,6 @@ import ShowHideIcon from './togglecat.png'
 import GetKittyIcon from './getkitty.png'
 import SpongeWaterIcon from './sponge.png'
 import WaterIcon from './sponge_water.png'
-import SpongeIcon from './sponge_solo.png'
 import './style.css'
 
 interface Props {

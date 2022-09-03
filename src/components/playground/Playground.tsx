@@ -101,15 +101,13 @@ const Playground = () => {
 				setKittens([...allKittens])
 			}
 		}
-		setCleanSelected(false)
-		document.getElementsByTagName('body')[0].style.cursor = ''
 	}
 
 	const selectCleanKitten = () => {
-		setCleanSelected(true)
-		document.getElementsByTagName(
-			'body'
-		)[0].style.cursor = `url('${SpongeIcon}'), auto`
+		setCleanSelected(!cleanSelected)
+		document.getElementsByTagName('body')[0].style.cursor = !cleanSelected
+			? `url('${SpongeIcon}'), auto`
+			: ''
 	}
 
 	const toggleShowKittens = () => {

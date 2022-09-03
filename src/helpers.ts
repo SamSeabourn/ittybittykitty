@@ -45,6 +45,7 @@ export const preloadImage = (src: string) => {
 		let img = new Image()
 		img.onload = () => {
 			img.style.display = 'none'
+			img.id = src
 			document.body.append(img)
 			return resolve(true)
 		}

@@ -1,6 +1,6 @@
 const prod = process.env.NODE_ENV === 'production'
 
-console.log(process.env.NODE_ENV)
+console.log(`Running a \x1b[45m${process.env.NODE_ENV}\x1b[0m build`)
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -39,18 +39,16 @@ module.exports = {
 		],
 	},
 	optimization: {
-		minimize: true,
+		minimize: !prod,
 		minimizer: [
-			prod
-				? new UglifyJsPlugin({
-						include: /\.js$/,
-						sourceMap: false,
-						uglifyOptions: {
-							comments: false,
-							mangle: true,
-						},
-				  })
-				: undefined,
+			new UglifyJsPlugin({
+				include: /\.js$/,
+				sourceMap: !prod,
+				uglifyOptions: {
+					comments: !prod,
+					mangle: prod,
+				},
+			}),
 			new CssMinimizerPlugin({
 				minify: CssMinimizerPlugin.cssoMinify,
 			}),

@@ -5,7 +5,7 @@
 	"homepage": "https://samseabourn.github.io/ittybittykitty",
 	"main": "index.js",
 	"scripts": {
-		"start": "webpack serve --port 3000",
+		"start": "set NODE_ENV=develop && webpack serve --port 3000",
 		"build": "set NODE_ENV=production && webpack",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build"

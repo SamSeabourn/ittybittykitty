@@ -166,7 +166,7 @@ const Kitty = ({
 		if (
 			['idle', 'wag', 'lick'].includes(previousAction) &&
 			['run', 'stroll', 'zoomies'].includes(newAction) &&
-			Math.random() < 0.5
+			Math.random() < 0.1
 		) {
 			spawnPoop(position.current)
 		}
@@ -207,7 +207,8 @@ const Kitty = ({
 	useEffect(() => {
 		if (!actionsStarted.current) {
 			actionsStarted.current = true
-			doNextAction()
+			const firstAction = Math.random() < 0.5 ? 'stroll' : 'run'
+			doMovementAction(firstAction) //kittens always leave the carrier first movement
 		}
 	}, [isClean])
 
