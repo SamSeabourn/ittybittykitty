@@ -5,23 +5,23 @@
 /*!*******************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/App.css (1) ***!
   \*******************************************************************/
-*{font-family:'DotGothic16',sans-serif!important;user-select:none;box-sizing:border-box}.App,body{width:100%;height:100%}#root{overflow-x:hidden;overflow-y:hidden}body,html{margin:0}
+*{font-family:'DotGothic16',sans-serif!important;user-select:none;box-sizing:border-box;color:#fff}.App,body{width:100%;height:100%}#root{overflow-x:hidden;overflow-y:hidden}body,html{margin:0}:root{--OSHeader:#67154a;--OSBackground:#522e4e;--OSHover:#261224;--OSDisabled:#4e494e}
 /*!***************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/catcarrier/style.css ***!
   \***************************************************************************************/
-.carrier-bottom,.carrier-top{width:32px;left:160px;height:32px;bottom:43px;position:absolute;transform:scale(4);image-rendering:pixelated;z-index:0;background-image:url(b45aafe41a49c4d0d5b2.png)}.carrier-top{z-index:10;background-image:url(44f4e984080abbf253b8.png)}
+.carrier-bottom,.carrier-top{width:32px;left:160px;height:32px;bottom:43px;position:absolute;transform:scale(4);image-rendering:pixelated;z-index:0;background-image:url(b45aafe41a49c4d0d5b2.png)}.carrier-top{z-index:10;background-image:url(44f4e984080abbf253b8.png);pointer-events:none}
 /*!********************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/startmenubutton/style.css ***!
   \********************************************************************************************/
-.start-menu-button,.start-menu-button__open{position:absolute;bottom:0;width:100px;background-color:#ea87d3;display:flex;height:40px;border:4px solid #000;align-items:center;box-sizing:border-box;justify-content:center;font-weight:bolder;cursor:pointer}.start-menu-button:hover{background-color:#a86398}.start-menu-button__open{background-color:#a05c90}
+.start-menu-button{position:absolute;bottom:0;width:100px;background-color:var(--OSHeader);display:flex;height:40px;border:4px solid #000;align-items:center;box-sizing:border-box;justify-content:center;cursor:pointer}.start-menu-button:hover,.start-menu-button__open{background-color:var(--OSHover)}.start-menu-button__open{position:absolute;bottom:0;width:100px;display:flex;height:40px;border:4px solid #000;align-items:center;box-sizing:border-box;justify-content:center;font-weight:bolder;cursor:pointer}
 /*!********************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/startmenuoption/style.css ***!
   \********************************************************************************************/
-.start-menu-option{height:40px;display:flex;align-items:center;cursor:pointer;margin-left:3px}.start-menu-option:hover{background-color:#a86398}.start-menu-icon{margin-right:5px;image-rendering:pixelated}
+.start-menu-option{height:40px;display:flex;align-items:center;cursor:pointer;padding-left:3px}.start-menu-option:hover{background-color:var(--OSHover)}.start-menu-icon{margin-right:5px;image-rendering:pixelated}
 /*!**************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/startmenu/style.css ***!
   \**************************************************************************************/
-.start-container{box-sizing:border-box;width:305px;border:4px solid #000;position:absolute;bottom:36px;padding:0 0 75px;background-color:#ea87d3}.start-logobar{height:56px;padding:5px 0 0 8px;width:100%;image-rendering:pixelated}.divider{margin:0}
+.start-container{box-sizing:border-box;width:305px;border:4px solid #000;position:absolute;bottom:36px;padding:0 0 75px;background-color:var(--OSBackground)}.start-logobar{height:56px;padding:5px 0 0 8px;width:100%;image-rendering:pixelated;background-color:var(--OSHeader)}.divider{margin:0;height:1px;background-color:#000;border:0}
 /*!***************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/kitty/animations.css ***!
   \***************************************************************************************/
@@ -42,4 +42,8 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/playground/style.css ***!
   \***************************************************************************************/
 .playground{background-size:contain;height:100vh;width:100vw;background-color:#fcc5fc;overflow-x:hidden;position:absolute;overflow-y:hidden}
+/*!*************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/components/oswindow/style.css ***!
+  \*************************************************************************************/
+.window-container{box-sizing:border-box;border:4px solid #000;background-color:var(--OSBackground);box-shadow:10px 10px 0 0 rgba(0,0,0,.25);position:absolute}.top-bar{border-bottom:4px solid #000;display:flex;justify-content:space-between;height:26px;background-color:var(--OSHeader)}.exit{color:#fff;border-left:4px solid #000;width:26px;text-align:center;font-weight:bolder}.exit:hover{cursor:pointer;background-color:var(--OSHover)}.title{color:#fff;padding-left:3px;width:100%}.title:hover{cursor:move}
 /*# sourceMappingURL=main.css.map*/
