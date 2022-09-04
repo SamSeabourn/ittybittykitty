@@ -22,4 +22,5 @@
 	image-rendering: pixelated;
 	z-index: 10;
 	background-image: url('CarrierTop.png');
+	pointer-events: none;
 }

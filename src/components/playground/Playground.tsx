@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
 import {
@@ -14,6 +14,14 @@ import SpongeIcon from '../startmenu/sponge_solo.png'
 import Poop from '../poop'
 import './style.css'
 import { PoopType } from '../poop/module'
+import Score from '../score/Score'
+import Disclaimer from '../disclaimer'
+
+interface OSWindow {
+	id: string
+	isOpen: boolean
+	isActive: boolean
+}
 
 const Playground = () => {
 	const [startOpen, setStartOpen] = useState<boolean>(false)
@@ -22,6 +30,18 @@ const Playground = () => {
 	const [kittens, setKittens] = useState<Array<Kitten>>([])
 	const [poop, setPoop] = useState<Array<PoopType>>([])
 	const [cleanSelected, setCleanSelected] = useState<boolean>(false)
+	const [openWindows, setOpenWindows] = useState<Array<OSWindow>>([
+		{
+			id: 'score',
+			isOpen: true,
+			isActive: true,
+		},
+		{
+			id: 'disclaimer',
+			isOpen: true,
+			isActive: true,
+		},
+	])
 
 	const spawnKitten = () => {
 		const kittenColor = getKittenColor()
@@ -74,7 +94,7 @@ const Playground = () => {
 	}
 
 	const spawnPoop = (location: number) => {
-		if (poop.length >= 2) return //max poop is 20
+		if (poop.length >= 2) return //max poop is 20 TODO: this is broken somehow
 		const newPoop: PoopType = {
 			id: createUUID(),
 			location: location + 40,
@@ -114,6 +134,18 @@ const Playground = () => {
 		setShowKittens(!showKittens)
 	}
 
+	const setActive = (id: string) => {
+		const updatedState = openWindows.map(ow => {
+			if (ow.id === id) {
+				ow.isActive = true
+				return ow
+			}
+			ow.isActive = false
+			return ow
+		})
+		setOpenWindows(updatedState)
+	}
+
 	useEffect(() => {
 		//TODO: Webpack this bit
 		const imageSrcs = [
@@ -138,7 +170,6 @@ const Playground = () => {
 
 		Promise.allSettled([...imageSrcs.map(src => preloadImage(src))]).then(
 			() => {
-				console.log('images fetched')
 				initLocalStorage()
 				setKittens(getKittensFromLocalStorage())
 				setLoading(false)
@@ -183,6 +214,28 @@ const Playground = () => {
 							<Poop key={p.id} location={p.location} />
 						))}
 					</div>
+					{openWindows.map(ow => {
+						if (ow.id === 'score' && ow.isOpen) {
+							return (
+								<Score
+									id={ow.id}
+									key={ow.id}
+									isActive={ow.isActive}
+									setActive={setActive}
+								/>
+							)
+						}
+						if (ow.id === 'disclaimer' && ow.isOpen) {
+							return (
+								<Disclaimer
+									id={ow.id}
+									key={ow.id}
+									isActive={ow.isActive}
+									setActive={setActive}
+								/>
+							)
+						}
+					})}
 				</>
 			)}
 		</div>

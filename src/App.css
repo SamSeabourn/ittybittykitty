@@ -23,9 +23,17 @@ body {
 
 * {
 	box-sizing: border-box;
+	color: white;
 }
 
 body,
 html {
 	margin: 0;
+}
+
+:root {
+	--OSHeader: #67154a;
+	--OSBackground: #522e4e;
+	--OSHover: #261224;
+	--OSDisabled: #4e494e;
 }

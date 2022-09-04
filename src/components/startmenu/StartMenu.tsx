@@ -52,11 +52,11 @@ const StartMenu = ({
 				icon={cleanSelected ? WaterIcon : SpongeWaterIcon}
 				optionFunction={handleSelectClean}
 			>
-				Clean Kitten
+				Clean
 			</StartMenuOption>
 			<hr className='divider' />
-			<StartMenuOption icon={CatalogIcon}>Catalog</StartMenuOption>
-			<hr className='divider' />
+			{/* <StartMenuOption icon={CatalogIcon}>Catalog</StartMenuOption>
+			<hr className='divider' /> */}
 			<StartMenuOption
 				icon={ShowHideIcon}
 				optionFunction={handleHideKittens}

@@ -3,11 +3,11 @@
 	display: flex;
 	align-items: center;
 	cursor: pointer;
-	margin-left: 3px;
+	padding-left: 3px;
 }
 
 .start-menu-option:hover {
-	background-color: rgb(168, 99, 152);
+	background-color: var(--OSHover);
 }
 
 .start-menu-icon {
