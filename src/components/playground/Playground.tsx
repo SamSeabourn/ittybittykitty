@@ -46,7 +46,8 @@ const Playground = () => {
 	])
 
 	const addToScore = (points: number) => {
-		setScore(score + points)
+		const newScore = score + points
+		setScore(newScore)
 	}
 
 	const spawnKitten = () => {

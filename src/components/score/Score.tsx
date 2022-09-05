@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import OSWindow from '../oswindow'
 
 interface ScoreProps {
