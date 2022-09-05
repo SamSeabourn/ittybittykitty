@@ -125,6 +125,8 @@ const Playground = () => {
 
 	const cleanKitty = (id: string) => {
 		if (!cleanSelected) return
+		const selectedKitten = kittens.find(k => k.id === id)
+		if (selectedKitten?.isClean) return
 		addToScore(SCORE.CLEAN_KITTEN)
 		let allKittens = kittens
 		for (let i = 0; i < allKittens.length; i++) {
