@@ -1,0 +1,5 @@
+export const SCORE = {
+	GET_KITTEN: 100,
+	CLEAN_KITTEN: 200,
+	CLEAN_POOP: 100,
+}

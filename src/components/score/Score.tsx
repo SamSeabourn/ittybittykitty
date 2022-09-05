@@ -5,9 +5,10 @@ interface ScoreProps {
 	id: string
 	isActive: boolean
 	setActive: (id: string) => void
+	score: number
 }
 
-const Score = ({ id, isActive, setActive }: ScoreProps) => {
+const Score = ({ id, isActive, setActive, score }: ScoreProps) => {
 	return (
 		<OSWindow
 			id={id}
@@ -17,7 +18,7 @@ const Score = ({ id, isActive, setActive }: ScoreProps) => {
 			setActive={setActive}
 			isActive={isActive}
 		>
-			<span>1234</span>
+			<span>{score}</span>
 		</OSWindow>
 	)
 }

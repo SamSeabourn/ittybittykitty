@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
 import {
@@ -16,6 +16,7 @@ import './style.css'
 import { PoopType } from '../poop/module'
 import Score from '../score/Score'
 import Disclaimer from '../disclaimer'
+import { SCORE } from '../score/constants'
 
 interface OSWindow {
 	id: string
@@ -30,6 +31,7 @@ const Playground = () => {
 	const [kittens, setKittens] = useState<Array<Kitten>>([])
 	const [poop, setPoop] = useState<Array<PoopType>>([])
 	const [cleanSelected, setCleanSelected] = useState<boolean>(false)
+	const [score, setScore] = useState<number>(0)
 	const [openWindows, setOpenWindows] = useState<Array<OSWindow>>([
 		{
 			id: 'score',
@@ -43,6 +45,10 @@ const Playground = () => {
 		},
 	])
 
+	const addToScore = (points: number) => {
+		setScore(score + points)
+	}
+
 	const spawnKitten = () => {
 		const kittenColor = getKittenColor()
 		const newKitten: Kitten = {
@@ -54,6 +60,7 @@ const Playground = () => {
 		}
 		setKittens(kittens => [...kittens, newKitten])
 		addKittenToLocalStorage(newKitten)
+		addToScore(SCORE.GET_KITTEN)
 	}
 
 	const toggleStart = () => {
@@ -103,6 +110,12 @@ const Playground = () => {
 		setPoop(poop => [...poop, newPoop])
 	}
 
+	const removePoop = (id: string) => {
+		const newState = poop.filter(p => p.id !== id)
+		addToScore(SCORE.CLEAN_POOP)
+		setPoop(newState)
+	}
+
 	const initLocalStorage = () => {
 		if (localStorage.getItem('kittenStorage') === null) {
 			localStorage.setItem('kittenStorage', JSON.stringify([]))
@@ -111,6 +124,7 @@ const Playground = () => {
 
 	const cleanKitty = (id: string) => {
 		if (!cleanSelected) return
+		addToScore(SCORE.CLEAN_KITTEN)
 		let allKittens = kittens
 		for (let i = 0; i < allKittens.length; i++) {
 			if (allKittens[i].id === id) {
@@ -211,7 +225,12 @@ const Playground = () => {
 							/>
 						))}
 						{poop.map(p => (
-							<Poop key={p.id} location={p.location} />
+							<Poop
+								id={p.id}
+								key={p.id}
+								location={p.location}
+								removePoop={removePoop}
+							/>
 						))}
 					</div>
 					{openWindows.map(ow => {
@@ -222,6 +241,7 @@ const Playground = () => {
 									key={ow.id}
 									isActive={ow.isActive}
 									setActive={setActive}
+									score={score}
 								/>
 							)
 						}

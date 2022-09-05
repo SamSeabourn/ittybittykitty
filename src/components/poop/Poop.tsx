@@ -2,11 +2,13 @@ import './animations.css'
 import './style.css'
 
 interface Props {
+	id: string
 	stage?: 'fresh' | 'old' | 'dry'
 	location: number
+	removePoop: (id: string) => void
 }
 
-export const Poop = ({ location }: Props) => {
+export const Poop = ({ id, location, removePoop }: Props) => {
 	return (
 		<div
 			className='poop'
@@ -14,6 +16,7 @@ export const Poop = ({ location }: Props) => {
 				backgroundImage: `url('./poop_fresh.png')`,
 				left: `${location}px`,
 			}}
+			onClick={() => removePoop(id)}
 		></div>
 	)
 }
