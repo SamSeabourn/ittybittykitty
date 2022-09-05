@@ -36,3 +36,8 @@
 .title:hover {
 	cursor: move;
 }
+
+.content { 
+	padding: 6px;
+	text-align: center;
+}

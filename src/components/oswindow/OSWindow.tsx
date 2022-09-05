@@ -58,7 +58,7 @@ const OSWindow = ({
 					<div className='title'>{title}</div>
 					<div className='exit'>X</div>
 				</div>
-				<div>{children}</div>
+				<div className='content'>{children}</div>
 			</div>
 		</Draggable>
 	)

@@ -1,5 +1,5 @@
 import OSWindow from '../oswindow'
-
+import './style.css'
 interface ScoreProps {
 	id: string
 	isActive: boolean
@@ -11,13 +11,13 @@ const Score = ({ id, isActive, setActive, score }: ScoreProps) => {
 	return (
 		<OSWindow
 			id={id}
-			title='SCORE CARD'
+			title='SCORE'
 			size='small'
 			startingShift={0}
 			setActive={setActive}
 			isActive={isActive}
 		>
-			<span>{score}</span>
+			<span className='score'>{score}</span>
 		</OSWindow>
 	)
 }
