@@ -355,3 +355,11 @@ html {
 	cursor: move;
 }
 
+.content { 
+	padding: 6px;
+	text-align: center;
+}
+
+.score {
+    font-size: 24px;
+}

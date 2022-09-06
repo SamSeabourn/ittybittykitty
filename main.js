@@ -2954,7 +2954,7 @@ const OSWindow = ({ id, children, title, size = 'medium', startingShift, isActiv
     return ((0,jsx_runtime.jsx)((cjs_default()), { defaultPosition: {
             x: window.innerWidth / 2 - windowWidth / 2 + startingShift,
             y: window.innerHeight / 2 - windowWidth / 2 + startingShift,
-        }, children: (0,jsx_runtime.jsxs)("div", { className: 'window-container', style: style, onClick: () => setActive(id), children: [(0,jsx_runtime.jsxs)("div", { className: 'top-bar', children: [(0,jsx_runtime.jsx)("div", { className: 'title', children: title }), (0,jsx_runtime.jsx)("div", { className: 'exit', children: "X" })] }), (0,jsx_runtime.jsx)("div", { children: children })] }) }));
+        }, children: (0,jsx_runtime.jsxs)("div", { className: 'window-container', style: style, onClick: () => setActive(id), children: [(0,jsx_runtime.jsxs)("div", { className: 'top-bar', children: [(0,jsx_runtime.jsx)("div", { className: 'title', children: title }), (0,jsx_runtime.jsx)("div", { className: 'exit', children: "X" })] }), (0,jsx_runtime.jsx)("div", { className: 'content', children: children })] }) }));
 };
 /* harmony default export */ const oswindow_OSWindow = (OSWindow);
 
@@ -2964,8 +2964,9 @@ const OSWindow = ({ id, children, title, size = 'medium', startingShift, isActiv
 ;// CONCATENATED MODULE: ./src/components/score/Score.tsx
 
 
+
 const Score = ({ id, isActive, setActive, score }) => {
-    return ((0,jsx_runtime.jsx)(oswindow_OSWindow, { id: id, title: 'SCORE CARD', size: 'small', startingShift: 0, setActive: setActive, isActive: isActive, children: (0,jsx_runtime.jsx)("span", { children: score }) }));
+    return ((0,jsx_runtime.jsx)(oswindow_OSWindow, { id: id, title: 'SCORE', size: 'small', startingShift: 0, setActive: setActive, isActive: isActive, children: (0,jsx_runtime.jsx)("span", { className: 'score', children: score }) }));
 };
 /* harmony default export */ const score_Score = (Score);
 
