@@ -2660,7 +2660,7 @@ const StartMenuOption = ({ children, icon, optionFunction }) => {
 
 
 
-const StartMenu = ({ startOpen, showKittens, toggleShowKittens, toggleStart, spawnKitten, cleanSelected, selectCleanKitten, }) => {
+const StartMenu = ({ startOpen, showKittens, toggleShowKittens, toggleStart, spawnKitten, cleanSelected, selectCleanKitten, showScore, openScore, }) => {
     const handleHideKittens = () => {
         toggleShowKittens();
     };
@@ -2668,7 +2668,7 @@ const StartMenu = ({ startOpen, showKittens, toggleShowKittens, toggleStart, spa
         document.body.style.cursor = `wait`;
         selectCleanKitten();
     };
-    return ((0,jsx_runtime.jsxs)("div", { style: { display: startOpen ? 'unset' : 'none' }, className: 'start-container', onMouseLeave: toggleStart, children: [(0,jsx_runtime.jsx)("div", { className: 'start-logobar', children: (0,jsx_runtime.jsx)("img", { src: cat_os97 }) }), (0,jsx_runtime.jsx)("hr", { className: 'divider' }), (0,jsx_runtime.jsx)(startmenuoption_StartMenuOption, { icon: getkitty, optionFunction: spawnKitten, children: "Get Itty Bitty Kitty" }), (0,jsx_runtime.jsx)("hr", { className: 'divider' }), (0,jsx_runtime.jsx)(startmenuoption_StartMenuOption, { icon: cleanSelected ? sponge_water : sponge, optionFunction: handleSelectClean, children: "Clean" }), (0,jsx_runtime.jsx)("hr", { className: 'divider' }), (0,jsx_runtime.jsx)(startmenuoption_StartMenuOption, { icon: togglecat, optionFunction: handleHideKittens, children: showKittens ? 'Hide Kittens' : 'Show Kittens' }), (0,jsx_runtime.jsx)("hr", { className: 'divider' })] }));
+    return ((0,jsx_runtime.jsxs)("div", { style: { display: startOpen ? 'unset' : 'none' }, className: 'start-container', onMouseLeave: toggleStart, children: [(0,jsx_runtime.jsx)("div", { className: 'start-logobar', children: (0,jsx_runtime.jsx)("img", { src: cat_os97 }) }), (0,jsx_runtime.jsx)("hr", { className: 'divider' }), (0,jsx_runtime.jsx)(startmenuoption_StartMenuOption, { icon: getkitty, optionFunction: spawnKitten, children: "Get Itty Bitty Kitty" }), (0,jsx_runtime.jsx)("hr", { className: 'divider' }), (0,jsx_runtime.jsx)(startmenuoption_StartMenuOption, { icon: cleanSelected ? sponge_water : sponge, optionFunction: handleSelectClean, children: "Clean" }), (0,jsx_runtime.jsx)("hr", { className: 'divider' }), (0,jsx_runtime.jsx)(startmenuoption_StartMenuOption, { icon: cleanSelected ? sponge_water : sponge, optionFunction: openScore, children: showScore ? 'Show Score' : 'Hide Score' }), (0,jsx_runtime.jsx)("hr", { className: 'divider' }), (0,jsx_runtime.jsx)(startmenuoption_StartMenuOption, { icon: togglecat, optionFunction: handleHideKittens, children: showKittens ? 'Hide Kittens' : 'Show Kittens' }), (0,jsx_runtime.jsx)("hr", { className: 'divider' })] }));
 };
 /* harmony default export */ const startmenu_StartMenu = (StartMenu);
 
@@ -2931,7 +2931,7 @@ var cjs_default = /*#__PURE__*/__webpack_require__.n(cjs);
 
 
 
-const OSWindow = ({ id, children, title, size = 'medium', startingShift, isActive, setActive, }) => {
+const OSWindow = ({ id, children, title, size = 'medium', startingShift, isActive, setActive, closeWindow, }) => {
     let windowWidth = 300;
     switch (size) {
         case 'small':
@@ -2951,10 +2951,11 @@ const OSWindow = ({ id, children, title, size = 'medium', startingShift, isActiv
         opacity: isActive ? 1 : 0.75,
         width: `${windowWidth}px`,
     };
+    const handleClose = () => closeWindow(id);
     return ((0,jsx_runtime.jsx)((cjs_default()), { defaultPosition: {
             x: window.innerWidth / 2 - windowWidth / 2 + startingShift,
             y: window.innerHeight / 2 - windowWidth / 2 + startingShift,
-        }, children: (0,jsx_runtime.jsxs)("div", { className: 'window-container', style: style, onClick: () => setActive(id), children: [(0,jsx_runtime.jsxs)("div", { className: 'top-bar', children: [(0,jsx_runtime.jsx)("div", { className: 'title', children: title }), (0,jsx_runtime.jsx)("div", { className: 'exit', children: "X" })] }), (0,jsx_runtime.jsx)("div", { className: 'content', children: children })] }) }));
+        }, children: (0,jsx_runtime.jsxs)("div", { className: 'window-container', style: style, onClick: () => setActive(id), children: [(0,jsx_runtime.jsxs)("div", { className: 'top-bar', children: [(0,jsx_runtime.jsx)("div", { className: 'title', children: title }), (0,jsx_runtime.jsx)("div", { className: 'exit', onClick: handleClose, children: "X" })] }), (0,jsx_runtime.jsx)("div", { className: 'content', children: children })] }) }));
 };
 /* harmony default export */ const oswindow_OSWindow = (OSWindow);
 
@@ -2965,16 +2966,16 @@ const OSWindow = ({ id, children, title, size = 'medium', startingShift, isActiv
 
 
 
-const Score = ({ id, isActive, setActive, score }) => {
-    return ((0,jsx_runtime.jsx)(oswindow_OSWindow, { id: id, title: 'SCORE', size: 'small', startingShift: 0, setActive: setActive, isActive: isActive, children: (0,jsx_runtime.jsx)("span", { className: 'score', children: score }) }));
+const Score = ({ id, isActive, setActive, score, closeWindow }) => {
+    return ((0,jsx_runtime.jsx)(oswindow_OSWindow, { id: id, title: 'SCORE', size: 'small', startingShift: 0, setActive: setActive, isActive: isActive, closeWindow: closeWindow, children: (0,jsx_runtime.jsx)("span", { className: 'score', children: score }) }));
 };
 /* harmony default export */ const score_Score = (Score);
 
 ;// CONCATENATED MODULE: ./src/components/disclaimer/Disclaimer.tsx
 
 
-const Disclaimer = ({ id, isActive, setActive }) => {
-    return ((0,jsx_runtime.jsx)(oswindow_OSWindow, { id: id, title: 'DISCLAIMER', size: 'medium', startingShift: 10, setActive: setActive, isActive: isActive, children: (0,jsx_runtime.jsx)("span", { children: "Hi Im the disclaimer" }) }));
+const Disclaimer = ({ id, isActive, setActive, closeWindow, }) => {
+    return ((0,jsx_runtime.jsx)(oswindow_OSWindow, { id: id, title: 'DISCLAIMER', size: 'medium', startingShift: 10, setActive: setActive, isActive: isActive, closeWindow: closeWindow, children: (0,jsx_runtime.jsx)("span", { children: "Hi Im the disclaimer" }) }));
 };
 /* harmony default export */ const disclaimer_Disclaimer = (Disclaimer);
 
@@ -2990,6 +2991,7 @@ const SCORE = {
 
 ;// CONCATENATED MODULE: ./src/components/playground/Playground.tsx
 
+//TODO: split this bad boy up, shes getting chonky
 
 
 
@@ -3010,7 +3012,7 @@ const Playground = () => {
     const [poop, setPoop] = (0,react.useState)([]);
     const [cleanSelected, setCleanSelected] = (0,react.useState)(false);
     const [score, setScore] = (0,react.useState)(0);
-    const [openWindows, setOpenWindows] = (0,react.useState)([
+    const [allWindows, setAllWindows] = (0,react.useState)([
         {
             id: 'score',
             isOpen: true,
@@ -3110,15 +3112,36 @@ const Playground = () => {
         setShowKittens(!showKittens);
     };
     const setActive = (id) => {
-        const updatedState = openWindows.map(ow => {
-            if (ow.id === id) {
-                ow.isActive = true;
-                return ow;
+        const updatedState = allWindows.map(w => {
+            if (w.id === id) {
+                w.isActive = true;
+                return w;
             }
-            ow.isActive = false;
-            return ow;
+            w.isActive = false;
+            return w;
         });
-        setOpenWindows(updatedState);
+        setAllWindows(updatedState);
+    };
+    const closeWindow = (id) => {
+        const updatedState = allWindows.map(w => {
+            if (w.id === id) {
+                w.isOpen = false;
+            }
+            return w;
+        });
+        setAllWindows(updatedState);
+    };
+    const setWindowOpen = (id, isOpen) => {
+        const updatedState = allWindows.map(w => {
+            if (w.id === id) {
+                w.isOpen = isOpen;
+                w.isActive = true;
+                return w;
+            }
+            w.isActive = false;
+            return w;
+        });
+        setAllWindows(updatedState);
     };
     (0,react.useEffect)(() => {
         //TODO: Webpack this bit
@@ -3147,12 +3170,12 @@ const Playground = () => {
             setLoading(false);
         });
     }, []);
-    return ((0,jsx_runtime.jsx)("div", { className: 'playground', children: loading ? ((0,jsx_runtime.jsx)("p", { children: "loading" })) : ((0,jsx_runtime.jsxs)(jsx_runtime.Fragment, { children: [(0,jsx_runtime.jsx)(startmenubutton_StartMenuButton, { startOpen: startOpen, toggleStart: toggleStart }), (0,jsx_runtime.jsx)(startmenu_StartMenu, { startOpen: startOpen, toggleStart: toggleStart, showKittens: showKittens, toggleShowKittens: toggleShowKittens, spawnKitten: spawnKitten, cleanSelected: cleanSelected, selectCleanKitten: selectCleanKitten }), (0,jsx_runtime.jsxs)("div", { style: { opacity: showKittens ? 1 : 0 }, children: [(0,jsx_runtime.jsx)(catcarrier_CatCarrier, {}), kittens.map(k => ((0,jsx_runtime.jsx)(kitty_Kitty, { id: k.id, name: '', color: k.color, colorShift: k.colorShift, cleanKitty: cleanKitty, isClean: k.isClean, spawnPoop: spawnPoop }, k.id))), poop.map(p => ((0,jsx_runtime.jsx)(poop_Poop, { id: p.id, location: p.location, removePoop: removePoop }, p.id)))] }), openWindows.map(ow => {
+    return ((0,jsx_runtime.jsx)("div", { className: 'playground', children: loading ? ((0,jsx_runtime.jsx)("p", { children: "loading" })) : ((0,jsx_runtime.jsxs)(jsx_runtime.Fragment, { children: [(0,jsx_runtime.jsx)(startmenubutton_StartMenuButton, { startOpen: startOpen, toggleStart: toggleStart }), (0,jsx_runtime.jsx)(startmenu_StartMenu, { startOpen: startOpen, toggleStart: toggleStart, showKittens: showKittens, toggleShowKittens: toggleShowKittens, spawnKitten: spawnKitten, cleanSelected: cleanSelected, selectCleanKitten: selectCleanKitten, showScore: true, openScore: () => setWindowOpen('score', true) }), (0,jsx_runtime.jsxs)("div", { style: { opacity: showKittens ? 1 : 0 }, children: [(0,jsx_runtime.jsx)(catcarrier_CatCarrier, {}), kittens.map(k => ((0,jsx_runtime.jsx)(kitty_Kitty, { id: k.id, name: '', color: k.color, colorShift: k.colorShift, cleanKitty: cleanKitty, isClean: k.isClean, spawnPoop: spawnPoop }, k.id))), poop.map(p => ((0,jsx_runtime.jsx)(poop_Poop, { id: p.id, location: p.location, removePoop: removePoop }, p.id)))] }), allWindows.map(ow => {
                     if (ow.id === 'score' && ow.isOpen) {
-                        return ((0,jsx_runtime.jsx)(score_Score, { id: ow.id, isActive: ow.isActive, setActive: setActive, score: score }, ow.id));
+                        return ((0,jsx_runtime.jsx)(score_Score, { id: ow.id, isActive: ow.isActive, setActive: setActive, closeWindow: closeWindow, score: score }, ow.id));
                     }
                     if (ow.id === 'disclaimer' && ow.isOpen) {
-                        return ((0,jsx_runtime.jsx)(disclaimer_Disclaimer, { id: ow.id, isActive: ow.isActive, setActive: setActive }, ow.id));
+                        return ((0,jsx_runtime.jsx)(disclaimer_Disclaimer, { id: ow.id, isActive: ow.isActive, setActive: setActive, closeWindow: closeWindow }, ow.id));
                     }
                 })] })) }));
 };
