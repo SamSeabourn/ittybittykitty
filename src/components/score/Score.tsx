@@ -19,7 +19,6 @@ const Score = ({ id, isActive, setActive, score, closeWindow }: ScoreProps) => {
 			isActive={isActive}
 			closeWindow={closeWindow}
 		>
-			<span> My local storage is broken</span>
 			<span className='score'>{score}</span>
 		</OSWindow>
 	)

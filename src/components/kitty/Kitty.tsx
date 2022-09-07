@@ -25,7 +25,7 @@ const Kitty = ({
 	cleanKitty,
 	spawnPoop,
 }: Props) => {
-	const minLeftPosition = 120
+	const minLeftPosition = 110
 	const position = useRef(minLeftPosition)
 	const kittyColorShift = colorShift
 	const [action, setAction] = useState<Action>('idle')
@@ -207,8 +207,10 @@ const Kitty = ({
 	useEffect(() => {
 		if (!actionsStarted.current) {
 			actionsStarted.current = true
-			const firstAction = Math.random() < 0.5 ? 'stroll' : 'run'
-			doMovementAction(firstAction) //kittens always leave the carrier first movement
+			setTimeout(() => {
+				const firstAction = Math.random() < 0.5 ? 'stroll' : 'run'
+				doMovementAction(firstAction) //kittens always leave the carrier first movement
+			}, generateRandomFromRange(1000, 3300))
 		}
 	}, [isClean])
 

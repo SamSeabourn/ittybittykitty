@@ -39,7 +39,7 @@ const Playground = () => {
 
 	const addToScore = (points: number) => {
 		const newScore = score + points
-		addPointsToLocalStorage(newScore)
+		addPointsToLocalStorage(points)
 		setScore(newScore)
 	}
 
