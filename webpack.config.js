@@ -39,7 +39,7 @@ module.exports = {
 		],
 	},
 	optimization: {
-		minimize: !prod,
+		minimize: prod,
 		minimizer: [
 			new UglifyJsPlugin({
 				include: /\.js$/,

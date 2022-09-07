@@ -15,6 +15,8 @@ interface Props {
 	spawnKitten: () => void
 	cleanSelected: boolean
 	selectCleanKitten: () => void
+	showScore: boolean
+	openScore: () => void
 }
 
 const StartMenu = ({
@@ -25,6 +27,8 @@ const StartMenu = ({
 	spawnKitten,
 	cleanSelected,
 	selectCleanKitten,
+	showScore,
+	openScore,
 }: Props) => {
 	const handleHideKittens = () => {
 		toggleShowKittens()
@@ -34,6 +38,7 @@ const StartMenu = ({
 		document.body.style.cursor = `wait`
 		selectCleanKitten()
 	}
+
 	return (
 		<div
 			style={{ display: startOpen ? 'unset' : 'none' }}
@@ -53,6 +58,13 @@ const StartMenu = ({
 				optionFunction={handleSelectClean}
 			>
 				Clean
+			</StartMenuOption>
+			<hr className='divider' />
+			<StartMenuOption
+				icon={cleanSelected ? WaterIcon : SpongeWaterIcon}
+				optionFunction={openScore}
+			>
+				{showScore ? 'Show Score' : 'Hide Score'}
 			</StartMenuOption>
 			<hr className='divider' />
 			{/* <StartMenuOption icon={CatalogIcon}>Catalog</StartMenuOption>

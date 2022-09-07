@@ -10,6 +10,7 @@ interface Props {
 	startingShift: number
 	isActive: boolean
 	setActive: (id: string) => void
+	closeWindow: (id: string) => void
 }
 
 const OSWindow = ({
@@ -20,6 +21,7 @@ const OSWindow = ({
 	startingShift,
 	isActive,
 	setActive,
+	closeWindow,
 }: Props) => {
 	let windowWidth = 300
 	switch (size) {
@@ -42,6 +44,8 @@ const OSWindow = ({
 		width: `${windowWidth}px`,
 	}
 
+	const handleClose = () => closeWindow(id)
+
 	return (
 		<Draggable
 			defaultPosition={{
@@ -56,7 +60,9 @@ const OSWindow = ({
 			>
 				<div className='top-bar'>
 					<div className='title'>{title}</div>
-					<div className='exit'>X</div>
+					<div className='exit' onClick={handleClose}>
+						X
+					</div>
 				</div>
 				<div className='content'>{children}</div>
 			</div>

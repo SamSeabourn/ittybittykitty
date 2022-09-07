@@ -1,3 +1,4 @@
+//TODO: split this bad boy up, shes getting chonky
 import { useEffect, useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
@@ -17,6 +18,7 @@ import { PoopType } from '../poop/module'
 import Score from '../score/Score'
 import Disclaimer from '../disclaimer'
 import { SCORE } from '../score/constants'
+import { avaliableWindows } from './allWindows'
 
 interface OSWindow {
 	id: string
@@ -32,21 +34,12 @@ const Playground = () => {
 	const [poop, setPoop] = useState<Array<PoopType>>([])
 	const [cleanSelected, setCleanSelected] = useState<boolean>(false)
 	const [score, setScore] = useState<number>(0)
-	const [openWindows, setOpenWindows] = useState<Array<OSWindow>>([
-		{
-			id: 'score',
-			isOpen: true,
-			isActive: true,
-		},
-		{
-			id: 'disclaimer',
-			isOpen: true,
-			isActive: true,
-		},
-	])
+	const [allWindows, setAllWindows] =
+		useState<Array<OSWindow>>(avaliableWindows)
 
 	const addToScore = (points: number) => {
 		const newScore = score + points
+		addPointsToLocalStorage(newScore)
 		setScore(newScore)
 	}
 
@@ -68,6 +61,15 @@ const Playground = () => {
 		setStartOpen(!startOpen)
 	}
 
+	const initLocalStorage = () => {
+		if (localStorage.getItem('kittenStorage') === null) {
+			localStorage.setItem('kittenStorage', JSON.stringify([]))
+		}
+		if (localStorage.getItem('score') === null) {
+			localStorage.setItem('score', JSON.stringify(0))
+		}
+	}
+
 	const addKittenToLocalStorage = (newKitten: Kitten) => {
 		const storageString = localStorage.getItem('kittenStorage')
 		const existingKittens = JSON.parse(storageString as string)
@@ -81,6 +83,19 @@ const Playground = () => {
 		const storageString = localStorage.getItem('kittenStorage')
 		const existingKittens = JSON.parse(storageString as string)
 		return existingKittens
+	}
+
+	const getScoreFromLocalStorage = () => {
+		const storageString = localStorage.getItem('score')
+		const score = JSON.parse(storageString as string)
+		return Number(score)
+	}
+
+	const addPointsToLocalStorage = (points: number) => {
+		const storageString = localStorage.getItem('score')
+		const score = JSON.parse(storageString as string)
+		const updatedScore = points + Number(score)
+		localStorage.setItem('score', JSON.stringify(updatedScore))
 	}
 
 	const updateKittenInLocalStorage = (
@@ -117,12 +132,6 @@ const Playground = () => {
 		setPoop(newState)
 	}
 
-	const initLocalStorage = () => {
-		if (localStorage.getItem('kittenStorage') === null) {
-			localStorage.setItem('kittenStorage', JSON.stringify([]))
-		}
-	}
-
 	const cleanKitty = (id: string) => {
 		if (!cleanSelected) return
 		const selectedKitten = kittens.find(k => k.id === id)
@@ -152,15 +161,38 @@ const Playground = () => {
 	}
 
 	const setActive = (id: string) => {
-		const updatedState = openWindows.map(ow => {
-			if (ow.id === id) {
-				ow.isActive = true
-				return ow
+		const updatedState = allWindows.map(w => {
+			if (w.id === id) {
+				w.isActive = true
+				return w
 			}
-			ow.isActive = false
-			return ow
+			w.isActive = false
+			return w
 		})
-		setOpenWindows(updatedState)
+		setAllWindows(updatedState)
+	}
+
+	const closeWindow = (id: string) => {
+		const updatedState = allWindows.map(w => {
+			if (w.id === id) {
+				w.isOpen = false
+			}
+			return w
+		})
+		setAllWindows(updatedState)
+	}
+
+	const setWindowOpen = (id: string, isOpen: boolean) => {
+		const updatedState = allWindows.map(w => {
+			if (w.id === id) {
+				w.isOpen = isOpen
+				w.isActive = true
+				return w
+			}
+			w.isActive = false
+			return w
+		})
+		setAllWindows(updatedState)
 	}
 
 	useEffect(() => {
@@ -189,6 +221,7 @@ const Playground = () => {
 			() => {
 				initLocalStorage()
 				setKittens(getKittensFromLocalStorage())
+				setScore(getScoreFromLocalStorage())
 				setLoading(false)
 			}
 		)
@@ -212,6 +245,8 @@ const Playground = () => {
 						spawnKitten={spawnKitten}
 						cleanSelected={cleanSelected}
 						selectCleanKitten={selectCleanKitten}
+						showScore={true}
+						openScore={() => setWindowOpen('score', true)}
 					/>
 					<div style={{ opacity: showKittens ? 1 : 0 }}>
 						<CatCarrier />
@@ -236,7 +271,7 @@ const Playground = () => {
 							/>
 						))}
 					</div>
-					{openWindows.map(ow => {
+					{allWindows.map(ow => {
 						if (ow.id === 'score' && ow.isOpen) {
 							return (
 								<Score
@@ -244,6 +279,7 @@ const Playground = () => {
 									key={ow.id}
 									isActive={ow.isActive}
 									setActive={setActive}
+									closeWindow={closeWindow}
 									score={score}
 								/>
 							)
@@ -255,6 +291,7 @@ const Playground = () => {
 									key={ow.id}
 									isActive={ow.isActive}
 									setActive={setActive}
+									closeWindow={closeWindow}
 								/>
 							)
 						}
