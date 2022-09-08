@@ -5,6 +5,7 @@ import ShowHideIcon from './togglecat.png'
 import GetKittyIcon from './getkitty.png'
 import SpongeWaterIcon from './sponge.png'
 import WaterIcon from './sponge_water.png'
+import ScoreIcon from './score_icon.png'
 import './style.css'
 
 interface Props {
@@ -60,11 +61,8 @@ const StartMenu = ({
 				Clean
 			</StartMenuOption>
 			<hr className='divider' />
-			<StartMenuOption
-				icon={cleanSelected ? WaterIcon : SpongeWaterIcon}
-				optionFunction={openScore}
-			>
-				{showScore ? 'Show Score' : 'Hide Score'}
+			<StartMenuOption icon={ScoreIcon} optionFunction={openScore}>
+				Show Score
 			</StartMenuOption>
 			<hr className='divider' />
 			{/* <StartMenuOption icon={CatalogIcon}>Catalog</StartMenuOption>

@@ -1,12 +1,12 @@
 export const avaliableWindows = [
 	{
 		id: 'score',
-		isOpen: true,
-		isActive: true,
+		isOpen: false,
+		isActive: false,
 	},
 	{
 		id: 'disclaimer',
-		isOpen: true,
-		isActive: true,
+		isOpen: false,
+		isActive: false,
 	},
 ]

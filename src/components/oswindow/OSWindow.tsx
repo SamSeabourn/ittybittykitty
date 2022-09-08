@@ -48,6 +48,7 @@ const OSWindow = ({
 
 	return (
 		<Draggable
+			bounds='.playground'
 			defaultPosition={{
 				x: window.innerWidth / 2 - windowWidth / 2 + startingShift,
 				y: window.innerHeight / 2 - windowWidth / 2 + startingShift,
