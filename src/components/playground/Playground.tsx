@@ -215,6 +215,7 @@ const Playground = () => {
 			'cat_os97.png',
 			'getkitty.png',
 			'catalog.png',
+			'score_icon.png',
 		]
 
 		Promise.allSettled([...imageSrcs.map(src => preloadImage(src))]).then(
