@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
+import secureLocalStorage from 'react-secure-storage'
 import {
 	getColorShift,
 	createUUID,
@@ -62,40 +63,40 @@ const Playground = () => {
 	}
 
 	const initLocalStorage = () => {
-		if (localStorage.getItem('kittenStorage') === null) {
-			localStorage.setItem('kittenStorage', JSON.stringify([]))
+		if (secureLocalStorage.getItem('kittenStorage') === null) {
+			secureLocalStorage.setItem('kittenStorage', JSON.stringify([]))
 		}
-		if (localStorage.getItem('score') === null) {
-			localStorage.setItem('score', JSON.stringify(0))
+		if (secureLocalStorage.getItem('score') === null) {
+			secureLocalStorage.setItem('score', JSON.stringify(0))
 		}
 	}
 
 	const addKittenToLocalStorage = (newKitten: Kitten) => {
-		const storageString = localStorage.getItem('kittenStorage')
+		const storageString = secureLocalStorage.getItem('kittenStorage')
 		const existingKittens = JSON.parse(storageString as string)
-		localStorage.setItem(
+		secureLocalStorage.setItem(
 			'kittenStorage',
 			JSON.stringify([...existingKittens, newKitten])
 		)
 	}
 
 	const getKittensFromLocalStorage = () => {
-		const storageString = localStorage.getItem('kittenStorage')
+		const storageString = secureLocalStorage.getItem('kittenStorage')
 		const existingKittens = JSON.parse(storageString as string)
 		return existingKittens
 	}
 
 	const getScoreFromLocalStorage = () => {
-		const storageString = localStorage.getItem('score')
+		const storageString = secureLocalStorage.getItem('score')
 		const score = JSON.parse(storageString as string)
 		return Number(score)
 	}
 
 	const addPointsToLocalStorage = (points: number) => {
-		const storageString = localStorage.getItem('score')
+		const storageString = secureLocalStorage.getItem('score')
 		const score = JSON.parse(storageString as string)
 		const updatedScore = points + Number(score)
-		localStorage.setItem('score', JSON.stringify(updatedScore))
+		secureLocalStorage.setItem('score', JSON.stringify(updatedScore))
 	}
 
 	const updateKittenInLocalStorage = (
@@ -103,12 +104,12 @@ const Playground = () => {
 		key: string,
 		value: any
 	) => {
-		const storageString = localStorage.getItem('kittenStorage')
+		const storageString = secureLocalStorage.getItem('kittenStorage')
 		let existingKittens = JSON.parse(storageString as string)
 		for (let i = 0; i < existingKittens.length; i++) {
 			if (existingKittens[i].id === id) {
 				existingKittens[i][key] = value
-				localStorage.setItem(
+				secureLocalStorage.setItem(
 					'kittenStorage',
 					JSON.stringify([...existingKittens])
 				)
@@ -226,6 +227,11 @@ const Playground = () => {
 				setLoading(false)
 			}
 		)
+
+		console.log(process.env.SECURE_LOCAL_STORAGE_HASH_KEY)
+		secureLocalStorage.setItem('object', {
+			message: 'This is testing of local storage',
+		})
 	}, [])
 
 	return (
