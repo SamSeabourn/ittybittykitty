@@ -1,4 +1,5 @@
 import OSWindow from '../oswindow'
+import Timer from '../timer'
 
 interface DisclaimerProps {
 	id: string
@@ -23,7 +24,7 @@ const Disclaimer = ({
 			isActive={isActive}
 			closeWindow={closeWindow}
 		>
-			<span>Hi Im the disclaimer</span>
+			<div>Disclaimer</div>
 		</OSWindow>
 	)
 }

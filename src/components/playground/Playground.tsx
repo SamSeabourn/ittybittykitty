@@ -34,6 +34,7 @@ const Playground = () => {
 	const [kittens, setKittens] = useState<Array<Kitten>>([])
 	const [poop, setPoop] = useState<Array<PoopType>>([])
 	const [cleanSelected, setCleanSelected] = useState<boolean>(false)
+	const [kittenAvalable, setKittenAvalable] = useState<boolean>(false)
 	const [score, setScore] = useState<number>(0)
 	const [allWindows, setAllWindows] =
 		useState<Array<OSWindow>>(avaliableWindows)
@@ -249,6 +250,7 @@ const Playground = () => {
 						toggleStart={toggleStart}
 						showKittens={showKittens}
 						toggleShowKittens={toggleShowKittens}
+						kittenAvaliable={kittenAvalable}
 						spawnKitten={spawnKitten}
 						cleanSelected={cleanSelected}
 						selectCleanKitten={selectCleanKitten}

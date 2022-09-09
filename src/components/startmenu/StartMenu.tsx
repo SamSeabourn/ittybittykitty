@@ -7,12 +7,14 @@ import SpongeWaterIcon from './sponge.png'
 import WaterIcon from './sponge_water.png'
 import ScoreIcon from './score_icon.png'
 import './style.css'
+import Timer from '../timer'
 
 interface Props {
 	startOpen: boolean
 	toggleStart: () => void
 	showKittens: boolean
 	toggleShowKittens: () => void
+	kittenAvaliable: boolean
 	spawnKitten: () => void
 	cleanSelected: boolean
 	selectCleanKitten: () => void
@@ -25,6 +27,7 @@ const StartMenu = ({
 	showKittens,
 	toggleShowKittens,
 	toggleStart,
+	kittenAvaliable,
 	spawnKitten,
 	cleanSelected,
 	selectCleanKitten,
@@ -51,7 +54,9 @@ const StartMenu = ({
 			</div>
 			<hr className='divider' />
 			<StartMenuOption icon={GetKittyIcon} optionFunction={spawnKitten}>
-				Get Itty Bitty Kitty
+				<div>
+					Get Itty Bitty Kitty <Timer />
+				</div>
 			</StartMenuOption>
 			<hr className='divider' />
 			<StartMenuOption

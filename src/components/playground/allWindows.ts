@@ -6,7 +6,7 @@ export const avaliableWindows = [
 	},
 	{
 		id: 'disclaimer',
-		isOpen: false,
+		isOpen: true,
 		isActive: false,
 	},
 ]
