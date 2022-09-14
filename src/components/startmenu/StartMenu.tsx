@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import StartMenuOption from '../startmenuoption/StartMenuOption'
-import CatalogIcon from './catalog.png'
 import CatOSLogo from './cat_os97.png'
 import ShowHideIcon from './togglecat.png'
 import GetKittyIcon from './getkitty.png'
@@ -15,11 +14,9 @@ interface Props {
 	toggleStart: () => void
 	showKittens: boolean
 	toggleShowKittens: () => void
-	kittenAvaliable: boolean
 	spawnKitten: () => void
 	cleanSelected: boolean
 	selectCleanKitten: () => void
-	showScore: boolean
 	openScore: () => void
 }
 
@@ -28,14 +25,14 @@ const StartMenu = ({
 	showKittens,
 	toggleShowKittens,
 	toggleStart,
-	kittenAvaliable,
 	spawnKitten,
 	cleanSelected,
 	selectCleanKitten,
-	showScore,
 	openScore,
 }: Props) => {
+	const kittySpanTime = 2
 	const [isGetKittyAvaliable, setIsKittyAvaliable] = useState(false)
+	const [kittyWaitDuration, setKittyWaitDuration] = useState(kittySpanTime)
 
 	const handleHideKittens = () => {
 		toggleShowKittens()
@@ -46,9 +43,15 @@ const StartMenu = ({
 		selectCleanKitten()
 	}
 
+	const handleSpawnKitten = () => {
+		spawnKitten()
+		setKittyWaitDuration(kittySpanTime)
+		setIsKittyAvaliable(false)
+	}
+
 	return (
 		<div
-			style={{ display: startOpen ? 'unset' : 'unset' }}
+			style={{ display: startOpen ? 'unset' : 'none' }}
 			className='start-container'
 			onMouseLeave={toggleStart}
 		>
@@ -58,14 +61,15 @@ const StartMenu = ({
 			<div className='divider' />
 			<StartMenuOption
 				icon={GetKittyIcon}
-				optionFunction={spawnKitten}
+				optionFunction={handleSpawnKitten}
 				isActive={isGetKittyAvaliable}
 			>
 				{isGetKittyAvaliable ? (
 					'Get Itty Bitty Kitty'
 				) : (
 					<Timer
-						duration={6}
+						kittyWaitDuration={kittyWaitDuration}
+						setKittyWaitDuration={setKittyWaitDuration}
 						setIsKittyAvaliable={setIsKittyAvaliable}
 					/>
 				)}

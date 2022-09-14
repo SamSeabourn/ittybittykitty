@@ -3,7 +3,6 @@ import { actions, generateDuration } from './movement'
 import './animations.css'
 import './style.css'
 import { generateRandomFromRange } from '../../helpers'
-import Nametag from '../nametag'
 import { KittenColor, KittenCSS, Action } from './module'
 
 interface Props {
@@ -210,7 +209,7 @@ const Kitty = ({
 			setTimeout(() => {
 				const firstAction = Math.random() < 0.5 ? 'stroll' : 'run'
 				doMovementAction(firstAction) //kittens always leave the carrier first movement
-			}, generateRandomFromRange(1000, 2000))
+			}, generateRandomFromRange(1000, 3000))
 		}
 	}, [isClean])
 
@@ -218,7 +217,6 @@ const Kitty = ({
 
 	return (
 		<div style={style} className='kitty__wrapper'>
-			{/* <Nametag name={name} /> */}
 			<div
 				style={{
 					backgroundImage: kittenSprite,

@@ -3,24 +3,28 @@ import { zeroPad } from '../../helpers'
 import './style.css'
 
 interface Props {
-	duration: number
+	kittyWaitDuration: number
+	setKittyWaitDuration: (time: number) => void
 	setIsKittyAvaliable: Function
 }
 
-export const Timer = ({ duration, setIsKittyAvaliable }: Props) => {
-	const [remainingTime, setRemainingTime] = useState(duration)
+export const Timer = ({
+	kittyWaitDuration,
+	setKittyWaitDuration,
+	setIsKittyAvaliable,
+}: Props) => {
 	const timeoutRef = useRef(0)
 
 	const startCountDown = () => {
 		const countDown = () => {
-			if (remainingTime === 0) {
+			if (kittyWaitDuration === 0) {
 				setIsKittyAvaliable(true)
 				window.clearTimeout(timeoutRef.current)
 				return
 			}
 			timeoutRef.current = window.setTimeout(() => {
-				const newremainingTime = remainingTime - 1
-				setRemainingTime(newremainingTime)
+				const newremainingTime = kittyWaitDuration - 1
+				setKittyWaitDuration(newremainingTime)
 				window.clearTimeout(timeoutRef.current)
 				countDown()
 			}, 1000)
@@ -46,9 +50,11 @@ export const Timer = ({ duration, setIsKittyAvaliable }: Props) => {
 		return () => {
 			window.clearTimeout(timeoutRef.current)
 		}
-	}, [remainingTime, duration])
+	}, [kittyWaitDuration])
 
-	return <span>{`Avaliable in ${renderReadableTime(remainingTime)}`}</span>
+	return (
+		<span>{`Avaliable in ${renderReadableTime(kittyWaitDuration)}`}</span>
+	)
 }
 
 export default Timer

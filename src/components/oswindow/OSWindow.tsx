@@ -7,6 +7,7 @@ interface Props {
 	children: React.ReactNode
 	title: string
 	size?: 'small' | 'medium' | 'large'
+	hideClose?: boolean
 	startingShift: number
 	isActive: boolean
 	setActive: (id: string) => void
@@ -22,6 +23,7 @@ const OSWindow = ({
 	isActive,
 	setActive,
 	closeWindow,
+	hideClose,
 }: Props) => {
 	let windowWidth = 300
 	switch (size) {
@@ -61,9 +63,11 @@ const OSWindow = ({
 			>
 				<div className='top-bar'>
 					<div className='title'>{title}</div>
-					<div className='exit' onClick={handleClose}>
-						X
-					</div>
+					{hideClose ? null : (
+						<div className='exit' onClick={handleClose}>
+							X
+						</div>
+					)}
 				</div>
 				<div className='content'>{children}</div>
 			</div>

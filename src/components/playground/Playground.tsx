@@ -34,7 +34,6 @@ const Playground = () => {
 	const [kittens, setKittens] = useState<Array<Kitten>>([])
 	const [poop, setPoop] = useState<Array<PoopType>>([])
 	const [cleanSelected, setCleanSelected] = useState<boolean>(false)
-	const [kittenAvalable, setKittenAvalable] = useState<boolean>(false)
 	const [score, setScore] = useState<number>(0)
 	const [allWindows, setAllWindows] =
 		useState<Array<OSWindow>>(avaliableWindows)
@@ -216,7 +215,6 @@ const Playground = () => {
 			'CarrierTop.png',
 			'cat_os97.png',
 			'getkitty.png',
-			'catalog.png',
 			'score_icon.png',
 		]
 
@@ -245,11 +243,9 @@ const Playground = () => {
 						toggleStart={toggleStart}
 						showKittens={showKittens}
 						toggleShowKittens={toggleShowKittens}
-						kittenAvaliable={kittenAvalable}
 						spawnKitten={spawnKitten}
 						cleanSelected={cleanSelected}
 						selectCleanKitten={selectCleanKitten}
-						showScore={true}
 						openScore={() => setWindowOpen('score', true)}
 					/>
 					<div style={{ opacity: showKittens ? 1 : 0 }}>
