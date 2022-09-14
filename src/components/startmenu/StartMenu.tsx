@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import StartMenuOption from '../startmenuoption/StartMenuOption'
 import CatalogIcon from './catalog.png'
 import CatOSLogo from './cat_os97.png'
@@ -34,6 +35,8 @@ const StartMenu = ({
 	showScore,
 	openScore,
 }: Props) => {
+	const [isGetKittyAvaliable, setIsKittyAvaliable] = useState(false)
+
 	const handleHideKittens = () => {
 		toggleShowKittens()
 	}
@@ -45,7 +48,7 @@ const StartMenu = ({
 
 	return (
 		<div
-			style={{ display: startOpen ? 'unset' : 'none' }}
+			style={{ display: startOpen ? 'unset' : 'unset' }}
 			className='start-container'
 			onMouseLeave={toggleStart}
 		>
@@ -53,26 +56,41 @@ const StartMenu = ({
 				<img src={CatOSLogo} />
 			</div>
 			<div className='divider' />
-			<StartMenuOption icon={GetKittyIcon} optionFunction={spawnKitten}>
-				<div>
-					Get Itty Bitty Kitty <Timer duration={60 * 60 * 2} />
-				</div>
+			<StartMenuOption
+				icon={GetKittyIcon}
+				optionFunction={spawnKitten}
+				isActive={isGetKittyAvaliable}
+			>
+				{isGetKittyAvaliable ? (
+					'Get Itty Bitty Kitty'
+				) : (
+					<Timer
+						duration={6}
+						setIsKittyAvaliable={setIsKittyAvaliable}
+					/>
+				)}
 			</StartMenuOption>
 			<div className='divider' />
 			<StartMenuOption
 				icon={cleanSelected ? WaterIcon : SpongeWaterIcon}
 				optionFunction={handleSelectClean}
+				isActive={true}
 			>
 				Clean
 			</StartMenuOption>
 			<div className='divider' />
-			<StartMenuOption icon={ScoreIcon} optionFunction={openScore}>
+			<StartMenuOption
+				icon={ScoreIcon}
+				optionFunction={openScore}
+				isActive={true}
+			>
 				Show Score
 			</StartMenuOption>
 			<div className='divider' />
 			<StartMenuOption
 				icon={ShowHideIcon}
 				optionFunction={handleHideKittens}
+				isActive={true}
 			>
 				{showKittens ? 'Hide Kittens' : 'Show Kittens'}
 			</StartMenuOption>

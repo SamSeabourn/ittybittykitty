@@ -3,14 +3,24 @@ import './style.css'
 
 type Props = {
 	children: React.ReactNode
+	isActive: boolean
 	icon?: string
 	optionFunction?: () => void
 }
 
-const StartMenuOption = ({ children, icon, optionFunction }: Props) => {
+const StartMenuOption = ({
+	children,
+	icon,
+	optionFunction,
+	isActive,
+}: Props) => {
 	return (
-		<div className='start-menu-option' onClick={optionFunction}>
-			<img className='start-menu-icon' src={icon} /> <div>{children}</div>
+		<div
+			className={`start-menu-option ${isActive ? '' : 'inactive'}`}
+			onClick={optionFunction}
+		>
+			<img className='start-menu-icon' src={icon} />
+			{children}
 		</div>
 	)
 }

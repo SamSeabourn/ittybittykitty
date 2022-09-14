@@ -32,8 +32,8 @@ html {
 }
 
 :root {
-	--OSHeader: #67154a;
-	--OSBackground: #5f2f4c;
-	--OSHover: #871961;
-	--OSDisabled: #312d2f;
+	--OSHeader:#871961;
+	--OSBackground:#3a1d2e;
+	--OSHover:#67154a;
+	--OSDisabled:#5b5658;
 }

@@ -1,22 +1,26 @@
-//TODO: Broken on re-render, lift duration up
-
 import { useState, useEffect, useRef } from 'react'
 import { zeroPad } from '../../helpers'
+import './style.css'
 
 interface Props {
 	duration: number
+	setIsKittyAvaliable: Function
 }
 
-export const Timer = ({ duration }: Props) => {
+export const Timer = ({ duration, setIsKittyAvaliable }: Props) => {
 	const [remainingTime, setRemainingTime] = useState(duration)
 	const timeoutRef = useRef(0)
 
 	const startCountDown = () => {
 		const countDown = () => {
+			if (remainingTime === 0) {
+				setIsKittyAvaliable(true)
+				window.clearTimeout(timeoutRef.current)
+				return
+			}
 			timeoutRef.current = window.setTimeout(() => {
 				const newremainingTime = remainingTime - 1
 				setRemainingTime(newremainingTime)
-				if (remainingTime < 0) return
 				window.clearTimeout(timeoutRef.current)
 				countDown()
 			}, 1000)
@@ -42,9 +46,9 @@ export const Timer = ({ duration }: Props) => {
 		return () => {
 			window.clearTimeout(timeoutRef.current)
 		}
-	}, [remainingTime])
+	}, [remainingTime, duration])
 
-	return <span>{renderReadableTime(remainingTime)}</span>
+	return <span>{`Avaliable in ${renderReadableTime(remainingTime)}`}</span>
 }
 
 export default Timer

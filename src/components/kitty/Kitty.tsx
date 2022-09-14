@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { actions, generateDuration } from './movement'
 import './animations.css'
 import './style.css'
-import { generateRandomFromRange, getColorShift } from '../../helpers'
+import { generateRandomFromRange } from '../../helpers'
 import Nametag from '../nametag'
-import { KittenColor, KittenCSS, Action, Kitten } from './module'
+import { KittenColor, KittenCSS, Action } from './module'
 
 interface Props {
 	id: string
@@ -210,7 +210,7 @@ const Kitty = ({
 			setTimeout(() => {
 				const firstAction = Math.random() < 0.5 ? 'stroll' : 'run'
 				doMovementAction(firstAction) //kittens always leave the carrier first movement
-			}, generateRandomFromRange(1000, 3300))
+			}, generateRandomFromRange(1000, 2000))
 		}
 	}, [isClean])
 

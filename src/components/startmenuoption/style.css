@@ -7,6 +7,26 @@
     padding-right: 12px;
 }
 
+.inactive {
+	background-color: #5b5658 !important;
+    pointer-events: none !important;
+    cursor: none !important;
+    filter: grayscale(0.8) !important;
+	color: rgb(255 255 255 / 53%);
+}
+
+.inactive > span {
+	background-color: #5b5658 !important;
+    pointer-events: none !important;
+    cursor: none !important;
+    filter: grayscale(0.8) !important;
+	color: rgb(255 255 255 / 53%);
+}
+
+.inactive > img {
+	opacity: 0.7;
+}
+
 .start-menu-option:hover {
 	background-color: var(--OSHover);
 }
