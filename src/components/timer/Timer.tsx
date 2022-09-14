@@ -1,70 +1,50 @@
-//source https://www.geeksforgeeks.org/how-to-create-a-countdown-timer-using-reactjs/
-//TODO: Fix this, this is kinda shit.
+//TODO: Broken on re-render, lift duration up
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { zeroPad } from '../../helpers'
 
-interface Props {}
+interface Props {
+	duration: number
+}
 
-const Timer = () => {
-	const startingValue = {
-		display: '00:59:00',
-		secconds: 59 * 60,
+export const Timer = ({ duration }: Props) => {
+	const [remainingTime, setRemainingTime] = useState(duration)
+	const timeoutRef = useRef(0)
+
+	const startCountDown = () => {
+		const countDown = () => {
+			timeoutRef.current = window.setTimeout(() => {
+				const newremainingTime = remainingTime - 1
+				setRemainingTime(newremainingTime)
+				if (remainingTime < 0) return
+				window.clearTimeout(timeoutRef.current)
+				countDown()
+			}, 1000)
+		}
+		countDown()
 	}
-	const Ref = useRef(0)
-	const [timer, setTimer] = useState(startingValue.display)
 
-	const getTimeRemaining = (e: string) => {
-		const total = Date.parse(e) - Date.parse(new Date().toString())
-		const seconds = Math.floor((total / 1000) % 60)
-		const minutes = Math.floor((total / 1000 / 60) % 60)
-		const hours = Math.floor((total / 1000 / 60 / 60) % 24)
-		return {
-			total,
-			hours,
-			minutes,
+	const renderReadableTime = (inputSeconds: number) => {
+		// const days = Math.floor((inputSeconds % 31536000) / 86400)
+		const hours = Math.floor(((inputSeconds % 31536000) % 86400) / 3600)
+		const minutes = Math.floor(
+			(((inputSeconds % 31536000) % 86400) % 3600) / 60
+		)
+		const seconds = (((inputSeconds % 31536000) % 86400) % 3600) % 60
+		return `${zeroPad(hours, 2)}:${zeroPad(minutes, 2)}:${zeroPad(
 			seconds,
-		}
-	}
-
-	const startTimer = (e: string) => {
-		let { total, hours, minutes, seconds } = getTimeRemaining(e)
-		if (total >= 0) {
-			setTimer(
-				(hours > 9 ? hours : '0' + hours) +
-					':' +
-					(minutes > 9 ? minutes : '0' + minutes) +
-					':' +
-					(seconds > 9 ? seconds : '0' + seconds)
-			)
-		}
-	}
-
-	const restartTimer = (e: string) => {
-		setTimer(startingValue.display)
-		if (Ref.current) clearInterval(Ref.current)
-		const id = window.setInterval(() => {
-			startTimer(e)
-		}, 1000)
-		Ref.current = id
-	}
-
-	const getDeadTime = () => {
-		let deadline = new Date()
-		deadline.setSeconds(deadline.getSeconds() + startingValue.secconds)
-		return deadline
+			2
+		)}`
 	}
 
 	useEffect(() => {
-		restartTimer(getDeadTime().toString())
-	}, [])
+		startCountDown()
+		return () => {
+			window.clearTimeout(timeoutRef.current)
+		}
+	}, [remainingTime])
 
-	if (timer === '00:00:00') {
-		window.setTimeout(() => {
-			restartTimer(getDeadTime().toString())
-		}, 1000)
-	}
-
-	return <span>{timer}</span>
+	return <span>{renderReadableTime(remainingTime)}</span>
 }
 
 export default Timer

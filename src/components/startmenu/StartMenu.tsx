@@ -52,33 +52,31 @@ const StartMenu = ({
 			<div className='start-logobar'>
 				<img src={CatOSLogo} />
 			</div>
-			<hr className='divider' />
+			<div className='divider' />
 			<StartMenuOption icon={GetKittyIcon} optionFunction={spawnKitten}>
 				<div>
-					Get Itty Bitty Kitty <Timer />
+					Get Itty Bitty Kitty <Timer duration={60 * 60 * 2} />
 				</div>
 			</StartMenuOption>
-			<hr className='divider' />
+			<div className='divider' />
 			<StartMenuOption
 				icon={cleanSelected ? WaterIcon : SpongeWaterIcon}
 				optionFunction={handleSelectClean}
 			>
 				Clean
 			</StartMenuOption>
-			<hr className='divider' />
+			<div className='divider' />
 			<StartMenuOption icon={ScoreIcon} optionFunction={openScore}>
 				Show Score
 			</StartMenuOption>
-			<hr className='divider' />
-			{/* <StartMenuOption icon={CatalogIcon}>Catalog</StartMenuOption>
-			<hr className='divider' /> */}
+			<div className='divider' />
 			<StartMenuOption
 				icon={ShowHideIcon}
 				optionFunction={handleHideKittens}
 			>
 				{showKittens ? 'Hide Kittens' : 'Show Kittens'}
 			</StartMenuOption>
-			<hr className='divider' />
+			<div className='divider' />
 		</div>
 	)
 }

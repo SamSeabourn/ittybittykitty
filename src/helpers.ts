@@ -53,3 +53,6 @@ export const preloadImage = (src: string) => {
 		img.src = src
 	})
 }
+
+export const zeroPad = (num: number, places: number) =>
+	String(num).padStart(places, '0')

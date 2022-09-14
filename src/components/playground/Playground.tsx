@@ -228,11 +228,6 @@ const Playground = () => {
 				setLoading(false)
 			}
 		)
-
-		console.log(process.env.SECURE_LOCAL_STORAGE_HASH_KEY)
-		secureLocalStorage.setItem('object', {
-			message: 'This is testing of local storage',
-		})
 	}, [])
 
 	return (

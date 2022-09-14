@@ -1,5 +1,4 @@
 import OSWindow from '../oswindow'
-import Timer from '../timer'
 
 interface DisclaimerProps {
 	id: string
