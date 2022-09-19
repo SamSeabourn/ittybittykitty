@@ -34,8 +34,7 @@ const Disclaimer = ({
 				warned. Please enjoy the app and let us know in the discord if
 				there are any bugs or improments to make.
 			</p>
-
-			<Button>Got it</Button>
+			<Button text='Got it' onClickFn={() => closeWindow(id)} />
 		</OSWindow>
 	)
 }

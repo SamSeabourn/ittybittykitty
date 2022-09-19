@@ -2,7 +2,14 @@
 import { useEffect, useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
-import secureLocalStorage from 'react-secure-storage'
+import {
+	initLocalStorage,
+	addKittenToLocalStorage,
+	getKittensFromLocalStorage,
+	getScoreFromLocalStorage,
+	addPointsToLocalStorage,
+	updateKittenInLocalStorage,
+} from '../localStorage'
 import {
 	getColorShift,
 	createUUID,
@@ -18,7 +25,7 @@ import './style.css'
 import { PoopType } from '../poop/module'
 import Score from '../score/Score'
 import Disclaimer from '../disclaimer'
-import { SCORE } from '../score/constants'
+import { SCORE, IMG_SRC_FOR_PRELOAD } from '../constants'
 import { avaliableWindows } from './allWindows'
 
 interface OSWindow {
@@ -60,61 +67,6 @@ const Playground = () => {
 
 	const toggleStart = () => {
 		setStartOpen(!startOpen)
-	}
-
-	const initLocalStorage = () => {
-		if (secureLocalStorage.getItem('kittenStorage') === null) {
-			secureLocalStorage.setItem('kittenStorage', JSON.stringify([]))
-		}
-		if (secureLocalStorage.getItem('score') === null) {
-			secureLocalStorage.setItem('score', JSON.stringify(0))
-		}
-	}
-
-	const addKittenToLocalStorage = (newKitten: Kitten) => {
-		const storageString = secureLocalStorage.getItem('kittenStorage')
-		const existingKittens = JSON.parse(storageString as string)
-		secureLocalStorage.setItem(
-			'kittenStorage',
-			JSON.stringify([...existingKittens, newKitten])
-		)
-	}
-
-	const getKittensFromLocalStorage = () => {
-		const storageString = secureLocalStorage.getItem('kittenStorage')
-		const existingKittens = JSON.parse(storageString as string)
-		return existingKittens
-	}
-
-	const getScoreFromLocalStorage = () => {
-		const storageString = secureLocalStorage.getItem('score')
-		const score = JSON.parse(storageString as string)
-		return Number(score)
-	}
-
-	const addPointsToLocalStorage = (points: number) => {
-		const storageString = secureLocalStorage.getItem('score')
-		const score = JSON.parse(storageString as string)
-		const updatedScore = points + Number(score)
-		secureLocalStorage.setItem('score', JSON.stringify(updatedScore))
-	}
-
-	const updateKittenInLocalStorage = (
-		id: string,
-		key: string,
-		value: any
-	) => {
-		const storageString = secureLocalStorage.getItem('kittenStorage')
-		let existingKittens = JSON.parse(storageString as string)
-		for (let i = 0; i < existingKittens.length; i++) {
-			if (existingKittens[i].id === id) {
-				existingKittens[i][key] = value
-				secureLocalStorage.setItem(
-					'kittenStorage',
-					JSON.stringify([...existingKittens])
-				)
-			}
-		}
 	}
 
 	const spawnPoop = (location: number) => {
@@ -197,35 +149,14 @@ const Playground = () => {
 	}
 
 	useEffect(() => {
-		//TODO: Webpack this bit
-		const imageSrcs = [
-			'poop_fresh.png',
-			'sponge.png',
-			'sprites_black.png',
-			'sprites_clear.png',
-			'sprites_dirty.png',
-			'sprites_gold.png',
-			'sprites_neon.png',
-			'sprites_normal.png',
-			'sprites_white.png',
-			'sponge_solo.png',
-			'sponge_water.png',
-			'sponge.png',
-			'CarrierBottom.png',
-			'CarrierTop.png',
-			'cat_os97.png',
-			'getkitty.png',
-			'score_icon.png',
-		]
-
-		Promise.allSettled([...imageSrcs.map(src => preloadImage(src))]).then(
-			() => {
-				initLocalStorage()
-				setKittens(getKittensFromLocalStorage())
-				setScore(getScoreFromLocalStorage())
-				setLoading(false)
-			}
-		)
+		Promise.allSettled([
+			...IMG_SRC_FOR_PRELOAD.map(src => preloadImage(src)),
+		]).then(() => {
+			initLocalStorage()
+			setKittens(getKittensFromLocalStorage())
+			setScore(getScoreFromLocalStorage())
+			setLoading(false)
+		})
 	}, [])
 
 	return (

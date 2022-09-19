@@ -1,12 +1,13 @@
 \*\*Stuff to add
 
--   Scoring system
--   Clean up poop
--   golden poop
--   Adopt for extra points
--   Timer for cat adoption (1 kitten per hour)
+-   Scoring system - DONE
+-   Clean up poop - DONE
+-   golden poop - DONE
+-   Adopt for extra points - DONE
+-   Timer for cat adoption (1 kitten per hour) - DONE
 -   Cat size grow
--   Disclaimer/ warning
+-   Disclaimer/ warning - DONE
 -   Naming cats
 -   Weekly score
--   color selections
+-   People want to adopt
+-

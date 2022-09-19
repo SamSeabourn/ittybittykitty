@@ -1,12 +1,13 @@
 import './style.css'
 
 interface Props {
-	children: React.ReactNode
+	text: React.ReactNode
+	onClickFn: () => void
 }
 
-const Button = ({ children }: Props) => (
-	<div className='button'>
-		<span>{children}</span>
+const Button = ({ text, onClickFn }: Props) => (
+	<div onClick={onClickFn} className='button'>
+		<span>{text}</span>
 	</div>
 )
 
