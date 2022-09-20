@@ -9,7 +9,7 @@ export const initLocalStorage = () => {
 		secureLocalStorage.setItem('score', JSON.stringify(0))
 	}
 	if (secureLocalStorage.getItem('disclaimer') === null) {
-		secureLocalStorage.setItem('disclaimer', JSON.stringify(0))
+		secureLocalStorage.setItem('disclaimer', JSON.stringify(false))
 	}
 }
 
@@ -57,4 +57,14 @@ export const updateKittenInLocalStorage = (
 			)
 		}
 	}
+}
+
+export const getDisclaimerRead = () => {
+	const storageString = secureLocalStorage.getItem('disclaimer')
+	const disclaimerRead = JSON.parse(storageString as string)
+	return disclaimerRead
+}
+
+export const setDisclaimerRead = () => {
+	secureLocalStorage.setItem('disclaimer', JSON.stringify(true))
 }

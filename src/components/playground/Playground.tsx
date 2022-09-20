@@ -65,10 +65,6 @@ const Playground = () => {
 		addToScore(SCORE.GET_KITTEN)
 	}
 
-	const toggleStart = () => {
-		setStartOpen(!startOpen)
-	}
-
 	const spawnPoop = (location: number) => {
 		if (poop.length >= 2) return //max poop is 20 TODO: this is broken somehow
 		const newPoop: PoopType = {
@@ -167,11 +163,11 @@ const Playground = () => {
 				<>
 					<StartMenuButton
 						startOpen={startOpen}
-						toggleStart={toggleStart}
+						toggleStart={() => setStartOpen(!startOpen)}
 					/>
 					<StartMenu
 						startOpen={startOpen}
-						toggleStart={toggleStart}
+						toggleStart={() => setStartOpen(!startOpen)}
 						showKittens={showKittens}
 						toggleShowKittens={toggleShowKittens}
 						spawnKitten={spawnKitten}
