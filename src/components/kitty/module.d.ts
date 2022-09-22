@@ -32,4 +32,5 @@ export interface Kitten {
 	color: KittenColor
 	colorShift: number
 	isClean: boolean
+	birthDay: Date
 }

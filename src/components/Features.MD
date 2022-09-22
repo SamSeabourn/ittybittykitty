@@ -10,4 +10,4 @@
 -   Naming cats
 -   Weekly score
 -   People want to adopt
--
+-   Connect to twitch

@@ -16,6 +16,7 @@ import {
 	getKittenColor,
 	preloadImage,
 } from '../../helpers'
+import { calculateAge } from '../age'
 import StartMenuButton from '../startmenubutton'
 import StartMenu from '../startmenu'
 import Kitty from '../kitty'
@@ -59,6 +60,7 @@ const Playground = () => {
 			colorShift: getColorShift(kittenColor),
 			name: '',
 			isClean: false,
+			birthDay: new Date(),
 		}
 		setKittens(kittens => [...kittens, newKitten])
 		addKittenToLocalStorage(newKitten)
@@ -177,18 +179,21 @@ const Playground = () => {
 					/>
 					<div style={{ opacity: showKittens ? 1 : 0 }}>
 						<CatCarrier />
-						{kittens.map(k => (
-							<Kitty
-								id={k.id}
-								key={k.id}
-								name=''
-								color={k.color}
-								colorShift={k.colorShift}
-								cleanKitty={cleanKitty}
-								isClean={k.isClean}
-								spawnPoop={spawnPoop}
-							/>
-						))}
+						{kittens.map(k => {
+							console.log(calculateAge(k.birthDay))
+							return (
+								<Kitty
+									id={k.id}
+									key={k.id}
+									name=''
+									color={k.color}
+									colorShift={k.colorShift}
+									cleanKitty={cleanKitty}
+									isClean={k.isClean}
+									spawnPoop={spawnPoop}
+								/>
+							)
+						})}
 						{poop.map(p => (
 							<Poop
 								id={p.id}

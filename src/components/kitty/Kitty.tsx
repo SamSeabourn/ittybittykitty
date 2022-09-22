@@ -203,6 +203,21 @@ const Kitty = ({
 		}
 	}
 
+	const kittenStyleCSS = () => {
+		return {
+			backgroundImage: `url('./sprites_${
+				isClean ? color : 'dirty'
+			}.png')`,
+			transform:
+				direction === 'left'
+					? `
+			
+			`
+					: `
+			`,
+		}
+	}
+
 	useEffect(() => {
 		if (!actionsStarted.current) {
 			actionsStarted.current = true
