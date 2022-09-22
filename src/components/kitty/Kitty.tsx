@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from 'react'
+import { KittenColor, KittenCSS, Action } from './module'
 import { actions, generateDuration } from './movement'
+import { generateRandomFromRange } from '../../helpers'
 import './animations.css'
 import './style.css'
-import { generateRandomFromRange } from '../../helpers'
-import { KittenColor, KittenCSS, Action } from './module'
 
 interface Props {
 	id: string
@@ -43,14 +43,12 @@ const Kitty = ({
 		}, duration)
 	}
 
-	const cssBuilder = (css: KittenCSS) => {
-		return {
-			left: `${position}px`,
-			transition: 'none',
-			filter: `hue-rotate(${kittyColorShift}deg)`,
-			...css,
-		}
-	}
+	const cssBuilder = (css: KittenCSS) => ({
+		left: `${position}px`,
+		transition: 'none',
+		filter: `hue-rotate(${kittyColorShift}deg)`,
+		...css,
+	})
 
 	const doStationaryAction = (actionName: Action) => {
 		const duration = generateDuration(actionName)
@@ -64,9 +62,7 @@ const Kitty = ({
 		durationHandler(duration)
 	}
 
-	const handleCleanKitty = () => {
-		cleanKitty(id)
-	}
+	const handleCleanKitty = () => cleanKitty(id)
 
 	const doMovementAction = (actionName: Action) => {
 		const movementSpeed = actionName === 'run' ? 250 : 125
@@ -203,20 +199,8 @@ const Kitty = ({
 		}
 	}
 
-	const kittenStyleCSS = () => {
-		return {
-			backgroundImage: `url('./sprites_${
-				isClean ? color : 'dirty'
-			}.png')`,
-			transform:
-				direction === 'left'
-					? `
-			
-			`
-					: `
-			`,
-		}
-	}
+	const calculateDirection = () =>
+		direction === 'left' ? 'scaleX(-1) scale(4)' : 'scale(4)'
 
 	useEffect(() => {
 		if (!actionsStarted.current) {
@@ -235,8 +219,7 @@ const Kitty = ({
 			<div
 				style={{
 					backgroundImage: kittenSprite,
-					transform:
-						direction === 'left' ? 'scaleX(-1) scale(4)' : '',
+					transform: calculateDirection(),
 				}}
 				className={`kitty-test-${action} kitty ${
 					color === 'gold' && isClean ? 'gold' : ''
