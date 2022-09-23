@@ -186,6 +186,7 @@ const Playground = () => {
 									id={k.id}
 									key={k.id}
 									name=''
+									birthday={k.birthDay}
 									color={k.color}
 									colorShift={k.colorShift}
 									cleanKitty={cleanKitty}

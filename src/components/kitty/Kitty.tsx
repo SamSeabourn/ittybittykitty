@@ -4,10 +4,12 @@ import { actions, generateDuration } from './movement'
 import { generateRandomFromRange } from '../../helpers'
 import './animations.css'
 import './style.css'
+import { calculateAge } from '../age'
 
 interface Props {
 	id: string
 	name?: string
+	birthday: Date
 	color: KittenColor
 	colorShift: number
 	isClean: boolean
@@ -18,6 +20,7 @@ interface Props {
 const Kitty = ({
 	id,
 	name,
+	birthday,
 	color,
 	colorShift,
 	isClean,
@@ -49,6 +52,19 @@ const Kitty = ({
 		filter: `hue-rotate(${kittyColorShift}deg)`,
 		...css,
 	})
+
+	const calculateScaleCSS = (
+		catAgeDays: number,
+		direction: 'left' | 'right'
+	) => {
+		const catAge = catAgeDays < 10 ? catAgeDays : 0
+		const reverseScale = direction === 'left' ? 'scaleX(-1)' : ''
+		const sizeScale = `scale(4.${catAge})`
+		return {
+			transform: `${reverseScale} ${sizeScale}`,
+			bottom: `${catAge * 2}px`,
+		}
+	}
 
 	const doStationaryAction = (actionName: Action) => {
 		const duration = generateDuration(actionName)
@@ -199,9 +215,6 @@ const Kitty = ({
 		}
 	}
 
-	const calculateDirection = () =>
-		direction === 'left' ? 'scaleX(-1) scale(4)' : 'scale(4)'
-
 	useEffect(() => {
 		if (!actionsStarted.current) {
 			actionsStarted.current = true
@@ -219,7 +232,7 @@ const Kitty = ({
 			<div
 				style={{
 					backgroundImage: kittenSprite,
-					transform: calculateDirection(),
+					...calculateScaleCSS(calculateAge(birthday), direction),
 				}}
 				className={`kitty-test-${action} kitty ${
 					color === 'gold' && isClean ? 'gold' : ''
