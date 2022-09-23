@@ -15,6 +15,7 @@ import {
 	createUUID,
 	getKittenColor,
 	preloadImage,
+	generateRandomFromRange,
 } from '../../helpers'
 import { calculateAge } from '../age'
 import StartMenuButton from '../startmenubutton'
@@ -28,6 +29,7 @@ import Score from '../score/Score'
 import Disclaimer from '../disclaimer'
 import { SCORE, IMG_SRC_FOR_PRELOAD } from '../constants'
 import { avaliableWindows } from './allWindows'
+import { randomCatName } from '../../randomNames'
 
 interface OSWindow {
 	id: string
@@ -58,10 +60,15 @@ const Playground = () => {
 			id: createUUID(),
 			color: kittenColor,
 			colorShift: getColorShift(kittenColor),
-			name: '',
+			name: randomCatName[
+				generateRandomFromRange(0, randomCatName.length)
+			],
 			isClean: false,
 			birthDay: new Date(),
 		}
+
+		console.log(newKitten)
+
 		setKittens(kittens => [...kittens, newKitten])
 		addKittenToLocalStorage(newKitten)
 		addToScore(SCORE.GET_KITTEN)
@@ -185,7 +192,7 @@ const Playground = () => {
 								<Kitty
 									id={k.id}
 									key={k.id}
-									name=''
+									name={k.name}
 									birthday={k.birthDay}
 									color={k.color}
 									colorShift={k.colorShift}

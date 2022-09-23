@@ -5,7 +5,7 @@
 -   golden poop - DONE
 -   Adopt for extra points - DONE
 -   Timer for cat adoption (1 kitten per hour) - DONE
--   Cat size grow
+-   Cat size grow - DONE
 -   Disclaimer/ warning - DONE
 -   Naming cats
 -   Weekly score

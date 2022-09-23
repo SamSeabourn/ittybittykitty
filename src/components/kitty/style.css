@@ -13,6 +13,10 @@
 	filter: drop-shadow(2px 4px 6px gold);
 }
 
+.nametag {
+	filter: drop-shadow(1px 1px 2px black);
+}
+
 .kitty__wrapper {
 	width: 128px;
 	height: 128px;

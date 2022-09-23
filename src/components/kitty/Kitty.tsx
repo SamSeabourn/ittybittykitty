@@ -78,7 +78,7 @@ const Kitty = ({
 		durationHandler(duration)
 	}
 
-	const handleCleanKitty = () => cleanKitty(id)
+	const handleClickKitty = () => cleanKitty(id)
 
 	const doMovementAction = (actionName: Action) => {
 		const movementSpeed = actionName === 'run' ? 250 : 125
@@ -228,23 +228,26 @@ const Kitty = ({
 	const kittenSprite = `url('./sprites_${isClean ? color : 'dirty'}.png')`
 
 	return (
-		<div style={style} className='kitty__wrapper'>
-			<div
-				style={{
-					backgroundImage: kittenSprite,
-					...calculateScaleCSS(calculateAge(birthday), direction),
-				}}
-				className={`kitty-test-${action} kitty ${
-					color === 'gold' && isClean ? 'gold' : ''
-				}`}
-				onMouseEnter={e => doJump(e)}
-			>
+		<>
+			<div style={style} className='kitty__wrapper'>
+				<span className='nametag'>{name}</span>
 				<div
-					className='kitty__boundingbox'
-					onClick={handleCleanKitty}
-				/>
+					style={{
+						backgroundImage: kittenSprite,
+						...calculateScaleCSS(calculateAge(birthday), direction),
+					}}
+					className={`kitty-test-${action} kitty ${
+						color === 'gold' && isClean ? 'gold' : ''
+					}`}
+					onMouseEnter={e => doJump(e)}
+				>
+					<div
+						className='kitty__boundingbox'
+						onClick={handleClickKitty}
+					/>
+				</div>
 			</div>
-		</div>
+		</>
 	)
 }
 
