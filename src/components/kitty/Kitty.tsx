@@ -31,14 +31,14 @@ const Kitty = ({
 	const position = useRef(minLeftPosition)
 	const kittyColorShift = colorShift
 	const [action, setAction] = useState<Action>('idle')
+	const [direction, setDirection] = useState<'left' | 'right'>('right')
+	const actionsStarted = useRef(false)
+	const timeoutRef = useRef(0)
 	const [style, setStyle] = useState({
 		left: `${position}px`,
 		transition: 'none',
 		filter: `hue-rotate(${kittyColorShift}deg)`,
 	})
-	const [direction, setDirection] = useState<'left' | 'right'>('right')
-	const actionsStarted = useRef(false)
-	const timeoutRef = useRef(0)
 
 	const durationHandler = (duration: number) => {
 		timeoutRef.current = window.setTimeout(() => {
@@ -57,7 +57,7 @@ const Kitty = ({
 		catAgeDays: number,
 		direction: 'left' | 'right'
 	) => {
-		const catAge = catAgeDays < 10 ? catAgeDays : 0
+		const catAge = catAgeDays < 10 ? catAgeDays : 9
 		const reverseScale = direction === 'left' ? 'scaleX(-1)' : ''
 		const sizeScale = `scale(4.${catAge})`
 		return {
@@ -230,7 +230,7 @@ const Kitty = ({
 	return (
 		<>
 			<div style={style} className='kitty__wrapper'>
-				<span className='nametag'>{name}</span>
+				<span>{name}</span>
 				<div
 					style={{
 						backgroundImage: kittenSprite,
