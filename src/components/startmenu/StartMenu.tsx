@@ -6,6 +6,7 @@ import GetKittyIcon from './getkitty.png'
 import SpongeWaterIcon from './sponge.png'
 import WaterIcon from './sponge_water.png'
 import ScoreIcon from './score_icon.png'
+import FormatCIcon from './format.png'
 import './style.css'
 import Timer from '../timer'
 
@@ -18,6 +19,7 @@ interface Props {
 	cleanSelected: boolean
 	selectCleanKitten: () => void
 	openScore: () => void
+	openFormatC: () => void
 }
 
 const StartMenu = ({
@@ -29,6 +31,7 @@ const StartMenu = ({
 	cleanSelected,
 	selectCleanKitten,
 	openScore,
+	openFormatC,
 }: Props) => {
 	const kittySpanTime = 2 * 60 * 60
 	const [isGetKittyAvaliable, setIsKittyAvaliable] = useState(false)
@@ -97,6 +100,14 @@ const StartMenu = ({
 				isActive={true}
 			>
 				{showKittens ? 'Hide Kittens' : 'Show Kittens'}
+			</StartMenuOption>
+			<div className='divider' />
+			<StartMenuOption
+				icon={FormatCIcon}
+				optionFunction={openFormatC}
+				isActive={true}
+			>
+				Format C:
 			</StartMenuOption>
 			<div className='divider' />
 		</div>

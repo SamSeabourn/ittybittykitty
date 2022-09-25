@@ -1,0 +1,46 @@
+.background {
+	background-color: #051db5;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.loader {
+	height: 20px;
+	border: 1px solid white;
+	margin-top: 10%;
+}
+
+.loading-bar {
+	height: 100%;
+	width: 0%;
+	background-color: white;
+	animation-name: loadingBar;
+	animation-duration: 8s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes loadingBar {
+	0% {
+		width: 0%;
+	}
+	25% {
+		width: 0%;
+	}
+	50% {
+		width: 60%;
+	}
+	75% {
+		width: 75%;
+	}
+	90% {
+		width: 85%;
+	}
+	100% {
+		width: 100%;
+	}
+}

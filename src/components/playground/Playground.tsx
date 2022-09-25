@@ -20,15 +20,17 @@ import {
 import StartMenuButton from '../startmenubutton'
 import StartMenu from '../startmenu'
 import Kitty from '../kitty'
+import BlueScreen from '../bluescreen'
 import SpongeIcon from '../startmenu/sponge_solo.png'
 import Poop from '../poop'
-import './style.css'
 import { PoopType } from '../poop/module'
 import Score from '../score/Score'
 import Disclaimer from '../disclaimer'
 import { SCORE, IMG_SRC_FOR_PRELOAD } from '../constants'
 import { avaliableWindows } from './allWindows'
 import { randomCatName } from '../../randomNames'
+import FormatC from '../formatC/FormatC'
+import './style.css'
 
 interface OSWindow {
 	id: string
@@ -44,6 +46,7 @@ const Playground = () => {
 	const [poop, setPoop] = useState<Array<PoopType>>([])
 	const [cleanSelected, setCleanSelected] = useState<boolean>(false)
 	const [score, setScore] = useState<number>(0)
+	const [blueScreenOpen, setBlueScreenOpen] = useState(false)
 	const [allWindows, setAllWindows] =
 		useState<Array<OSWindow>>(avaliableWindows)
 
@@ -136,17 +139,18 @@ const Playground = () => {
 		setAllWindows(updatedState)
 	}
 
-	const setWindowOpen = (id: string, isOpen: boolean) => {
+	const setWindowOpen = (id: string) => {
 		setStartOpen(false)
 		const updatedState = allWindows.map(w => {
 			if (w.id === id) {
-				w.isOpen = isOpen
+				w.isOpen = true
 				w.isActive = true
 				return w
 			}
 			w.isActive = false
 			return w
 		})
+		console.log(updatedState)
 		setAllWindows(updatedState)
 	}
 
@@ -155,6 +159,21 @@ const Playground = () => {
 		if (target.id === 'playground') {
 			setStartOpen(false)
 		}
+	}
+
+	const resetState = () => {
+		localStorage.clear()
+		initLocalStorage()
+		setKittens([])
+		setPoop([])
+		setScore(0)
+		setBlueScreenOpen(true)
+		closeWindow('score')
+		closeWindow('formatC')
+		window.setTimeout(() => {
+			setBlueScreenOpen(false)
+			setWindowOpen('disclaimer')
+		}, 10000)
 	}
 
 	useEffect(() => {
@@ -190,7 +209,8 @@ const Playground = () => {
 						spawnKitten={spawnKitten}
 						cleanSelected={cleanSelected}
 						selectCleanKitten={selectCleanKitten}
-						openScore={() => setWindowOpen('score', true)}
+						openScore={() => setWindowOpen('score')}
+						openFormatC={() => setWindowOpen('formatC')}
 					/>
 					<div style={{ opacity: showKittens ? 1 : 0 }}>
 						<CatCarrier />
@@ -243,9 +263,22 @@ const Playground = () => {
 								/>
 							)
 						}
+						if (ow.id === 'formatC' && ow.isOpen) {
+							return (
+								<FormatC
+									id={ow.id}
+									key={ow.id}
+									isActive={ow.isActive}
+									setActive={setActive}
+									resetState={resetState}
+									closeWindow={closeWindow}
+								/>
+							)
+						}
 					})}
 				</>
 			)}
+			<BlueScreen isOpen={blueScreenOpen} />
 		</div>
 	)
 }

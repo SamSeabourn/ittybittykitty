@@ -22,7 +22,7 @@ const Disclaimer = ({
 	const handleGotIt = () => {
 		spawnKitten()
 		setDisclaimerRead()
-		closeWindow(id)
+		closeWindow('disclaimer')
 	}
 
 	return (

@@ -9,4 +9,9 @@ export const avaliableWindows = [
 		isOpen: true,
 		isActive: true,
 	},
+	{
+		id: 'formatC',
+		isOpen: false,
+		isActive: false,
+	},
 ]
