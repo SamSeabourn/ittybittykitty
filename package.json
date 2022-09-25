@@ -1,12 +1,12 @@
 {
-	"name": "ittybittykittylean",
+	"name": "ittybittykitty",
 	"version": "0.0.1",
 	"description": "Interactive kitties for Twitch",
 	"homepage": "https://samseabourn.github.io/ittybittykitty",
 	"main": "index.js",
 	"scripts": {
-		"start": "set NODE_ENV=develop && webpack serve --port 3000",
-		"build": "set NODE_ENV=production && webpack",
+		"start": "set NODE_ENV=develop&& webpack serve --port 3000",
+		"build": "set NODE_ENV=production&& webpack",
 		"start-mac": "NODE_ENV=develop webpack serve --port 3000",
 		"build-mac": "NODE_ENV=production webpack",
 		"predeploy": "npm run build",

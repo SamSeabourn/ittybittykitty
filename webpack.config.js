@@ -5,10 +5,9 @@ console.log(`Running a \x1b[45m${process.env.NODE_ENV}\x1b[0m build`)
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const projectPath = __dirname.replace(/\\/g, '/')
+const projectPath = __dirname.replace(/\\/g, '/') //Replace dum windows slashes
 
 module.exports = {
 	mode: prod ? 'production' : 'development',
