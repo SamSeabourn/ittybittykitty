@@ -11,6 +11,7 @@ import Timer from '../timer'
 
 interface Props {
 	startOpen: boolean
+	toggleStart: () => void
 	showKittens: boolean
 	toggleShowKittens: () => void
 	spawnKitten: () => void
@@ -23,6 +24,7 @@ const StartMenu = ({
 	startOpen,
 	showKittens,
 	toggleShowKittens,
+	toggleStart,
 	spawnKitten,
 	cleanSelected,
 	selectCleanKitten,

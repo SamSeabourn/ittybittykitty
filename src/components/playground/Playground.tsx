@@ -17,7 +17,6 @@ import {
 	preloadImage,
 	generateRandomFromRange,
 } from '../../helpers'
-import { calculateAge } from '../age'
 import StartMenuButton from '../startmenubutton'
 import StartMenu from '../startmenu'
 import Kitty from '../kitty'
