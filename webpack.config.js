@@ -5,8 +5,10 @@ console.log(`Running a \x1b[45m${process.env.NODE_ENV}\x1b[0m build`)
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const projectPath = __dirname.replace(/\\/g, '/')
 
 module.exports = {
 	mode: prod ? 'production' : 'development',
@@ -41,19 +43,24 @@ module.exports = {
 	optimization: {
 		minimize: prod,
 		minimizer: [
-			new UglifyJsPlugin({
-				include: /\.js$/,
-				sourceMap: !prod,
-				uglifyOptions: {
-					comments: !prod,
-					mangle: prod,
+			new TerserPlugin({
+				test: /\.js|.ts(\?.*)?$/i,
+				terserOptions: {
+					mangle: true,
+					compress: true,
 				},
+				extractComments: 'all',
 			}),
 			new CssMinimizerPlugin({
 				minify: CssMinimizerPlugin.cssoMinify,
 			}),
 			new CopyWebpackPlugin({
-				patterns: [{ from: 'public', to: '' }],
+				patterns: [
+					{
+						from: `${projectPath}/public`,
+						to: `${projectPath}/build`,
+					},
+				],
 			}),
 		],
 	},

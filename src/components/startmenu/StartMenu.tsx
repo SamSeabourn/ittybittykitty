@@ -53,7 +53,7 @@ const StartMenu = ({
 		<div
 			style={{ display: startOpen ? 'unset' : 'none' }}
 			className='start-container'
-			onMouseLeave={toggleStart}
+			// onMouseLeave={toggleStart}
 		>
 			<div className='start-logobar'>
 				<img src={CatOSLogo} />

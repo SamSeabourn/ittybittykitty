@@ -1,5 +1,5 @@
 //TODO: split this bad boy up, shes getting chonky
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
 import {
@@ -66,9 +66,6 @@ const Playground = () => {
 			isClean: false,
 			birthDay: new Date(),
 		}
-
-		console.log(newKitten)
-
 		setKittens(kittens => [...kittens, newKitten])
 		addKittenToLocalStorage(newKitten)
 		addToScore(SCORE.GET_KITTEN)
@@ -141,6 +138,7 @@ const Playground = () => {
 	}
 
 	const setWindowOpen = (id: string, isOpen: boolean) => {
+		setStartOpen(false)
 		const updatedState = allWindows.map(w => {
 			if (w.id === id) {
 				w.isOpen = isOpen
@@ -151,6 +149,13 @@ const Playground = () => {
 			return w
 		})
 		setAllWindows(updatedState)
+	}
+
+	const handleBackgroundClick = (e: React.MouseEvent) => {
+		const target = e.target as HTMLElement
+		if (target.id === 'playground') {
+			setStartOpen(false)
+		}
 	}
 
 	useEffect(() => {
@@ -165,7 +170,11 @@ const Playground = () => {
 	}, [])
 
 	return (
-		<div className='playground'>
+		<div
+			className='playground'
+			id='playground'
+			onClick={e => handleBackgroundClick(e)}
+		>
 			{loading ? (
 				<p>loading</p>
 			) : (
@@ -187,7 +196,6 @@ const Playground = () => {
 					<div style={{ opacity: showKittens ? 1 : 0 }}>
 						<CatCarrier />
 						{kittens.map(k => {
-							console.log(calculateAge(k.birthDay))
 							return (
 								<Kitty
 									id={k.id}
@@ -230,6 +238,7 @@ const Playground = () => {
 									id={ow.id}
 									key={ow.id}
 									isActive={ow.isActive}
+									spawnKitten={spawnKitten}
 									setActive={setActive}
 									closeWindow={closeWindow}
 								/>

@@ -7,6 +7,7 @@ interface DisclaimerProps {
 	isActive: boolean
 	setActive: (id: string) => void
 	closeWindow: (id: string) => void
+	spawnKitten: () => void
 }
 
 const Disclaimer = ({
@@ -14,10 +15,12 @@ const Disclaimer = ({
 	isActive,
 	setActive,
 	closeWindow,
+	spawnKitten,
 }: DisclaimerProps) => {
 	if (getDisclaimerRead()) return null
 
 	const handleGotIt = () => {
+		spawnKitten()
 		setDisclaimerRead()
 		closeWindow(id)
 	}
