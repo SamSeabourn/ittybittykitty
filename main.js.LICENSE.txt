@@ -632,6 +632,8 @@
 
 //Not yet supported
 
+//TODO: Move to config
+
 //kittens always leave the carrier first movement
 
 //max poop is 20 TODO: this is broken somehow
