@@ -9,13 +9,6 @@ const BlueScreen = ({ isOpen }: BlueScreenProps) => {
 	return (
 		<div className='background'>
 			<div>
-				<h2 style={{ fontWeight: 200 }}>
-					): No Operating System Detected
-				</h2>
-				<p>
-					I mean what did you expect? You deleted the C drive! Don't
-					worry we will re-install Cat-OS 97 for you now.
-				</p>
 				<pre>
 					{`                                                                                 @     @         
                                                                                 /@&@@@@@(        
@@ -34,6 +27,13 @@ const BlueScreen = ({ isOpen }: BlueScreenProps) => {
     ===================================================== %@@@%%%###%%%@@@@% %@@@%########%%%@@@% 
     ====================================================== ,,@@@@@@@@@@,,    ,,@@@@@@@@@@@@@,,   `}
 				</pre>
+				<h2 style={{ fontWeight: 200 }}>
+					): No Operating System Detected
+				</h2>
+				<p>
+					I mean what did you expect? You deleted the C drive! Don't
+					worry we will re-install Cat-OS 97 for you now.
+				</p>
 				<div className='loader'>
 					<div className='loading-bar'></div>
 				</div>
