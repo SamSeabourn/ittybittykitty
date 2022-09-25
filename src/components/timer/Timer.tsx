@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { zeroPad } from '../../helpers'
 import './style.css'
 
-interface Props {
+interface TimerProps {
 	kittyWaitDuration: number
 	setKittyWaitDuration: (time: number) => void
 	setIsKittyAvaliable: Function
@@ -12,7 +12,7 @@ export const Timer = ({
 	kittyWaitDuration,
 	setKittyWaitDuration,
 	setIsKittyAvaliable,
-}: Props) => {
+}: TimerProps) => {
 	const timeoutRef = useRef(0)
 
 	const startCountDown = () => {
@@ -53,7 +53,9 @@ export const Timer = ({
 	}, [kittyWaitDuration])
 
 	return (
-		<span>{`Avaliable in ${renderReadableTime(kittyWaitDuration)}`}</span>
+		<span>{`Kitten avaliable in ${renderReadableTime(
+			kittyWaitDuration
+		)}`}</span>
 	)
 }
 

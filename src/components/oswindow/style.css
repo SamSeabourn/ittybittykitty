@@ -10,11 +10,11 @@
 	border-bottom: 4px solid black;
 	display: flex;
 	justify-content: space-between;
-	height: 32px;
 	background-color: var(--OSHeader);
 }
 
 .exit {
+	font-family: sans-serif;
 	color: white;
 	border-left: 4px solid black;
 	width: 26px;

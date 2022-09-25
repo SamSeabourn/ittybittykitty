@@ -57,12 +57,33 @@ const Kitty = ({
 		catAgeDays: number,
 		direction: 'left' | 'right'
 	) => {
-		const catAge = catAgeDays < 10 ? catAgeDays : 9
+		const catAge: number = 2
 		const reverseScale = direction === 'left' ? 'scaleX(-1)' : ''
 		const sizeScale = `scale(4.${catAge})`
+		//TODO: Work out a fancy algorythm for this
+		const bottomPx = () => {
+			switch (catAge) {
+				case 0:
+				case 1:
+				case 2:
+					return `${catAge}px`
+				case 3:
+					return `${catAge * 2}px`
+				case 4:
+				case 5:
+					return `${catAge * 2 - 1}px`
+				case 6:
+				case 7:
+				case 8:
+					return `${catAge * 2 - 2}px`
+				case 9:
+					return `${catAge * 2 - 3}px`
+			}
+		}
+
 		return {
 			transform: `${reverseScale} ${sizeScale}`,
-			bottom: `${catAge * 2}px`,
+			bottom: bottomPx(),
 		}
 	}
 
