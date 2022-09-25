@@ -11,7 +11,6 @@ import Timer from '../timer'
 
 interface Props {
 	startOpen: boolean
-	toggleStart: () => void
 	showKittens: boolean
 	toggleShowKittens: () => void
 	spawnKitten: () => void
@@ -24,13 +23,12 @@ const StartMenu = ({
 	startOpen,
 	showKittens,
 	toggleShowKittens,
-	toggleStart,
 	spawnKitten,
 	cleanSelected,
 	selectCleanKitten,
 	openScore,
 }: Props) => {
-	const kittySpanTime = 2
+	const kittySpanTime = 2 * 60 * 60
 	const [isGetKittyAvaliable, setIsKittyAvaliable] = useState(false)
 	const [kittyWaitDuration, setKittyWaitDuration] = useState(kittySpanTime)
 
