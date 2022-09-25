@@ -10,7 +10,7 @@
 	border-bottom: 4px solid black;
 	display: flex;
 	justify-content: space-between;
-	height: 26px;
+	height: 32px;
 	background-color: var(--OSHeader);
 }
 
@@ -37,7 +37,7 @@
 	cursor: move;
 }
 
-.content { 
+.content {
 	padding: 6px;
 	text-align: center;
 }
