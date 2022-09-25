@@ -33,7 +33,7 @@ const StartMenu = ({
 	openScore,
 	openFormatC,
 }: Props) => {
-	const kittySpanTime = 2 * 60 * 60
+	const kittySpanTime = 5 //TODO: Move to config
 	const [isGetKittyAvaliable, setIsKittyAvaliable] = useState(false)
 	const [kittyWaitDuration, setKittyWaitDuration] = useState(kittySpanTime)
 
