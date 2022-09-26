@@ -356,11 +356,11 @@
 
 // CONCATENATED MODULE: ./src/App.tsx
 
+// CONCATENATED MODULE: ./src/components/button/index.tsx
+
 // CONCATENATED MODULE: ./src/components/catcarrier/CarrierBottom.png
 
 // CONCATENATED MODULE: ./src/components/oswindow/OSWindow.tsx
-
-// CONCATENATED MODULE: ./src/components/poop/index.tsx
 
 // CONCATENATED MODULE: ./src/index.tsx
 
@@ -633,6 +633,8 @@
 //Not yet supported
 
 //TODO: Move to config
+
+//TODO: add to preload image script
 
 //kittens always leave the carrier first movement
 
