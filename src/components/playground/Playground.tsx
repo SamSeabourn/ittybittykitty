@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
+import Catalog from '../catalog'
 import {
 	initLocalStorage,
 	addKittenToLocalStorage,
@@ -74,7 +75,7 @@ const Playground = () => {
 	}
 
 	const spawnPoop = (location: number) => {
-		if (poop.length >= 2) return //max poop is 20 TODO: this is broken somehow
+		if (poop.length >= 2 && cleanSelected) return //max poop is 20 TODO: this is broken somehow
 		const newPoop: PoopType = {
 			id: createUUID(),
 			location: location + 40,
@@ -165,7 +166,6 @@ const Playground = () => {
 		localStorage.clear()
 		initLocalStorage()
 		setKittens([])
-		setPoop([])
 		setScore(0)
 		setBlueScreenOpen(true)
 		closeWindow('score')
@@ -173,6 +173,7 @@ const Playground = () => {
 		window.setTimeout(() => {
 			setBlueScreenOpen(false)
 			setWindowOpen('disclaimer')
+			setPoop([])
 		}, 10000)
 	}
 
@@ -278,6 +279,13 @@ const Playground = () => {
 					})}
 				</>
 			)}
+			<Catalog
+				id={'teast'}
+				key={'test'}
+				isActive={false}
+				setActive={setActive}
+				closeWindow={closeWindow}
+			/>
 			<BlueScreen isOpen={blueScreenOpen} />
 		</div>
 	)

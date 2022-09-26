@@ -1,0 +1,7 @@
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-image: url(https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-position: center;
+}

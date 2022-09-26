@@ -193,6 +193,9 @@ const Kitty = ({
 	}
 
 	const doNextAction = () => {
+		if (!document.hidden) {
+			doStationaryAction('idle')
+		}
 		const previousAction = action
 		const newAction = actions[Math.floor(Math.random() * actions.length)]
 		if (
