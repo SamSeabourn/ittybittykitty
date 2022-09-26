@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Button from '../button'
 import OSWindow from '../oswindow'
 import './style.css'
 interface ScoreProps {
@@ -10,6 +11,7 @@ interface ScoreProps {
 
 const Catalog = ({ id, isActive, setActive, closeWindow }: ScoreProps) => {
 	const [fosterKitties, setFosterKitties] = useState([])
+	const [currentIndex, setCurrentIndex] = useState(0)
 
 	useEffect(() => {
 		fetch(
@@ -26,23 +28,43 @@ const Catalog = ({ id, isActive, setActive, closeWindow }: ScoreProps) => {
 		<OSWindow
 			id={id}
 			title='SCORE'
-			size='small'
+			size='medium'
 			startingShift={0}
 			setActive={setActive}
 			isActive={isActive}
 			closeWindow={closeWindow}
 		>
 			<div>
-				{fosterKitties?.map((fk: any) => (
-					<div>
-						<h2>{fk.name}</h2>
-						<div
-							className='profile-pic'
-							style={{ backgroundImage: `url("${fk.imageUrl}")` }}
-						></div>
-						<p>{fk.description}</p>
-					</div>
-				))}
+				{fosterKitties?.map((fk: any, i) => {
+					if (currentIndex === i) {
+						return (
+							<>
+								<div>
+									<h2>{fk.name}</h2>
+									<div
+										className='profile-pic'
+										style={{
+											backgroundImage: `url("${fk.imageUrl}")`,
+										}}
+									></div>
+									<p>{fk.description}</p>
+								</div>
+								<div className='buttons'>
+									<Button
+										text='Prev'
+										onClickFn={console.log}
+									/>
+									<Button
+										text='Next'
+										onClickFn={console.log}
+									/>
+								</div>
+							</>
+						)
+					} else {
+						return null
+					}
+				})}
 			</div>
 		</OSWindow>
 	)
