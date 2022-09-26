@@ -57,7 +57,7 @@ const Kitty = ({
 		catAgeDays: number,
 		direction: 'left' | 'right'
 	) => {
-		const catAge: number = 2
+		const catAge: number = catAgeDays < 10 ? catAgeDays : 9
 		const reverseScale = direction === 'left' ? 'scaleX(-1)' : ''
 		const sizeScale = `scale(4.${catAge})`
 		//TODO: Work out a fancy algorythm for this
