@@ -7,6 +7,20 @@
 	box-sizing: border-box;
 	justify-content: center;
 	cursor: pointer;
+	padding: 0px 5px;
+}
+
+.button.disabled {
+	background-color: #5b5658 !important;
+    pointer-events: none !important;
+    cursor: none !important;
+    filter: grayscale(0.8) !important;
+	color: rgb(255 255 255 / 53%);
+}
+
+.button--text {
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .button:hover {
