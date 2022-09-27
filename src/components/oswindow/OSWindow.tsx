@@ -42,7 +42,7 @@ const OSWindow = ({
 
 	const style = {
 		zIndex: isActive ? 30 : 20,
-		opacity: isActive ? 1 : 0.75,
+		filter: isActive ? '' : 'saturate(0.2) brightness(1.8)',
 		width: `${windowWidth}px`,
 	}
 
