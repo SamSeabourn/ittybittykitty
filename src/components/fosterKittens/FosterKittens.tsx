@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../button'
 import OSWindow from '../oswindow'
 import './style.css'
@@ -65,7 +65,7 @@ const FosterKittens = ({
 				{fosterKitties?.map((fk: any, i) => {
 					if (currentIndex === i) {
 						return (
-							<>
+							<React.Fragment key={i}>
 								<div
 									className='profile-pic'
 									style={{
@@ -76,7 +76,7 @@ const FosterKittens = ({
 									<h2>{fk.name}</h2>
 									<p>{fk.description}</p>
 								</div>
-							</>
+							</React.Fragment>
 						)
 					} else {
 						return null
