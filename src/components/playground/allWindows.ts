@@ -14,4 +14,9 @@ export const avaliableWindows = [
 		isOpen: false,
 		isActive: false,
 	},
+	{
+		id: 'fosterKittens',
+		isOpen: false,
+		isActive: false,
+	},
 ]

@@ -53,7 +53,7 @@ export const Timer = ({
 	}, [kittyWaitDuration])
 
 	return (
-		<span>{`Kitten avaliable in ${renderReadableTime(
+		<span>{`Kitten available in ${renderReadableTime(
 			kittyWaitDuration
 		)}`}</span>
 	)

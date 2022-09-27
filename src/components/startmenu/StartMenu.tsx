@@ -7,6 +7,7 @@ import SpongeWaterIcon from './sponge.png'
 import WaterIcon from './sponge_water.png'
 import ScoreIcon from './score_icon.png'
 import FormatCIcon from './format.png'
+import FosterIcon from './fosters.png'
 import './style.css'
 import Timer from '../timer'
 
@@ -20,6 +21,7 @@ interface Props {
 	selectCleanKitten: () => void
 	openScore: () => void
 	openFormatC: () => void
+	openFosterKittens: () => void
 }
 
 const StartMenu = ({
@@ -32,10 +34,15 @@ const StartMenu = ({
 	selectCleanKitten,
 	openScore,
 	openFormatC,
+	openFosterKittens,
 }: Props) => {
 	const kittySpanTime = 5 //TODO: Move to config
 	const [isGetKittyAvaliable, setIsKittyAvaliable] = useState(false)
 	const [kittyWaitDuration, setKittyWaitDuration] = useState(kittySpanTime)
+
+	const handleFosterKittens = () => {
+		openFosterKittens()
+	}
 
 	const handleHideKittens = () => {
 		toggleShowKittens()
@@ -63,12 +70,20 @@ const StartMenu = ({
 			</div>
 			<div className='divider' />
 			<StartMenuOption
+				icon={FosterIcon}
+				optionFunction={handleFosterKittens}
+				isActive={true}
+			>
+				Show Current Foster Kittens
+			</StartMenuOption>
+			<div className='divider' />
+			<StartMenuOption
 				icon={GetKittyIcon}
 				optionFunction={handleSpawnKitten}
 				isActive={isGetKittyAvaliable}
 			>
 				{isGetKittyAvaliable ? (
-					'Get Itty Bitty Kitty'
+					'Foster virtual kitten'
 				) : (
 					<Timer
 						kittyWaitDuration={kittyWaitDuration}

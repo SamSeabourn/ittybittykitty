@@ -9,7 +9,12 @@ interface ScoreProps {
 	closeWindow: (id: string) => void
 }
 
-const Catalog = ({ id, isActive, setActive, closeWindow }: ScoreProps) => {
+const FosterKittens = ({
+	id,
+	isActive,
+	setActive,
+	closeWindow,
+}: ScoreProps) => {
 	const [fosterKitties, setFosterKitties] = useState([])
 	const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -82,4 +87,4 @@ const Catalog = ({ id, isActive, setActive, closeWindow }: ScoreProps) => {
 	)
 }
 
-export default Catalog
+export default FosterKittens

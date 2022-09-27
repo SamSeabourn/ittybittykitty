@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Kitten } from '../kitty/module'
 import CatCarrier from '../catcarrier'
-import Catalog from '../catalog'
+import FosterKittens from '../fosterKittens'
 import {
 	initLocalStorage,
 	addKittenToLocalStorage,
@@ -163,17 +163,10 @@ const Playground = () => {
 	}
 
 	const resetState = () => {
-		localStorage.clear()
-		initLocalStorage()
-		setKittens([])
-		setScore(0)
 		setBlueScreenOpen(true)
-		closeWindow('score')
-		closeWindow('formatC')
 		window.setTimeout(() => {
-			setBlueScreenOpen(false)
-			setWindowOpen('disclaimer')
-			setPoop([])
+			localStorage.clear()
+			window.location.reload()
 		}, 10000)
 	}
 
@@ -212,6 +205,7 @@ const Playground = () => {
 						selectCleanKitten={selectCleanKitten}
 						openScore={() => setWindowOpen('score')}
 						openFormatC={() => setWindowOpen('formatC')}
+						openFosterKittens={() => setWindowOpen('fosterKittens')}
 					/>
 					<div style={{ opacity: showKittens ? 1 : 0 }}>
 						<CatCarrier />
@@ -276,16 +270,21 @@ const Playground = () => {
 								/>
 							)
 						}
+						if (ow.id === 'fosterKittens' && ow.isOpen) {
+							return (
+								<FosterKittens
+									id={ow.id}
+									key={ow.id}
+									isActive={ow.isActive}
+									setActive={setActive}
+									closeWindow={closeWindow}
+								/>
+							)
+						}
 					})}
 				</>
 			)}
-			<Catalog
-				id={'teast'}
-				key={'test'}
-				isActive={false}
-				setActive={setActive}
-				closeWindow={closeWindow}
-			/>
+
 			<BlueScreen isOpen={blueScreenOpen} />
 		</div>
 	)
