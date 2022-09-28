@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Button from '../button'
 import OSWindow from '../oswindow'
+import { FosterKittenData } from './module'
 import './style.css'
-interface ScoreProps {
+
+interface FosterKittenProps {
 	id: string
 	isActive: boolean
 	setActive: (id: string) => void
@@ -14,7 +16,7 @@ const FosterKittens = ({
 	isActive,
 	setActive,
 	closeWindow,
-}: ScoreProps) => {
+}: FosterKittenProps) => {
 	const [fosterKitties, setFosterKitties] = useState([])
 	const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -62,18 +64,21 @@ const FosterKittens = ({
 				/>
 			</div>
 			<div className='wrapper'>
-				{fosterKitties?.map((fk: any, i) => {
+				{fosterKitties?.map((fk: FosterKittenData, i) => {
 					if (currentIndex === i) {
 						return (
 							<React.Fragment key={i}>
 								<div
 									className='profile-pic'
 									style={{
-										backgroundImage: `url("${fk.imageUrl}")`,
+										backgroundImage: `url("${fk.imgUrl}")`,
 									}}
 								></div>
 								<div className='text--wrapper'>
-									<h2>{fk.name}</h2>
+									<h2>
+										{fk.name}{' '}
+										{fk.gender === 'male' ? '♂' : '♀'}
+									</h2>
 									<p>{fk.description}</p>
 								</div>
 							</React.Fragment>
