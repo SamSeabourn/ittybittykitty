@@ -4,8 +4,9 @@
 	box-sizing: border-box;
 	border: 4px solid black;
 	background-color: var(--OSBackground);
-	filter: drop-shadow(2px 4px 20px black);
+	box-shadow: 1px 1px 33px rgb(0 0 0 / 75%);
 	position: absolute;
+	border-radius: 10px;
 }
 
 .top-bar {
@@ -13,6 +14,7 @@
 	display: flex;
 	justify-content: space-between;
 	background-color: var(--OSHeader);
+	border-radius: 10px 10px 0 0;
 }
 
 .exit {
@@ -22,6 +24,7 @@
 	width: 26px;
 	text-align: center;
 	font-weight: bolder;
+	padding: 2px 0 0 0;
 }
 
 .exit:hover {
@@ -31,7 +34,7 @@
 
 .title {
 	color: white;
-	padding-left: 3px;
+	padding: 2px 0 0 6px;
 	width: 100%;
 }
 
@@ -48,8 +51,9 @@
 	box-sizing: border-box;
 	border: 4px solid black;
 	background-color: var(--OSBackgroundAlt);
-	filter: drop-shadow(2px 4px 20px black);
+	box-shadow: 1px 1px 33px rgb(0 0 0 / 75%);
 	position: absolute;
+	border-radius: 10px;
 }
 
 .top-bar__alt {
@@ -57,6 +61,7 @@
 	display: flex;
 	justify-content: space-between;
 	background-color: var(--OSHeaderAlt);
+	border-radius: 10px 10px 0 0;
 }
 
 .exit__alt {
@@ -66,6 +71,7 @@
 	width: 26px;
 	text-align: center;
 	font-weight: bolder;
+	padding: 2px 0 0 0;
 }
 
 .exit__alt:hover {
@@ -74,8 +80,9 @@
 }
 
 .title__alt {
-	color: black;
-	padding-left: 3px;
+	color: white;
+	font-weight: 500;
+	padding: 2px 0 0 6px;
 	width: 100%;
 }
 

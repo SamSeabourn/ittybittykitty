@@ -44,7 +44,7 @@ const OSWindow = ({
 
 	const style = {
 		zIndex: isActive ? 30 : 20,
-		filter: isActive ? '' : 'saturate(0.6);',
+		filter: isActive ? '' : 'contrast(0.5)',
 		width: `${windowWidth}px`,
 	}
 
@@ -59,7 +59,7 @@ const OSWindow = ({
 			}}
 		>
 			<div
-				className={`window-container${altScheme ? '__alt' : ''}`}
+				className={`window-container${altScheme ? '__alt' : ''} `}
 				style={style}
 				onClick={() => setActive(id)}
 			>

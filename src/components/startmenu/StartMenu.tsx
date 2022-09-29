@@ -8,6 +8,7 @@ import WaterIcon from './sponge_water.png'
 import ScoreIcon from './score_icon.png'
 import FormatCIcon from './format.png'
 import FosterIcon from './fosters.png'
+import ArrowIcon from './arrow.png'
 import './style.css'
 import Timer from '../timer'
 
@@ -61,13 +62,13 @@ const StartMenu = ({
 
 	return (
 		<div
-			style={{ display: startOpen ? 'unset' : 'none' }}
+			style={{ left: startOpen ? '-4px' : '-264px' }}
 			className='start-container'
-			// onMouseLeave={toggleStart}
 		>
 			<div className='start-logobar'>
 				<img src={CatOSLogo} />
 			</div>
+
 			<div className='divider' />
 			<StartMenuOption
 				icon={FosterIcon}
@@ -124,7 +125,11 @@ const StartMenu = ({
 			>
 				Format C:
 			</StartMenuOption>
-			<div className='divider' />
+			<div className='open-tab' onClick={toggleStart}>
+				<div className='open-tab--arrow'>
+					<img src={ArrowIcon} className={startOpen ? 'open' : ''} />
+				</div>
+			</div>
 		</div>
 	)
 }

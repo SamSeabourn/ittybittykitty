@@ -18,7 +18,6 @@ import {
 	preloadImage,
 	generateRandomFromRange,
 } from '../../helpers'
-import StartMenuButton from '../startmenubutton'
 import StartMenu from '../startmenu'
 import Kitty from '../kitty'
 import BlueScreen from '../bluescreen'
@@ -196,10 +195,6 @@ const Playground = () => {
 				<p>loading</p>
 			) : (
 				<>
-					<StartMenuButton
-						startOpen={startOpen}
-						toggleStart={() => setStartOpen(!startOpen)}
-					/>
 					<StartMenu
 						startOpen={startOpen}
 						toggleStart={() => setStartOpen(!startOpen)}
