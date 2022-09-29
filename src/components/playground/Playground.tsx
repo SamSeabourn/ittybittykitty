@@ -187,7 +187,10 @@ const Playground = () => {
 			className='playground'
 			id='playground'
 			onClick={e => handleBackgroundClick(e)}
-			style={{ backgroundImage: `url('${TestImage}')` }}
+			style={{
+				backgroundImage: `url('${TestImage}')`,
+				backgroundSize: 'cover',
+			}}
 		>
 			{loading ? (
 				<p>loading</p>
