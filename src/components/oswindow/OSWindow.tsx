@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Draggable from 'react-draggable'
 import './style.css'
 
@@ -8,6 +8,7 @@ interface Props {
 	title: string
 	size?: 'small' | 'medium' | 'large'
 	hideClose?: boolean
+	altScheme?: boolean
 	startingShift: number
 	isActive: boolean
 	setActive: (id: string) => void
@@ -24,6 +25,7 @@ const OSWindow = ({
 	setActive,
 	closeWindow,
 	hideClose,
+	altScheme,
 }: Props) => {
 	let windowWidth = 300
 	switch (size) {
@@ -42,7 +44,7 @@ const OSWindow = ({
 
 	const style = {
 		zIndex: isActive ? 30 : 20,
-		filter: isActive ? '' : 'saturate(0.2) brightness(1.8)',
+		filter: isActive ? '' : 'saturate(0.6);',
 		width: `${windowWidth}px`,
 	}
 
@@ -57,14 +59,19 @@ const OSWindow = ({
 			}}
 		>
 			<div
-				className='window-container'
+				className={`window-container${altScheme ? '__alt' : ''}`}
 				style={style}
 				onClick={() => setActive(id)}
 			>
-				<div className='top-bar'>
-					<div className='title'>{title}</div>
+				<div className={`top-bar${altScheme ? '__alt' : ''}`}>
+					<div className={`title${altScheme ? '__alt' : ''}`}>
+						{title}
+					</div>
 					{hideClose ? null : (
-						<div className='exit' onClick={handleClose}>
+						<div
+							className={`exit${altScheme ? '__alt' : ''}`}
+							onClick={handleClose}
+						>
 							X
 						</div>
 					)}

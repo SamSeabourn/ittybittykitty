@@ -1,8 +1,5 @@
 import Button from '../button'
-import { Kitten } from '../kitty/module'
-import { PoopType } from '../poop/module'
 import OSWindow from '../oswindow'
-import { initLocalStorage } from '../localStorage'
 
 interface FormatCProps {
 	id: string

@@ -1,8 +1,10 @@
+/* TODO Refactor this */
+
 .window-container {
 	box-sizing: border-box;
 	border: 4px solid black;
-	background-color: var(--OSBackground); /* height: 400px; */
-	box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.25);
+	background-color: var(--OSBackground);
+	filter: drop-shadow(2px 4px 20px black);
 	position: absolute;
 }
 
@@ -40,4 +42,43 @@
 .content {
 	padding: 6px;
 	text-align: center;
+}
+
+.window-container__alt {
+	box-sizing: border-box;
+	border: 4px solid black;
+	background-color: var(--OSBackgroundAlt);
+	filter: drop-shadow(2px 4px 20px black);
+	position: absolute;
+}
+
+.top-bar__alt {
+	border-bottom: 4px solid black;
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--OSHeaderAlt);
+}
+
+.exit__alt {
+	font-family: sans-serif;
+	color: white;
+	border-left: 4px solid black;
+	width: 26px;
+	text-align: center;
+	font-weight: bolder;
+}
+
+.exit__alt:hover {
+	cursor: pointer;
+	background-color: var(--OSHoverAlt);
+}
+
+.title__alt {
+	color: black;
+	padding-left: 3px;
+	width: 100%;
+}
+
+.title__alt:hover {
+	cursor: move;
 }

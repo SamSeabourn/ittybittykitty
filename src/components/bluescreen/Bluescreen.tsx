@@ -9,7 +9,7 @@ const BlueScreen = ({ isOpen }: BlueScreenProps) => {
 	return (
 		<div className='background'>
 			<div>
-				<pre>
+				<pre style={{ fontFamily: 'monospace' }}>
 					{`                                                                                 @     @         
                                                                                 /@&@@@@@(        
                                                                                  &&&@@@@         

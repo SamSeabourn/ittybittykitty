@@ -17,8 +17,11 @@ const FosterKittens = ({
 	setActive,
 	closeWindow,
 }: FosterKittenProps) => {
-	const [fosterKitties, setFosterKitties] = useState([])
+	const [fosterKitties, setFosterKitties] = useState<Array<FosterKittenData>>(
+		[]
+	)
 	const [currentIndex, setCurrentIndex] = useState(0)
+	const [currentGender, setCurrentGender] = useState('male')
 
 	//TODO: add to preload image script
 	useEffect(() => {
@@ -33,11 +36,15 @@ const FosterKittens = ({
 
 	const pageDown = () => {
 		if (currentIndex < 1) return
-		setCurrentIndex(currentIndex - 1)
+		const newIndex = currentIndex - 1
+		setCurrentGender(fosterKitties[newIndex].gender)
+		setCurrentIndex(newIndex)
 	}
 
 	const pageUp = () => {
 		if (currentIndex >= fosterKitties.length - 1) return
+		const newIndex = currentIndex + 1
+		setCurrentGender(fosterKitties[newIndex].gender)
 		setCurrentIndex(currentIndex + 1)
 	}
 
@@ -50,6 +57,7 @@ const FosterKittens = ({
 			setActive={setActive}
 			isActive={isActive}
 			closeWindow={closeWindow}
+			altScheme={currentGender === 'male'}
 		>
 			<div className='buttons'>
 				<Button

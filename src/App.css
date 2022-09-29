@@ -1,6 +1,6 @@
 * {
 	box-sizing: border-box;
-	font-family: courier, courier new, serif;
+	font-family: sans-serif;
 	user-select: none;
 }
 
@@ -30,8 +30,12 @@ html {
 }
 
 :root {
-	--OSHeader:#871961;
-	--OSBackground:#3a1d2e;
-	--OSHover:#67154a;
-	--OSDisabled:#5b5658;
+	--OSHeader: #671348;
+	--OSBackground: #3a1d2e;
+	--OSHover: #67154a;
+	--OSDisabled: #5b5658;
+	--OSHeaderAlt: #d19e5c;
+	--OSBackgroundAlt: #796c5c;
+	--OSHoverAlt: #a57e4c;
+	--OSDisabledAlt: #494541;
 }
