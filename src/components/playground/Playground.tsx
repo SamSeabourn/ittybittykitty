@@ -141,7 +141,6 @@ const Playground = () => {
 	}
 
 	const setWindowOpen = (id: string) => {
-		setStartOpen(false)
 		const updatedState = allWindows.map(w => {
 			if (w.id === id) {
 				w.isOpen = true
@@ -151,7 +150,6 @@ const Playground = () => {
 			w.isActive = false
 			return w
 		})
-		console.log(updatedState)
 		setAllWindows(updatedState)
 	}
 
@@ -162,12 +160,17 @@ const Playground = () => {
 		}
 	}
 
+	const handleStartOpen = () => {
+		setStartOpen(!startOpen)
+		setWindowOpen('disclaimer')
+	}
+
 	const resetState = () => {
 		setBlueScreenOpen(true)
 		window.setTimeout(() => {
 			localStorage.clear()
 			window.location.reload()
-		}, 10000)
+		}, 9000)
 	}
 
 	useEffect(() => {
@@ -197,7 +200,7 @@ const Playground = () => {
 				<>
 					<StartMenu
 						startOpen={startOpen}
-						toggleStart={() => setStartOpen(!startOpen)}
+						toggleStart={handleStartOpen}
 						showKittens={showKittens}
 						toggleShowKittens={toggleShowKittens}
 						spawnKitten={spawnKitten}
@@ -284,7 +287,6 @@ const Playground = () => {
 					})}
 				</>
 			)}
-
 			<BlueScreen isOpen={blueScreenOpen} />
 		</div>
 	)

@@ -30,6 +30,7 @@
 .exit:hover {
 	cursor: pointer;
 	background-color: var(--OSHover);
+	border-radius: 0 10px 0 0;
 }
 
 .title {
@@ -77,6 +78,7 @@
 .exit__alt:hover {
 	cursor: pointer;
 	background-color: var(--OSHoverAlt);
+	border-radius: 0 10px 0 0;
 }
 
 .title__alt {
