@@ -16,7 +16,7 @@ export const IMG_SRC_FOR_PRELOAD = [
 	'cat_os97.png',
 	'getkitty.png',
 	'score_icon.png',
-	'arrow.png,',
+	'arrow.png',
 	'format.png',
 	'fosters.png',
 ]
