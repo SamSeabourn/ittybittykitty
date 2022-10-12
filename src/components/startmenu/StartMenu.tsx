@@ -127,7 +127,7 @@ const StartMenu = ({
 			</StartMenuOption>
 			<div className='open-tab' onClick={toggleStart}>
 				<div className='open-tab--arrow'>
-					<img src={ArrowIcon} className={startOpen ? 'open' : ''} />
+					<img className={startOpen ? 'open' : ''} src={ArrowIcon} />
 				</div>
 			</div>
 		</div>

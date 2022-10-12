@@ -1,5 +1,4 @@
 const prod = process.env.NODE_ENV === 'production'
-
 console.log(`Running a \x1b[45m${process.env.NODE_ENV}\x1b[0m build`)
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')

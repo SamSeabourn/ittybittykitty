@@ -30,7 +30,6 @@ import { SCORE, IMG_SRC_FOR_PRELOAD } from '../constants'
 import { avaliableWindows } from './allWindows'
 import { randomCatName } from '../../randomNames'
 import FormatC from '../formatC/FormatC'
-import TestImage from './test.png'
 import './style.css'
 
 interface OSWindow {
@@ -189,10 +188,6 @@ const Playground = () => {
 			className='playground'
 			id='playground'
 			onClick={e => handleBackgroundClick(e)}
-			style={{
-				backgroundImage: `url('${TestImage}')`,
-				backgroundSize: 'cover',
-			}}
 		>
 			{loading ? (
 				<p>loading</p>
