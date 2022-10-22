@@ -32,6 +32,14 @@
 
 /* webpack/runtime/compat get default export */
 
+/* webpack/runtime/define property getters */
+
+/* webpack/runtime/global */
+
+/* webpack/runtime/hasOwnProperty shorthand */
+
+/* webpack/runtime/make namespace object */
+
 /* webpack/runtime/publicPath */
 
 /*#__PURE__*/
@@ -316,9 +324,50 @@
 
 /*: string*/
 
+/*:: export type ControlPosition = {x: number, y: number};*/
+
+/*:: export type DraggableCoreDefaultProps = {
+  allowAnyClick: boolean,
+  disabled: boolean,
+  enableUserSelectHack: boolean,
+  onStart: DraggableEventHandler,
+  onDrag: DraggableEventHandler,
+  onStop: DraggableEventHandler,
+  onMouseDown: (e: MouseEvent) => void,
+  scale: number,
+};*/
+
+/*:: export type DraggableCoreProps = {
+  ...DraggableCoreDefaultProps,
+  cancel: string,
+  children: ReactElement<any>,
+  offsetParent: HTMLElement,
+  grid: [number, number],
+  handle: string,
+  nodeRef?: ?React.ElementRef<any>,
+};*/
+
+/*:: export type DraggableData = {
+  node: HTMLElement,
+  x: number, y: number,
+  deltaX: number, deltaY: number,
+  lastX: number, lastY: number,
+};*/
+
+/*:: export type DraggableEventHandler = (e: MouseEvent, data: DraggableData) => void | false;*/
+
+/*:: export type PositionOffsetControlPosition = {x: number|string, y: number|string};*/
+
 /*:: interface EventWithOffset {
   clientX: number, clientY: number
 }*/
+
+/*:: type DraggableCoreState = {
+  dragging: boolean,
+  lastX: number,
+  lastY: number,
+  touchIdentifier: ?number
+};*/
 
 /*eslint no-console:0*/
 
@@ -335,6 +384,8 @@
 // $FlowIgnore[method-unbinding]
 
 // (we use doc.defaultView in case we're in an iframe)
+
+// <DraggableCore> is for advanced usage of <Draggable>. It maintains minimal internal state so it can
 
 // @credits https://gist.github.com/rogozhnikoff/a43cfed27c41e4e68cdc
 
@@ -356,17 +407,81 @@
 
 // CONCATENATED MODULE: ./src/App.tsx
 
+// CONCATENATED MODULE: ./src/components/age/age.ts
+
+// CONCATENATED MODULE: ./src/components/bluescreen/Bluescreen.tsx
+
+// CONCATENATED MODULE: ./src/components/button/Button.tsx
+
 // CONCATENATED MODULE: ./src/components/button/index.tsx
 
 // CONCATENATED MODULE: ./src/components/catcarrier/CarrierBottom.png
 
+// CONCATENATED MODULE: ./src/components/catcarrier/CarrierTop.png
+
+// CONCATENATED MODULE: ./src/components/catcarrier/CatCarrier.tsx
+
+// CONCATENATED MODULE: ./src/components/constants.ts
+
+// CONCATENATED MODULE: ./src/components/disclaimer/Disclaimer.tsx
+
+// CONCATENATED MODULE: ./src/components/formatC/FormatC.tsx
+
+// CONCATENATED MODULE: ./src/components/fosterKittens/FosterKittens.tsx
+
+// CONCATENATED MODULE: ./src/components/kitty/Kitty.tsx
+
+// CONCATENATED MODULE: ./src/components/kitty/movement.ts
+
+// CONCATENATED MODULE: ./src/components/localStorage/localStorage.ts
+
 // CONCATENATED MODULE: ./src/components/oswindow/OSWindow.tsx
 
+// CONCATENATED MODULE: ./src/components/playground/Playground.tsx
+
+// CONCATENATED MODULE: ./src/components/playground/allWindows.ts
+
+// CONCATENATED MODULE: ./src/components/poop/Poop.tsx
+
+// CONCATENATED MODULE: ./src/components/score/Score.tsx
+
+// CONCATENATED MODULE: ./src/components/startmenu/StartMenu.tsx
+
+// CONCATENATED MODULE: ./src/components/startmenu/arrow.png
+
+// CONCATENATED MODULE: ./src/components/startmenu/cat_os97.png
+
+// CONCATENATED MODULE: ./src/components/startmenu/format.png
+
+// CONCATENATED MODULE: ./src/components/startmenu/fosters.png
+
+// CONCATENATED MODULE: ./src/components/startmenu/getkitty.png
+
+// CONCATENATED MODULE: ./src/components/startmenu/score_icon.png
+
+// CONCATENATED MODULE: ./src/components/startmenu/sponge.png
+
+// CONCATENATED MODULE: ./src/components/startmenu/sponge_solo.png
+
+// CONCATENATED MODULE: ./src/components/startmenu/sponge_water.png
+
+// CONCATENATED MODULE: ./src/components/startmenu/togglecat.png
+
+// CONCATENATED MODULE: ./src/components/startmenuoption/StartMenuOption.tsx
+
+// CONCATENATED MODULE: ./src/components/timer/Timer.tsx
+
+// CONCATENATED MODULE: ./src/helpers.ts
+
 // CONCATENATED MODULE: ./src/index.tsx
+
+// CONCATENATED MODULE: ./src/randomNames.ts
 
 // Call event handler
 
 // Call event handler. If it returns explicit false, cancel.
+
+// Call event handler. If it returns explicit false, trigger end.
 
 // Can only determine if SVG after mounting
 
@@ -395,6 +510,8 @@
 // Default to mouse events.
 
 // Define <Draggable>
+
+// Define <DraggableCore>.
 
 // DevTools can report bad minification during injection.
 
@@ -432,6 +549,10 @@
 
 // If this is a controlled component, the result of this operation will be to
 
+// If this is controlled, we don't want to move it - unless it's dragging.
+
+// If this is our first move, use the x and y as last coords.
+
 // If we're in a pseudo-browser server-side environment, this access
 
 // Important that this is after handle/cancel.
@@ -439,6 +560,8 @@
 // Important!
 
 // Initiate dragging. Set the current x and y as offsets
+
+// It is still safe when called from React.
 
 // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
 
@@ -464,6 +587,8 @@
 
 // Only accept left-clicks.
 
+// Otherwise calculate proper values.
+
 // Prevent scrolling on mobile devices, like ipad/iphone.
 
 // Previous versions of this lib exported <Draggable> as the root export. As to no-// them, or TypeScript, we export *both* as the root and as 'default'.
@@ -479,6 +604,8 @@
 // Remove event handlers
 
 // Remove selection caused by scroll, unless it's a focused input
+
+// Remove user-select hack
 
 // Reset the el.
 
@@ -626,15 +753,21 @@
 
 // without worrying about whether or not it is relatively or absolutely positioned.
 
+// work well with libraries that require more control over the element.
+
 // {passive: false}, which allows it to cancel. See
+
+//2 hours
 
 //Kitties dont sleep straight after run or jog :)
 
 //Not yet supported
 
-//TODO: Move to config
+//TODO: Work out a fancy algorythm for this
 
 //TODO: add to preload image script
+
+//TODO: split this bad boy up, shes getting chonky
 
 //kittens always leave the carrier first movement
 
