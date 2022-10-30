@@ -11,6 +11,7 @@ import FosterIcon from './fosters.png'
 import ArrowIcon from './arrow.png'
 import './style.css'
 import Timer from '../timer'
+import { KITTEN_SPAWN_TIME } from '../constants'
 
 interface Props {
 	startOpen: boolean
@@ -37,9 +38,9 @@ const StartMenu = ({
 	openFormatC,
 	openFosterKittens,
 }: Props) => {
-	const kittySpanTime = 5 //TODO: Move to config
 	const [isGetKittyAvaliable, setIsKittyAvaliable] = useState(false)
-	const [kittyWaitDuration, setKittyWaitDuration] = useState(kittySpanTime)
+	const [kittyWaitDuration, setKittyWaitDuration] =
+		useState(KITTEN_SPAWN_TIME)
 
 	const handleFosterKittens = () => {
 		openFosterKittens()
@@ -56,7 +57,7 @@ const StartMenu = ({
 
 	const handleSpawnKitten = () => {
 		spawnKitten()
-		setKittyWaitDuration(kittySpanTime)
+		setKittyWaitDuration(KITTEN_SPAWN_TIME)
 		setIsKittyAvaliable(false)
 	}
 

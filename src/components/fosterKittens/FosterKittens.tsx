@@ -26,7 +26,7 @@ const FosterKittens = ({
 	//TODO: add to preload image script
 	useEffect(() => {
 		fetch(
-			'https://raw.githubusercontent.com/SamSeabourn/CatJSON/main/cats.json'
+			'https://raw.githubusercontent.com/KittenClubhouseTTV/Kitten-JSON/main/README.json'
 		)
 			.then(res => res.json())
 			.then(data => {
@@ -57,7 +57,7 @@ const FosterKittens = ({
 			setActive={setActive}
 			isActive={isActive}
 			closeWindow={closeWindow}
-			altScheme={currentGender === 'male'}
+			altScheme={currentGender === 'female'}
 		>
 			<div className='buttons'>
 				<Button

@@ -26,3 +26,7 @@ export const SCORE = {
 	CLEAN_KITTEN: 200,
 	CLEAN_POOP: 100,
 }
+
+export const SAFE_ZONE_LIFT = 78
+
+export const KITTEN_SPAWN_TIME = 60 * 60 * 2 //2 hours

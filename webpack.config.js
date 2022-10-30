@@ -49,8 +49,8 @@ module.exports = {
 			new TerserPlugin({
 				test: /\.js|.ts(\?.*)?$/i,
 				terserOptions: {
-					mangle: true,
-					compress: true,
+					mangle: false,
+					compress: false,
 				},
 				extractComments: 'all',
 			}),

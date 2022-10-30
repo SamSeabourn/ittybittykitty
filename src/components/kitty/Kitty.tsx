@@ -5,6 +5,7 @@ import { generateRandomFromRange } from '../../helpers'
 import './animations.css'
 import './style.css'
 import { calculateAge } from '../age'
+import { SAFE_ZONE_LIFT } from '../constants'
 
 interface Props {
 	id: string
@@ -67,18 +68,18 @@ const Kitty = ({
 				case 0:
 				case 1:
 				case 2:
-					return `${catAge}px`
+					return `${catAge + SAFE_ZONE_LIFT}px`
 				case 3:
-					return `${catAge * 2}px`
+					return `${catAge * 2 + SAFE_ZONE_LIFT}px`
 				case 4:
 				case 5:
-					return `${catAge * 2 - 1}px`
+					return `${catAge * 2 - 1 + SAFE_ZONE_LIFT}px`
 				case 6:
 				case 7:
 				case 8:
-					return `${catAge * 2 - 2}px`
+					return `${catAge * 2 - 2 + SAFE_ZONE_LIFT}px`
 				case 9:
-					return `${catAge * 2 - 3}px`
+					return `${catAge * 2 - 3 + SAFE_ZONE_LIFT}px`
 			}
 		}
 
