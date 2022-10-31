@@ -31,6 +31,7 @@ import { avaliableWindows } from './allWindows'
 import { randomCatName } from '../../randomNames'
 import FormatC from '../formatC/FormatC'
 import './style.css'
+import Credits from '../credits/Credits'
 
 interface OSWindow {
 	id: string
@@ -204,6 +205,7 @@ const Playground = () => {
 						openScore={() => setWindowOpen('score')}
 						openFormatC={() => setWindowOpen('formatC')}
 						openFosterKittens={() => setWindowOpen('fosterKittens')}
+						openCredits={() => setWindowOpen('credits')}
 					/>
 					<div style={{ opacity: showKittens ? 1 : 0 }}>
 						<CatCarrier />
@@ -271,6 +273,17 @@ const Playground = () => {
 						if (ow.id === 'fosterKittens' && ow.isOpen) {
 							return (
 								<FosterKittens
+									id={ow.id}
+									key={ow.id}
+									isActive={ow.isActive}
+									setActive={setActive}
+									closeWindow={closeWindow}
+								/>
+							)
+						}
+						if (ow.id === 'credits' && ow.isOpen) {
+							return (
+								<Credits
 									id={ow.id}
 									key={ow.id}
 									isActive={ow.isActive}

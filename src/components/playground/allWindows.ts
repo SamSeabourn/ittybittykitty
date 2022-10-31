@@ -19,4 +19,9 @@ export const avaliableWindows = [
 		isOpen: false,
 		isActive: false,
 	},
+	{
+		id: 'credits',
+		isOpen: false,
+		isActive: false,
+	},
 ]

@@ -43,7 +43,7 @@ const Disclaimer = ({
 				computer. This means if you clear your cookies and local storage
 				you will also clear your kitties. You have been warned. Please
 				enjoy the app and let us know in the discord if there are any
-				bugs or any improvments to make.
+				bugs or any improvements to make!
 			</p>
 			<Button text='Got it' onClickFn={handleGotIt} />
 		</OSWindow>

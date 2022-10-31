@@ -9,6 +9,7 @@ import ScoreIcon from './score_icon.png'
 import FormatCIcon from './format.png'
 import FosterIcon from './fosters.png'
 import ArrowIcon from './arrow.png'
+import CreditIcon from './lisa.png'
 import './style.css'
 import Timer from '../timer'
 import { KITTEN_SPAWN_TIME } from '../constants'
@@ -24,6 +25,7 @@ interface Props {
 	openScore: () => void
 	openFormatC: () => void
 	openFosterKittens: () => void
+	openCredits: () => void
 }
 
 const StartMenu = ({
@@ -37,6 +39,7 @@ const StartMenu = ({
 	openScore,
 	openFormatC,
 	openFosterKittens,
+	openCredits,
 }: Props) => {
 	const [isGetKittyAvaliable, setIsKittyAvaliable] = useState(false)
 	const [kittyWaitDuration, setKittyWaitDuration] =
@@ -53,6 +56,10 @@ const StartMenu = ({
 	const handleSelectClean = () => {
 		document.body.style.cursor = `wait`
 		selectCleanKitten()
+	}
+
+	const handleCredits = () => {
+		openCredits()
 	}
 
 	const handleSpawnKitten = () => {
@@ -117,6 +124,14 @@ const StartMenu = ({
 				isActive={true}
 			>
 				{showKittens ? 'Hide Kittens' : 'Show Kittens'}
+			</StartMenuOption>
+			<div className='divider' />
+			<StartMenuOption
+				icon={CreditIcon}
+				optionFunction={handleCredits}
+				isActive={true}
+			>
+				Credits
 			</StartMenuOption>
 			<div className='divider' />
 			<StartMenuOption

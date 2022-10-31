@@ -28,11 +28,11 @@ const FormatC = ({
 		>
 			<h3>FORMAT C:</h3>
 			<p>
-				IS there just too many kitties on screen and its slowing things
-				down. Firstly congrats, that is no easy feat to do. Click below
-				to delete local storage and remove all of you kittens. This
-				feature will be replaced with the ability to adopt out your
-				kitties in the future.
+				Are there just too many kitties on screen and its slowing things
+				down?. Firstly congrats, that is no easy feat. Click below to
+				delete local storage and remove all of you kittens. This feature
+				will be replaced with the ability to adopt out your kitties in
+				the future for additional points :).
 			</p>
 			<Button text='Refresh CatOS now' onClickFn={resetState} />
 		</OSWindow>
