@@ -29,7 +29,7 @@ const Credits = ({ id, isActive, setActive, closeWindow }: CreditProps) => {
 				</div>
 				<br />
 				<p className='flash'>
-					if you are a React developer and would like to contribute to
+					If you are a React developer and would like to contribute to
 					this project, please reach out to the admins on discord.
 				</p>
 			</>

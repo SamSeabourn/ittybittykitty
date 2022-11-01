@@ -7,8 +7,10 @@
 	"scripts": {
 		"start": "set NODE_ENV=develop&& webpack serve --port 3000",
 		"build": "set NODE_ENV=production&& webpack",
+		"build-twitch": "set NODE_ENV=twitch&& webpack",
 		"start-mac": "NODE_ENV=develop webpack serve --port 3000",
 		"build-mac": "NODE_ENV=production webpack",
+		"build-twitch-mac": "NODE_ENV=twitch webpack",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build"
 	},
