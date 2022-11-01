@@ -417,11 +417,15 @@
 
 // CONCATENATED MODULE: ./src/components/catcarrier/CarrierBottom.png
 
+// CONCATENATED MODULE: ./src/components/catcarrier/CarrierShadow.png
+
 // CONCATENATED MODULE: ./src/components/catcarrier/CarrierTop.png
 
 // CONCATENATED MODULE: ./src/components/catcarrier/CatCarrier.tsx
 
 // CONCATENATED MODULE: ./src/components/constants.ts
+
+// CONCATENATED MODULE: ./src/components/credits/Credits.tsx
 
 // CONCATENATED MODULE: ./src/components/disclaimer/Disclaimer.tsx
 
@@ -430,6 +434,8 @@
 // CONCATENATED MODULE: ./src/components/fosterKittens/FosterKittens.tsx
 
 // CONCATENATED MODULE: ./src/components/kitty/Kitty.tsx
+
+// CONCATENATED MODULE: ./src/components/kitty/cat_shadow.png
 
 // CONCATENATED MODULE: ./src/components/kitty/movement.ts
 
@@ -456,6 +462,8 @@
 // CONCATENATED MODULE: ./src/components/startmenu/fosters.png
 
 // CONCATENATED MODULE: ./src/components/startmenu/getkitty.png
+
+// CONCATENATED MODULE: ./src/components/startmenu/lisa.png
 
 // CONCATENATED MODULE: ./src/components/startmenu/score_icon.png
 
