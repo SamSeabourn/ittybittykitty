@@ -29,4 +29,4 @@ export const SCORE = {
 
 export const SAFE_ZONE_LIFT = 78
 
-export const KITTEN_SPAWN_TIME = 60 * 60 * 2 //2 hours
+export const KITTEN_SPAWN_TIME = 2 //2 hours

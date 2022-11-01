@@ -293,7 +293,6 @@ const Playground = () => {
 							)
 						}
 					})}
-					<div className='ground'></div>
 				</>
 			)}
 			<BlueScreen isOpen={blueScreenOpen} />

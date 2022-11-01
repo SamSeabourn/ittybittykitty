@@ -33,3 +33,10 @@
 	pointer-events: all;
 	z-index: 10;
 }
+
+.shadow {
+	position: relative;
+	left: -7px;
+	top: 1px;
+	opacity: 0.5;
+}

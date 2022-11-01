@@ -25,6 +25,7 @@ const Credits = ({ id, isActive, setActive, closeWindow }: CreditProps) => {
 					<p>Product managed by KittenClubhouse</p>
 					<p>Visual design mawrTRON & KittenClubhouse</p>
 					<p>Build and Tech design by mawrTRON</p>
+					<p>Kitten art Elthen's Pixel Art Shop</p>
 				</div>
 				<br />
 				<p className='flash'>

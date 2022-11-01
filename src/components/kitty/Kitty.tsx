@@ -6,6 +6,7 @@ import './animations.css'
 import './style.css'
 import { calculateAge } from '../age'
 import { SAFE_ZONE_LIFT } from '../constants'
+import ShadowImage from './cat_shadow.png'
 
 interface Props {
 	id: string
@@ -58,8 +59,8 @@ const Kitty = ({
 		catAgeHours: number,
 		direction: 'left' | 'right'
 	) => {
-		const catAge: number =
-			Math.round(catAgeHours / 24) < 10 ? catAgeHours : 9
+		const catAge =
+			Math.round(catAgeHours / 24) < 9 ? Math.round(catAgeHours / 24) : 9
 		const reverseScale = direction === 'left' ? 'scaleX(-1)' : ''
 		const sizeScale = `scale(4.${catAge})`
 		//TODO: Work out a fancy algorythm for this
@@ -268,6 +269,7 @@ const Kitty = ({
 						className='kitty__boundingbox'
 						onClick={handleClickKitty}
 					/>
+					<img className='shadow' src={ShadowImage} />
 				</div>
 			</div>
 		</>
