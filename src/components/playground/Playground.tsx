@@ -27,7 +27,7 @@ import { PoopType } from '../poop/module'
 import Score from '../score/Score'
 import Disclaimer from '../disclaimer'
 import { SCORE, IMG_SRC_FOR_PRELOAD } from '../constants'
-import { avaliableWindows } from './allWindows'
+import { availableWindows } from './allWindows'
 import { randomCatName } from '../../randomNames'
 import FormatC from '../formatC/FormatC'
 import './style.css'
@@ -49,7 +49,8 @@ const Playground = () => {
 	const [score, setScore] = useState<number>(0)
 	const [blueScreenOpen, setBlueScreenOpen] = useState(false)
 	const [allWindows, setAllWindows] =
-		useState<Array<OSWindow>>(avaliableWindows)
+		useState<Array<OSWindow>>(availableWindows)
+	const [pageVisible, setPageVisible] = useState(true)
 
 	const addToScore = (points: number) => {
 		const newScore = score + points
@@ -167,9 +168,15 @@ const Playground = () => {
 
 	const resetState = () => {
 		setBlueScreenOpen(true)
+		setStartOpen(false)
 		window.setTimeout(() => {
 			localStorage.clear()
-			window.location.reload()
+			initLocalStorage()
+			setKittens([])
+			setPoop([])
+			setAllWindows(availableWindows)
+			setBlueScreenOpen(false)
+			setWindowOpen('disclaimer')
 		}, 9000)
 	}
 
@@ -183,6 +190,14 @@ const Playground = () => {
 			setLoading(false)
 		})
 	}, [])
+
+	document.addEventListener('visibilitychange', e => {
+		if (document.hidden) {
+			setKittens([])
+		} else {
+			setKittens(getKittensFromLocalStorage())
+		}
+	})
 
 	return (
 		<div

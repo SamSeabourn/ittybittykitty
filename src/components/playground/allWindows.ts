@@ -1,4 +1,4 @@
-export const avaliableWindows = [
+export const availableWindows = [
 	{
 		id: 'score',
 		isOpen: false,
