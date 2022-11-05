@@ -7,6 +7,7 @@
 	box-shadow: 1px 1px 33px rgb(0 0 0 / 75%);
 	position: absolute;
 	border-radius: 10px;
+	transition: background-color 300ms ease-in-out;
 }
 
 .top-bar {
@@ -16,6 +17,7 @@
 	background-color: var(--OSHeader);
 	border-radius: 10px 10px 0 0;
 	font-size: 1.7vh;
+	transition: background-color 300ms ease-in-out;
 }
 
 .exit {
@@ -27,12 +29,14 @@
 	font-weight: bolder;
 	padding: 2px 0 0 0;
 	font-size: 1.7vh;
+	transition: background-color 300ms ease-in-out;
 }
 
 .exit:hover {
 	cursor: pointer;
 	background-color: var(--OSHover);
 	border-radius: 0 10px 0 0;
+	transition: background-color 300ms ease-in-out;
 }
 
 .title {
@@ -58,6 +62,7 @@
 	box-shadow: 1px 1px 33px rgb(0 0 0 / 75%);
 	position: absolute;
 	border-radius: 10px;
+	transition: background-color 300ms ease-in-out;
 }
 
 .top-bar__alt {
@@ -66,6 +71,7 @@
 	justify-content: space-between;
 	background-color: var(--OSHeaderAlt);
 	border-radius: 10px 10px 0 0;
+	transition: background-color 300ms ease-in-out;
 }
 
 .exit__alt {
@@ -76,6 +82,7 @@
 	text-align: center;
 	font-weight: bolder;
 	padding: 2px 0 0 0;
+	transition: background-color 300ms ease-in-out;
 }
 
 .exit__alt:hover {

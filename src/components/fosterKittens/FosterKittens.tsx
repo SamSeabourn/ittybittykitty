@@ -23,7 +23,7 @@ const FosterKittens = ({
 	const [currentIndex, setCurrentIndex] = useState(0)
 	const [currentGender, setCurrentGender] = useState('male')
 
-	//TODO: add to preload image script
+	//TODO: add to preload image script and cache
 	useEffect(() => {
 		fetch(
 			'https://raw.githubusercontent.com/KittenClubhouseTTV/Kitten-JSON/main/README.json'
@@ -31,7 +31,9 @@ const FosterKittens = ({
 			.then(res => res.json())
 			.then(data => {
 				setFosterKitties(data.currentKittens)
+				setCurrentGender(data.currentKittens[0].gender)
 			})
+			.catch(error => console.error(error))
 	}, [])
 
 	const pageDown = () => {
