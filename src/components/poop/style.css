@@ -2,9 +2,10 @@
 	width: 32px;
 	height: 32px;
 	background-size: cover;
-	transform: scale(2);
+	transform: scale(1.5);
+	transform-origin: bottom;
 	image-rendering: pixelated;
-	bottom: 93px;
+	bottom: 1%;
 	position: absolute;
 	z-index: 0;
 }

@@ -37,7 +37,7 @@ const Kitty = ({
 	const actionsStarted = useRef(false)
 	const timeoutRef = useRef(0)
 	const [style, setStyle] = useState({
-		left: `${position}px`,
+		left: `0%`,
 		transition: 'none',
 		filter: `hue-rotate(${kittyColorShift}deg)`,
 	})
@@ -52,6 +52,7 @@ const Kitty = ({
 		left: `${position}px`,
 		transition: 'none',
 		filter: `hue-rotate(${kittyColorShift}deg)`,
+		transformOrigin: 'bottom',
 		...css,
 	})
 
@@ -62,31 +63,10 @@ const Kitty = ({
 		const catAge =
 			Math.round(catAgeHours / 24) < 9 ? Math.round(catAgeHours / 24) : 9
 		const reverseScale = direction === 'left' ? 'scaleX(-1)' : ''
-		const sizeScale = `scale(4.${catAge})`
-		//TODO: Work out a fancy algorythm for this
-		const bottomPx = () => {
-			switch (catAge) {
-				case 0:
-				case 1:
-				case 2:
-					return `${catAge + SAFE_ZONE_LIFT}px`
-				case 3:
-					return `${catAge * 2 + SAFE_ZONE_LIFT}px`
-				case 4:
-				case 5:
-					return `${catAge * 2 - 1 + SAFE_ZONE_LIFT}px`
-				case 6:
-				case 7:
-				case 8:
-					return `${catAge * 2 - 2 + SAFE_ZONE_LIFT}px`
-				case 9:
-					return `${catAge * 2 - 3 + SAFE_ZONE_LIFT}px`
-			}
-		}
-
+		const sizeScale = `scale(3.${catAge})`
 		return {
 			transform: `${reverseScale} ${sizeScale}`,
-			bottom: bottomPx(),
+			transformOrigin: 'bottom',
 		}
 	}
 
@@ -254,7 +234,7 @@ const Kitty = ({
 	return (
 		<>
 			<div style={style} className='kitty__wrapper'>
-				<span>{name}</span>
+				<span className='nametag'>{name}</span>
 				<div
 					style={{
 						backgroundImage: kittenSprite,

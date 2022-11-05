@@ -14,10 +14,10 @@
 }
 
 .kitty__wrapper {
-	width: 128px;
-	height: 128px;
+	/* width: 128px;
+	height: 128px; */
 	position: absolute;
-	bottom: 47px;
+	bottom: 1%;
 	left: 100px;
 	image-rendering: pixelated;
 	display: flex;
@@ -40,4 +40,11 @@
 	left: -7px;
 	top: 1px;
 	opacity: 0.5;
+}
+
+.nametag {
+	transform: translateY(-260%);
+	font-size: 1.2vh;
+	font-weight: 300;
+	z-index: 5;
 }

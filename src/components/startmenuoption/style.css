@@ -1,25 +1,30 @@
 .start-menu-option {
-	height: 40px;
+	height: 4vh;
 	display: flex;
 	align-items: center;
 	cursor: pointer;
 	padding-left: 12px;
-    padding-right: 12px;
+	font-size: 1.7vh;
+	padding-right: 12px;
+}
+
+.start-menu-option > img {
+	height: 3vh;
 }
 
 .inactive {
 	background-color: #5b5658 !important;
-    pointer-events: none !important;
-    cursor: none !important;
-    filter: grayscale(0.8) !important;
+	pointer-events: none !important;
+	cursor: none !important;
+	filter: grayscale(0.8) !important;
 	color: rgb(255 255 255 / 53%);
 }
 
 .inactive > span {
 	background-color: #5b5658 !important;
-    pointer-events: none !important;
-    cursor: none !important;
-    filter: grayscale(0.8) !important;
+	pointer-events: none !important;
+	cursor: none !important;
+	filter: grayscale(0.8) !important;
 	color: rgb(255 255 255 / 53%);
 }
 

@@ -200,118 +200,122 @@ const Playground = () => {
 	})
 
 	return (
-		<div
-			className='playground'
-			id='playground'
-			onClick={e => handleBackgroundClick(e)}
-		>
-			{loading ? (
-				<p>loading</p>
-			) : (
-				<>
-					<StartMenu
-						startOpen={startOpen}
-						toggleStart={handleStartOpen}
-						showKittens={showKittens}
-						toggleShowKittens={toggleShowKittens}
-						spawnKitten={spawnKitten}
-						cleanSelected={cleanSelected}
-						selectCleanKitten={selectCleanKitten}
-						openScore={() => setWindowOpen('score')}
-						openFormatC={() => setWindowOpen('formatC')}
-						openFosterKittens={() => setWindowOpen('fosterKittens')}
-						openCredits={() => setWindowOpen('credits')}
-					/>
-					<div style={{ opacity: showKittens ? 1 : 0 }}>
-						<CatCarrier />
-						{kittens.map(k => {
-							return (
-								<Kitty
-									id={k.id}
-									key={k.id}
-									name={k.name}
-									birthday={k.birthDay}
-									color={k.color}
-									colorShift={k.colorShift}
-									cleanKitty={cleanKitty}
-									isClean={k.isClean}
-									spawnPoop={spawnPoop}
+		<>
+			<div
+				className='playground'
+				id='playground'
+				onClick={e => handleBackgroundClick(e)}
+			>
+				{loading ? (
+					<p>loading</p>
+				) : (
+					<>
+						<StartMenu
+							startOpen={startOpen}
+							toggleStart={handleStartOpen}
+							showKittens={showKittens}
+							toggleShowKittens={toggleShowKittens}
+							spawnKitten={spawnKitten}
+							cleanSelected={cleanSelected}
+							selectCleanKitten={selectCleanKitten}
+							openScore={() => setWindowOpen('score')}
+							openFormatC={() => setWindowOpen('formatC')}
+							openFosterKittens={() =>
+								setWindowOpen('fosterKittens')
+							}
+							openCredits={() => setWindowOpen('credits')}
+						/>
+						<div style={{ opacity: showKittens ? 1 : 0 }}>
+							<CatCarrier />
+							{kittens.map(k => {
+								return (
+									<Kitty
+										id={k.id}
+										key={k.id}
+										name={k.name}
+										birthday={k.birthDay}
+										color={k.color}
+										colorShift={k.colorShift}
+										cleanKitty={cleanKitty}
+										isClean={k.isClean}
+										spawnPoop={spawnPoop}
+									/>
+								)
+							})}
+							{poop.map(p => (
+								<Poop
+									id={p.id}
+									key={p.id}
+									location={p.location}
+									removePoop={removePoop}
 								/>
-							)
+							))}
+						</div>
+						{allWindows.map(ow => {
+							if (ow.id === 'score' && ow.isOpen) {
+								return (
+									<Score
+										id={ow.id}
+										key={ow.id}
+										isActive={ow.isActive}
+										setActive={setActive}
+										closeWindow={closeWindow}
+										score={score}
+									/>
+								)
+							}
+							if (ow.id === 'disclaimer' && ow.isOpen) {
+								return (
+									<Disclaimer
+										id={ow.id}
+										key={ow.id}
+										isActive={ow.isActive}
+										spawnKitten={spawnKitten}
+										setActive={setActive}
+										closeWindow={closeWindow}
+									/>
+								)
+							}
+							if (ow.id === 'formatC' && ow.isOpen) {
+								return (
+									<FormatC
+										id={ow.id}
+										key={ow.id}
+										isActive={ow.isActive}
+										setActive={setActive}
+										resetState={resetState}
+										closeWindow={closeWindow}
+									/>
+								)
+							}
+							if (ow.id === 'fosterKittens' && ow.isOpen) {
+								return (
+									<FosterKittens
+										id={ow.id}
+										key={ow.id}
+										isActive={ow.isActive}
+										setActive={setActive}
+										closeWindow={closeWindow}
+									/>
+								)
+							}
+							if (ow.id === 'credits' && ow.isOpen) {
+								return (
+									<Credits
+										id={ow.id}
+										key={ow.id}
+										isActive={ow.isActive}
+										setActive={setActive}
+										closeWindow={closeWindow}
+									/>
+								)
+							}
 						})}
-						{poop.map(p => (
-							<Poop
-								id={p.id}
-								key={p.id}
-								location={p.location}
-								removePoop={removePoop}
-							/>
-						))}
-					</div>
-					{allWindows.map(ow => {
-						if (ow.id === 'score' && ow.isOpen) {
-							return (
-								<Score
-									id={ow.id}
-									key={ow.id}
-									isActive={ow.isActive}
-									setActive={setActive}
-									closeWindow={closeWindow}
-									score={score}
-								/>
-							)
-						}
-						if (ow.id === 'disclaimer' && ow.isOpen) {
-							return (
-								<Disclaimer
-									id={ow.id}
-									key={ow.id}
-									isActive={ow.isActive}
-									spawnKitten={spawnKitten}
-									setActive={setActive}
-									closeWindow={closeWindow}
-								/>
-							)
-						}
-						if (ow.id === 'formatC' && ow.isOpen) {
-							return (
-								<FormatC
-									id={ow.id}
-									key={ow.id}
-									isActive={ow.isActive}
-									setActive={setActive}
-									resetState={resetState}
-									closeWindow={closeWindow}
-								/>
-							)
-						}
-						if (ow.id === 'fosterKittens' && ow.isOpen) {
-							return (
-								<FosterKittens
-									id={ow.id}
-									key={ow.id}
-									isActive={ow.isActive}
-									setActive={setActive}
-									closeWindow={closeWindow}
-								/>
-							)
-						}
-						if (ow.id === 'credits' && ow.isOpen) {
-							return (
-								<Credits
-									id={ow.id}
-									key={ow.id}
-									isActive={ow.isActive}
-									setActive={setActive}
-									closeWindow={closeWindow}
-								/>
-							)
-						}
-					})}
-				</>
-			)}
+					</>
+				)}
+			</div>
 			<BlueScreen isOpen={blueScreenOpen} />
-		</div>
+		</>
 	)
 }
 

@@ -1,11 +1,11 @@
 .carrier-bottom {
 	width: 32px;
 	height: 32px;
-	left: 160px;
-	height: 32px;
-	bottom: 121px;
+	left: 3%;
+	bottom: 1%;
+	transform-origin: bottom;
 	position: absolute;
-	transform: scale(4);
+	transform: scale(3);
 	image-rendering: pixelated;
 	z-index: 0;
 }
@@ -13,11 +13,11 @@
 .carrier-top {
 	width: 32px;
 	height: 32px;
-	left: 160px;
-	height: 32px;
-	bottom: 121px;
+	left: 3%;
+	bottom: 1%;
+	transform-origin: bottom;
 	position: absolute;
-	transform: scale(4);
+	transform: scale(3);
 	image-rendering: pixelated;
 	z-index: 10;
 	pointer-events: none;
@@ -26,12 +26,12 @@
 .carrier-shadow {
 	width: 32px;
 	height: 32px;
-	left: 160px;
-	height: 29px;
-	bottom: 43px;
+	left: 3.05%;
+	bottom: 1%;
 	opacity: 0.5;
 	position: absolute;
-	transform: scale(4);
+	transform: scale(3) scaleY(1);
+	transform-origin: top;
 	image-rendering: pixelated;
 	z-index: -10;
 	pointer-events: none;

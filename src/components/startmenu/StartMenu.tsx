@@ -70,7 +70,7 @@ const StartMenu = ({
 
 	return (
 		<div
-			style={{ left: startOpen ? '-4px' : '-264px' }}
+			style={{ left: startOpen ? '0.02%' : '-15.75%' }}
 			className='start-container'
 		>
 			<div className='start-logobar'>

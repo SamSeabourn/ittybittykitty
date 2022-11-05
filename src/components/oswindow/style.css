@@ -15,6 +15,7 @@
 	justify-content: space-between;
 	background-color: var(--OSHeader);
 	border-radius: 10px 10px 0 0;
+	font-size: 1.7vh;
 }
 
 .exit {
@@ -25,6 +26,7 @@
 	text-align: center;
 	font-weight: bolder;
 	padding: 2px 0 0 0;
+	font-size: 1.7vh;
 }
 
 .exit:hover {
@@ -46,6 +48,7 @@
 .content {
 	padding: 6px;
 	text-align: center;
+	font-size: 1.7vh;
 }
 
 .window-container__alt {
