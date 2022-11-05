@@ -29,7 +29,7 @@ const Kitty = ({
 	cleanKitty,
 	spawnPoop,
 }: Props) => {
-	const minLeftPosition = 110
+	const minLeftPosition = 40
 	const position = useRef(minLeftPosition)
 	const kittyColorShift = colorShift
 	const [action, setAction] = useState<Action>('idle')
@@ -37,7 +37,7 @@ const Kitty = ({
 	const actionsStarted = useRef(false)
 	const timeoutRef = useRef(0)
 	const [style, setStyle] = useState({
-		left: `0%`,
+		left: `${minLeftPosition}px`,
 		transition: 'none',
 		filter: `hue-rotate(${kittyColorShift}deg)`,
 	})
@@ -138,6 +138,15 @@ const Kitty = ({
 		zoomie()
 	}
 
+	const getBackOnScreen = () => {
+		if (position.current > window.innerWidth) {
+			console.log('kitty out of bounds')
+			console.log(position.current, window.innerWidth)
+			clearTimeout(timeoutRef.current)
+			doMovementAction('stroll')
+		}
+	}
+
 	const doJump = (e: any) => {
 		if (!['idle', 'wag', 'wipe'].includes(action) || !isClean) return
 		clearTimeout(timeoutRef.current)
@@ -227,6 +236,14 @@ const Kitty = ({
 				doMovementAction(firstAction) //kittens always leave the carrier first movement
 			}, generateRandomFromRange(1000, 3000))
 		}
+		document.addEventListener(
+			'resize',
+			event => {
+				console.log('call')
+				getBackOnScreen()
+			},
+			true
+		)
 	}, [isClean])
 
 	const kittenSprite = `url('./sprites_${isClean ? color : 'dirty'}.png')`

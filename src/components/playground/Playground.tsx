@@ -181,7 +181,7 @@ const Playground = () => {
 	}
 
 	useEffect(() => {
-		Promise.allSettled([
+		Promise.all([
 			...IMG_SRC_FOR_PRELOAD.map(src => preloadImage(src)),
 		]).then(() => {
 			initLocalStorage()
@@ -189,15 +189,15 @@ const Playground = () => {
 			setScore(getScoreFromLocalStorage())
 			setLoading(false)
 		})
-	}, [])
 
-	document.addEventListener('visibilitychange', e => {
-		if (document.hidden) {
-			setKittens([])
-		} else {
-			setKittens(getKittensFromLocalStorage())
-		}
-	})
+		document.addEventListener('visibilitychange', e => {
+			if (document.hidden) {
+				setKittens([])
+			} else {
+				setKittens(getKittensFromLocalStorage())
+			}
+		})
+	}, [])
 
 	return (
 		<>
