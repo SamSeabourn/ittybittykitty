@@ -85,9 +85,13 @@ if (process.env.NODE_ENV !== 'twitch') {
 			new webpack.ids.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
 		],
 		output: {
-			path: path.resolve(__dirname, 'build'),
-			filename: '[name].js',
+			path: __dirname + '/build/',
 			clean: true,
+		},
+		performance: {
+			hints: false,
+			maxEntrypointSize: 512000,
+			maxAssetSize: 512000,
 		},
 		module: {
 			rules: [
@@ -101,7 +105,7 @@ if (process.env.NODE_ENV !== 'twitch') {
 				},
 				{
 					test: /\.css$/,
-					use: 'css-loader',
+					use: [MiniCssExtractPlugin.loader, 'css-loader'],
 				},
 				{
 					test: /\.(jpe?g|png|gif|svg)$/i,
@@ -112,6 +116,12 @@ if (process.env.NODE_ENV !== 'twitch') {
 				},
 			],
 		},
+		plugins: [
+			new HtmlWebpackPlugin({
+				template: 'index.html',
+			}),
+			new MiniCssExtractPlugin(),
+		],
 		optimization: {
 			minimizer: [
 				new CopyWebpackPlugin({
