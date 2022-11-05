@@ -15,7 +15,7 @@
 
 .kitty__wrapper {
 	position: absolute;
-	bottom: 1%;
+	bottom: 10%;
 	left: 100px;
 	image-rendering: pixelated;
 	display: flex;
